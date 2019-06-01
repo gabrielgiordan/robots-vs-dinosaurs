@@ -1,0 +1,6 @@
+base: cloudius/osv-openjdk8
+
+cmdline: /java.so -jar /robots-vs-dinosaurs/app.jar
+
+files:
+  /robots-vs-dinosaurs/app.jar: ./target/robots-vs-dinosaurs-0.0.1-SNAPSHOT-standalone.jar
