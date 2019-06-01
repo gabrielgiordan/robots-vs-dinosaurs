@@ -8,8 +8,8 @@
 (defrecord Orientation [direction available-directions])
 
 (defn new-direction
-  [direction-key available]
-  (->Direction direction-key (direction-key available) available))
+  [name point directions]
+  (->Direction name (name directions)))
 
 (defn get-orientation
   ""

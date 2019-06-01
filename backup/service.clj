@@ -4,7 +4,7 @@
             [reitit.pedestal :as pedestal]
             [reitit.http :as http]
             [reitit.ring :as ring]
-            [robots-vs-dinosaurs.service :as service]))
+            [robots-vs-dinosaurs.service-2 :as service]))
 
 (declare redirect-trailing-slash-handler)
 

@@ -8,6 +8,7 @@
                  [io.pedestal/pedestal.jetty "0.5.5"]
                  [metosin/reitit "0.3.7"]
                  [metosin/reitit-pedestal "0.3.7"]
+                 [com.stuartsierra/component "0.4.0"]
                  [ch.qos.logback/logback-classic "1.2.3" exclusions [org.slf4j/slf4j-api]]
                  [org.slf4j/jul-to-slf4j "1.7.26"]
                  [org.slf4j/jcl-over-slf4j "1.7.26"]
