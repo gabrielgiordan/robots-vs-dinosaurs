@@ -2,7 +2,8 @@
   (:require [com.stuartsierra.component :as component]
             [io.pedestal.http :as server]
             [io.pedestal.interceptor :refer [interceptor]]
-            [reitit.http :as http]))
+            [reitit.http :as http])
+  (:import (java.io Writer)))
 
 (def ^:const base-service-map
   {:env                 :prod
@@ -76,18 +77,22 @@
 
   (start
     [this]
-    (println "Starting the Service component.")
+    (println "Starting the #<Service> component.")
     (let [service (start-service this options (:route routes))]
         (assoc this :service service)))
 
   (stop
     [this]
-    (println "Stopping the Service component.")
+    (println "Stopping the #<Service> component.")
     ; `dissoc` returns a map and `assoc` keeps the record type.
     (assoc this :service nil))
 
   Object
-  (toString [_] "<Service>"))
+  (toString [_] "#<Service>"))
+
+(defmethod clojure.core/print-method Service
+  [_ ^Writer writer]
+  (.write writer "#<Service>"))
 
 (defn new-service
   [options]

@@ -1,6 +1,7 @@
 (ns robots-vs-dinosaurs.component.storage
   "The storage for the server."
-  (:require [com.stuartsierra.component :as component]))
+  (:require [com.stuartsierra.component :as component])
+  (:import (java.io Writer)))
 
 (defprotocol IMemoryStorage
   (pull [this key] "Gets a value from memory storage.")
@@ -11,16 +12,20 @@
 
   (start
     [this]
-    (println "Starting the MemoryStorage component.")
+    (println "Starting the #<MemoryStorage> component.")
     (assoc this :memory-storage (atom {})))
 
   (stop
     [this]
-    (println "Stopping the MemoryStorage component.")
+    (println "Stopping the #<MemoryStorage> component.")
     (assoc this :memory-storage nil))
 
   Object
-  (toString [_] "<MemoryStorage>"))
+  (toString [_] "#<MemoryStorage>"))
+
+(defmethod clojure.core/print-method MemoryStorage
+  [_ ^Writer writer]
+  (.write writer "#<MemoryStorage>"))
 
 (extend-protocol IMemoryStorage
   MemoryStorage
