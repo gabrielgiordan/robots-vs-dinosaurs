@@ -2,13 +2,20 @@
   (:require [com.stuartsierra.component :as component]
             [io.pedestal.http :as http]))
 
-(defrecord Server []
+(defn start-server
+  [server service]
+  {})
+
+(defrecord Server [service]
   component/Lifecycle
 
   (start
     [this]
     (println "Starting the Server component.")
-    (assoc this :server {}))
+    (if (:server this)
+      this
+      (let [server (start-server this (:service service))]
+        (assoc this :server server))))
 
   (stop
     [this]
@@ -16,7 +23,7 @@
     (assoc this :server nil))
 
   Object
-  (toString [_] "<Routes>"))
+  (toString [_] "<Server>"))
 
 (defn new-server
   "Creates a new http server."

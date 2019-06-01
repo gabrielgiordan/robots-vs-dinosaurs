@@ -31,11 +31,13 @@
                    :routes  :routes}
          :server  {:service :service}})))
 
-(defn print-system-map
+(defn print-system-info
   "Prints ASCII art with the complete SystemMap."
   [system-map]
-  (remove-method print-method SystemMap)
   (run! println ascii)
-  (println "\nSystemMap: ")
-  (print system-map)
-  (println "\n"))
+  (println "\nSystemMap port:" (-> system-map :options :service :port))
+  ;(remove-method print-method SystemMap)
+  ;(println "\nSystemMap: ")
+  ;(print system-map)
+  ;(println "\n")
+  )

@@ -77,10 +77,8 @@
   (start
     [this]
     (println "Starting the Service component.")
-    (if (:service this)
-      this
-      (let [service (start-service this (:options options) (:route routes))]
-        (assoc this :service service))))
+    (let [service (start-service this options (:route routes))]
+        (assoc this :service service)))
 
   (stop
     [this]

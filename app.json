@@ -1,0 +1,5 @@
+{
+  "name": "Robots vs Dinosaurs",
+  "description": "The Robots vs Dinosaurs app which can be deployed to Heroku.",
+  "image": "heroku/clojure"
+}
