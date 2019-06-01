@@ -11,12 +11,12 @@
 
   (start
     [this]
-    (println ";; Starting <MemoryStorage>")
+    (println "Starting the MemoryStorage component.")
     (assoc this :memory-storage (atom {})))
 
   (stop
     [this]
-    (println ";; Starting <MemoryStorage>")
+    (println "Stopping the MemoryStorage component.")
     (assoc this :memory-storage nil))
 
   Object

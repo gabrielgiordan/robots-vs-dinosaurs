@@ -3,7 +3,7 @@
   (:gen-class) ; for -main method in uberjar
   (:require [io.pedestal.http :as server]
             [robots-vs-dinosaurs.components.service :as service-component]
-            [robots-vs-dinosaurs.systems :as components]))
+            [robots-vs-dinosaurs.system :as components]))
 
 (defn -main
   "For 'lein run' use."

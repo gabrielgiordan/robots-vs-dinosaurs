@@ -76,19 +76,21 @@
 
   (start
     [this]
-    (println ";; Starting <Service>")
-    (let [service (start-service this (:options options) (:route routes))]
-      (assoc this :service service)))
+    (println "Starting the Service component.")
+    (if (:service this)
+      this
+      (let [service (start-service this (:options options) (:route routes))]
+        (assoc this :service service))))
 
   (stop
     [this]
-    (println ";; Stopping <Service>")
+    (println "Stopping the Service component.")
+    ; `dissoc` returns a map and `assoc` keeps the record type.
     (assoc this :service nil))
 
   Object
   (toString [_] "<Service>"))
 
 (defn new-service
-  [options routes]
-  (map->Service
-    {:options options, :routes routes}))
+  [options]
+  (map->Service {:options options}))
