@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fff1221a-9306-4ed8-a7aa-ed7a85d4e639" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/routes.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/routes.clj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/server.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/server.clj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/service.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/service.clj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/storage.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/storage.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/robots_vs_dinosaurs/server.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/robots_vs_dinosaurs/server.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/system.clj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/robots_vs_dinosaurs/service.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/robots_vs_dinosaurs/service.clj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/robots_vs_dinosaurs/system.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/robots_vs_dinosaurs/system.clj" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,52 +23,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/component/server.clj">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/component/system.clj">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/system.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+            <state relative-caret-position="340">
+              <caret line="63" column="26" lean-forward="true" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/server.clj">
+        <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/component/router.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+            <state relative-caret-position="119">
+              <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/component/routes.clj">
+        <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/service.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/component/service.clj">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="97" column="11" lean-forward="true" selection-start-line="97" selection-start-column="11" selection-end-line="97" selection-end-column="11" />
+            <state relative-caret-position="374">
+              <caret line="40" column="7" lean-forward="true" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -105,6 +84,7 @@
       <find>assoc-in</find>
       <find>if-</find>
       <find>print</find>
+      <find>:prod</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -152,16 +132,18 @@
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/logic.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/systems.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/route.clj" />
-        <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/service.clj" />
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/app.json" />
         <option value="$PROJECT_DIR$/project.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/system.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/server.clj" />
+        <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/interceptors.clj" />
+        <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/routes.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/storage.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/server.clj" />
-        <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/routes.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/service.clj" />
+        <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/component/router.clj" />
+        <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/service.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/system.clj" />
       </list>
     </option>
@@ -173,8 +155,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="742" />
-    <option name="width" value="1188" />
+    <option name="x" value="949" />
+    <option name="width" value="980" />
     <option name="height" value="1091" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -223,6 +205,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="GoToNamespace.includeLibraries" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="cursive.last.file.extension.C\:/Git/robots-vs-dinosaurs/src" value="clj" />
     <property name="cursive.last.file.extension.C\:/Git/robots-vs-dinosaurs/test" value="clj" />
@@ -241,7 +224,7 @@
       <recent name="C:\Git\robots-vs-dinosaurs\src\robots_vs_dinosaurs\spec" />
     </key>
   </component>
-  <component name="ReplState" timestamp="1559420725997">{:repl-history {:ide [], :local [{:command &quot;(create-dinosaur! \&quot;r\&quot; [3 2])&quot;, :offset 24, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-dinosaur! \&quot;5\&quot; [3 2])&quot;, :offset 20, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(delete-simulation! \&quot;5\&quot; \&quot;1\&quot;)&quot;, :offset 26, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(delete-dinosaur! \&quot;5\&quot; \&quot;1\&quot;)&quot;, :offset 23, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-dinosaur! \&quot;1\&quot; [3 2])&quot;, :offset 28, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(delete-dinosaur! \&quot;6\&quot; \&quot;6\&quot;)&quot;, :offset 24, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-dinosaur! \&quot;6\&quot; [3 2])&quot;, :offset 23, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-dinosaur! \&quot;6\&quot; [2 2])&quot;, :offset 24, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(delete-dinosaur! \&quot;6\&quot; \&quot;7\&quot;)&quot;, :offset 24, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(delete-robot! \&quot;0\&quot; \&quot;5\&quot;)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(sum-positions [1 1] [2 2])&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(sum-positions [1 1] [-1 2])&quot;, :offset 24, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(position+ [1 1] [2 2])&quot;, :offset 10, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(position- [1 1] [2 2])&quot;, :offset 10, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(defn move-robot-forward!\n  [id robot-id]\n  (swap! state-atom move-robot-forward id robot-id))&quot;, :offset 94, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;1\&quot; \&quot;9\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(defn- move-unit-forward\n  [units {:keys [direction] :as unit} size]\n  (println direction)\n  (println (:facing direction))\n  (update-in unit :position (partial position+ (:facing direction))))&quot;, :offset 192, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(defn- move-unit-forward\n  [units {:keys [direction] :as unit} size]\n  (println direction)\n  (println (:facing direction))\n  (update-in unit :position position+ (:facing direction)))&quot;, :offset 182, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(defn- move-unit-forward\n  [units {:keys [direction] :as unit} size]\n  (println direction)\n  (println (:facing direction))\n  (println (update-in unit :position position+ (:facing direction)))\n  (update-in unit :position position+ (:facing direction)))&quot;, :offset 251, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;5\&quot; \&quot;1\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;1\&quot; \&quot;6\&quot;)&quot;, :offset 29, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(defn- move-unit-forward\n  [units {:keys [direction position] :as unit} size]\n  (let [new-position (position+ position direction)]\n    (assoc-in unit #{:position} new-position)))&quot;, :offset 178, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(defn- move-unit-forward\n  [units {:keys [direction position] :as unit} size]\n  (let [new-position (position+ position (:facing direction))]\n    (assoc-in unit #{:position} new-position)))&quot;, :offset 188, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;8\&quot; \&quot;4\&quot;)&quot;, :offset 29, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-robot! \&quot;1\&quot; [2 2] :up)&quot;, :offset 20, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;1\&quot; \&quot;1\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;5\&quot; \&quot;5\&quot;)&quot;, :offset 23, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-robot! \&quot;8\&quot; [2 4] :up)&quot;, :offset 23, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;8\&quot; \&quot;2\&quot;)&quot;, :offset 29, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(spec/directions)&quot;, :offset 16, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;spec/directions&quot;, :offset 0, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(keep-indexed #(spec/directions))&quot;, :offset 31, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(keep-indexed (constantly spec/directions))&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(keep-indexed spec/directions)&quot;, :offset 29, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(keep-indexed #(= (% :facing) :up) spec/directions)&quot;, :offset 29, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(keep-indexed #(= (:facing %) :up) spec/directions)&quot;, :offset 29, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;2&quot;, :offset 1, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;1&quot;, :offset 1, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction-length spec/directions)&quot;, :offset 37, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(4 spec/directions)&quot;, :offset 1, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(spec/directions 2)&quot;, :offset 18, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(spec/directions 1)&quot;, :offset 18, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(spec/directions 4)&quot;, :offset 18, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction 1 spec/directions)&quot;, :offset 16, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction 0 spec/directions)&quot;, :offset 16, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction 2 spec/directions)&quot;, :offset 16, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(direction-index (create-direction-record :down))&quot;, :offset 47, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(direction-index (create-direction-record :up))&quot;, :offset 45, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(direction-index (create-direction-record :right))&quot;, :offset 48, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(direction-index (create-direction-record :left))&quot;, :offset 47, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction 3 spec/directions)&quot;, :offset 16, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction 4 spec/directions)&quot;, :offset 16, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(turn-robot-left! \&quot;0\&quot; \&quot;0\&quot;)&quot;, :offset 26, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction-index :up)&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction-index spec/four-directions :up)&quot;, :offset 41, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(type \n  (get))&quot;, :offset 6} {:command &quot;(1 (get-direction-index spec/four-directions (create-direction-record :up)))&quot;, :offset 1, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction-index spec/four-directions (create-direction-record :up))&quot;, :offset 71, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-robot! \&quot;9\&quot; [2 2] :up)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(turn-robot-left! \&quot;9\&quot; \&quot;5\&quot;)&quot;, :offset 26, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction-from-index 0 spec/four-directions)&quot;, :offset 48, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-orientation-from-index 0 spec/four-directions)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-robot! \&quot;2\&quot; [2 2] :up)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(turn-robot-left! \&quot;2\&quot; \&quot;4\&quot;)&quot;, :offset 24, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(turn-robot-right! \&quot;2\&quot; \&quot;4\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-robot! \&quot;3\&quot; [2 2] :up)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(turn-robot-left! \&quot;3\&quot; \&quot;4\&quot;)&quot;, :offset 20, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-backwards \&quot;3\&quot; \&quot;4\&quot;)&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-backwards! \&quot;3\&quot; \&quot;4\&quot;)&quot;, :offset 22, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;3\&quot; \&quot;4\&quot;)&quot;, :offset 20, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-robot! \&quot;0\&quot; [2 2] :up)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-robot! \&quot;5\&quot; [2 2] :up)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;5\&quot; \&quot;0\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;8\&quot; \&quot;9\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;8\&quot; \&quot;8\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-robot! \&quot;8\&quot; [2 2] :up)&quot;, :offset 19, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-robot! \&quot;4\&quot; [2 2] :up)&quot;, :offset 19, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;4\&quot; \&quot;0\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(create-simulation!)&quot;, :offset 14, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(robot-create!)&quot;, :offset 14, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(robot-create! \&quot;4\&quot; [2,2] :up)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(simulation-create!)&quot;, :offset 19, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(robot-create! \&quot;2\&quot; [2,2] :up)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(robot-move-forward! \&quot;2\&quot; \&quot;0\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(new-robot 0 2 2)&quot;, :offset 16, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(def r (new-robot 1 1 1 1))&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(def r (new-robot 1 1 1))&quot;, :offset 23, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(ge-id r)&quot;, :offset 9, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(get-id r)&quot;, :offset 4, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(r get-id)&quot;, :offset 9, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(r get-score)&quot;, :offset 12, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(get-score r)&quot;, :offset 13, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;r&quot;, :offset 1, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(def d (new-dinosaur 0 [1 1] (new-direction [1 1] :up)))&quot;, :offset 54, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;d&quot;, :offset 1, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(d get-id)&quot;, :offset 10, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(get-id d)&quot;, :offset 10, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(get-position d)&quot;, :offset 13, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(def d (new-dinosaur 0 0 0))&quot;, :offset 28, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(get-direction d)&quot;, :offset 14, :ns &quot;robots-vs-dinosaurs.logic.board&quot;}], :remote []}}</component>
+  <component name="ReplState" timestamp="1559443976722">{:repl-history {:ide [], :local [{:command &quot;(keep-indexed #(spec/directions))&quot;, :offset 31, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(keep-indexed (constantly spec/directions))&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(keep-indexed spec/directions)&quot;, :offset 29, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(keep-indexed #(= (% :facing) :up) spec/directions)&quot;, :offset 29, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(keep-indexed #(= (:facing %) :up) spec/directions)&quot;, :offset 29, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;2&quot;, :offset 1, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;1&quot;, :offset 1, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction-length spec/directions)&quot;, :offset 37, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(4 spec/directions)&quot;, :offset 1, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(spec/directions 2)&quot;, :offset 18, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(spec/directions 1)&quot;, :offset 18, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(spec/directions 4)&quot;, :offset 18, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction 1 spec/directions)&quot;, :offset 16, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction 0 spec/directions)&quot;, :offset 16, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction 2 spec/directions)&quot;, :offset 16, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(direction-index (create-direction-record :down))&quot;, :offset 47, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(direction-index (create-direction-record :up))&quot;, :offset 45, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(direction-index (create-direction-record :right))&quot;, :offset 48, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(direction-index (create-direction-record :left))&quot;, :offset 47, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction 3 spec/directions)&quot;, :offset 16, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction 4 spec/directions)&quot;, :offset 16, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(turn-robot-left! \&quot;0\&quot; \&quot;0\&quot;)&quot;, :offset 26, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction-index :up)&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction-index spec/four-directions :up)&quot;, :offset 41, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(type \n  (get))&quot;, :offset 6} {:command &quot;(1 (get-direction-index spec/four-directions (create-direction-record :up)))&quot;, :offset 1, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction-index spec/four-directions (create-direction-record :up))&quot;, :offset 71, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-robot! \&quot;9\&quot; [2 2] :up)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(turn-robot-left! \&quot;9\&quot; \&quot;5\&quot;)&quot;, :offset 26, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-direction-from-index 0 spec/four-directions)&quot;, :offset 48, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(get-orientation-from-index 0 spec/four-directions)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-robot! \&quot;2\&quot; [2 2] :up)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(turn-robot-left! \&quot;2\&quot; \&quot;4\&quot;)&quot;, :offset 24, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(turn-robot-right! \&quot;2\&quot; \&quot;4\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-robot! \&quot;3\&quot; [2 2] :up)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(turn-robot-left! \&quot;3\&quot; \&quot;4\&quot;)&quot;, :offset 20, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-backwards \&quot;3\&quot; \&quot;4\&quot;)&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-backwards! \&quot;3\&quot; \&quot;4\&quot;)&quot;, :offset 22, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;3\&quot; \&quot;4\&quot;)&quot;, :offset 20, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-robot! \&quot;0\&quot; [2 2] :up)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-robot! \&quot;5\&quot; [2 2] :up)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;5\&quot; \&quot;0\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;8\&quot; \&quot;9\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;8\&quot; \&quot;8\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-robot! \&quot;8\&quot; [2 2] :up)&quot;, :offset 19, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(create-robot! \&quot;4\&quot; [2 2] :up)&quot;, :offset 19, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(move-robot-forward! \&quot;4\&quot; \&quot;0\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(create-simulation!)&quot;, :offset 14, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(robot-create!)&quot;, :offset 14, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(robot-create! \&quot;4\&quot; [2,2] :up)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(simulation-create!)&quot;, :offset 19, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(robot-create! \&quot;2\&quot; [2,2] :up)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(robot-move-forward! \&quot;2\&quot; \&quot;0\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.logic.simulation&quot;} {:command &quot;(new-robot 0 2 2)&quot;, :offset 16, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(def r (new-robot 1 1 1 1))&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(def r (new-robot 1 1 1))&quot;, :offset 23, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(ge-id r)&quot;, :offset 9, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(get-id r)&quot;, :offset 4, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(r get-id)&quot;, :offset 9, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(r get-score)&quot;, :offset 12, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(get-score r)&quot;, :offset 13, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;r&quot;, :offset 1, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(def d (new-dinosaur 0 [1 1] (new-direction [1 1] :up)))&quot;, :offset 54, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;d&quot;, :offset 1, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(d get-id)&quot;, :offset 10, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(get-id d)&quot;, :offset 10, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(get-position d)&quot;, :offset 13, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(def d (new-dinosaur 0 0 0))&quot;, :offset 28, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(get-direction d)&quot;, :offset 14, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(doseq\n  [binding\n   \&quot;\&quot;\n   \&quot;    __       _           _                        ___ _                                       \&quot;\n   \&quot;   /__\\ ___ | |__   ___ | |_ ___  __   _____     /   (_)_ __   ___  ___  __ _ _   _ _ __ ___  \&quot;\n   \&quot;  / \\/// _ \\| '_ \\ / _ \\| __/ __| \\ \\ / / __|   / /\\ / | '_ \\ / _ \\/ __|/ _` | | | | '__/ __| \&quot;\n   \&quot; / _  \\ (_) | |_) | (_) | |_\\__ \\  \\ V /\\__ \\  / /_//| | | | | (_) \\__ \\ (_| | |_| | |  \\__ \\ \&quot;\n   \&quot; \\/ \\_/\\___/|_.__/ \\___/ \\__|___/   \\_/ |___/ /___,' |_|_| |_|\\___/|___/\\__,_|\\__,_|_|  |___/ \&quot;\n   \&quot;\&quot;\n   \&quot;\&quot;]\n  (println binding)&quot;, :offset 556, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(print-server-info {})&quot;, :offset 20, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(:router srv)&quot;, :offset 13, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(-&gt; srv :router)&quot;, :offset 16, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(-&gt; srv :router :routes)&quot;, :offset 24, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(-&gt; srv :router :options)&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(srv stop)&quot;, :offset 10, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(stop srv)&quot;, :offset 6, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(component/stop srv)&quot;, :offset 15, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(def srv (run-dev))&quot;, :offset 19, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(com.stuartsierra.component/stop srv)&quot;, :offset 37, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(srv)&quot;, :offset 5, :ns &quot;robots-vs-dinosaurs.system&quot;} {:command &quot;(print \&quot;\&quot;)&quot;, :offset 9, :ns &quot;robots-vs-dinosaurs.system&quot;} {:command &quot;(print \&quot;\&quot;\n       )&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.system&quot;} {:command &quot;srv&quot;, :offset 3, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(run-dev)&quot;, :offset 9, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;()&quot;, :offset 2} {:command &quot;(dev-options)&quot;, :offset 12, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;dev-options&quot;, :offset 11, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;options&quot;, :offset 7, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(merge options dev-options)&quot;, :offset 26, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(merge dev-options options)&quot;, :offset 19, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(get-in options [:data :interceptors])&quot;, :offset 37, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(get-options :prod)&quot;, :offset 19, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(get-options :dev)&quot;, :offset 18, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(get-dev-options)&quot;, :offset 16, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(get-routes :dev)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(def srv (start-system :prod []))&quot;, :offset 32, :ns &quot;robots-vs-dinosaurs.system&quot;} {:command &quot;(stop-system srv)&quot;, :offset 16, :ns &quot;robots-vs-dinosaurs.system&quot;} {:command &quot;(service/get-routes :dev)&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.system&quot;} {:command &quot;(def srv (start-system :dev []))&quot;, :offset 32, :ns &quot;robots-vs-dinosaurs.system&quot;}], :remote []}}</component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -311,7 +294,37 @@
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.35465586" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49717513" visible="true" weight="0.21538462" />
+      <window_info id="Structure" order="1" sideWeight="0.50282484" side_tool="true" weight="0.21538462" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Image Layers" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.3283582" />
+      <window_info anchor="bottom" id="Docker" order="1" />
+      <window_info anchor="bottom" id="Version Control" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.49959514" weight="0.3283582" />
+      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.50040483" side_tool="true" weight="0.3283582" />
+      <window_info anchor="bottom" id="Sequence" order="5" />
+      <window_info anchor="bottom" id="Message" order="6" />
+      <window_info anchor="bottom" id="Find" order="7" weight="0.32941177" />
+      <window_info anchor="bottom" id="Run" order="8" weight="0.25538972" />
+      <window_info anchor="bottom" id="Debug" order="9" weight="0.41293532" />
+      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="12" weight="0.3283582" />
+      <window_info anchor="right" id="Maven" order="0" weight="0.32955465" />
+      <window_info anchor="right" id="Leiningen" order="1" weight="0.32955465" />
+      <window_info anchor="right" id="Palette&#9;" order="2" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="3" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="5" weight="0.25" />
+      <window_info anchor="right" id="REPL" order="6" weight="0.33684212" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info anchor="right" id="Capture Analysis" order="8" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.18947369" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -336,58 +349,52 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="3" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="5" weight="0.25" />
-      <window_info anchor="right" id="REPL" order="6" weight="0.42267206" />
-      <window_info anchor="right" id="Theme Preview" order="7" />
-      <window_info anchor="right" id="Capture Analysis" order="8" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.37894738" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info id="Image Layers" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.3283582" />
-      <window_info anchor="bottom" id="Docker" order="1" />
-      <window_info anchor="bottom" id="Version Control" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.49959514" weight="0.3283582" />
-      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.50040483" side_tool="true" weight="0.3283582" />
-      <window_info anchor="bottom" id="Sequence" order="5" />
-      <window_info anchor="bottom" id="Message" order="6" />
-      <window_info anchor="bottom" id="Find" order="7" />
-      <window_info anchor="bottom" id="Run" order="8" weight="0.25538972" />
-      <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="12" weight="0.3283582" />
-      <window_info anchor="right" id="Maven" order="0" weight="0.32955465" />
-      <window_info anchor="right" id="Leiningen" order="1" weight="0.32955465" />
-      <window_info anchor="right" id="Palette&#9;" order="2" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="3" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="5" weight="0.25" />
-      <window_info anchor="right" id="REPL" order="6" weight="0.40566802" />
+      <window_info active="true" anchor="right" id="REPL" order="6" visible="true" weight="0.32955465" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="8" />
     </layout-to-restore>
   </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="ClojureREPL">
+        <watch expression="((clojure.lang.PersistentArrayMap)((clojure.lang.MapEntry)((clojure.lang.PersistentArrayMap)options).entrySet().toArray()[0]).getValue()).entrySet().toArray()[0]" custom="clojure.lang.MapEntry,clojure.lang.PersistentArrayMap" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>(:data options)</expression-string>
+        <language-id>Clojure</language-id>
+        <custom-info>robots_vs_dinosaurs.component.router.Router,clojure.lang.PersistentArrayMap</custom-info>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>(-&gt; system-options :service :env)</expression-string>
+        <language-id>Clojure</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>(http/router routes (:data options))</expression-string>
+        <language-id>Clojure</language-id>
+        <custom-info>http:reitit.http</custom-info>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>routes</expression-string>
+        <language-id>Clojure</language-id>
+        <custom-info>http:reitit.http</custom-info>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>(:data options)</expression-string>
+        <language-id>Clojure</language-id>
+        <custom-info>http:reitit.http</custom-info>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/logs/robots-vs-dinosaurs-api-2019-05-25.0.log" />
-    <entry file="file://$PROJECT_DIR$/logs/robots-vs-dinosaurs-2019-05-25.0.log" />
-    <entry file="file://$PROJECT_DIR$/config/logback.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="15" column="47" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/pedestal/pedestal.service/0.5.5/pedestal.service-0.5.5.jar!/io/pedestal/http.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="271" column="6" selection-start-line="271" selection-start-column="6" selection-end-line="271" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/metosin/reitit-pedestal/0.3.7/reitit-pedestal-0.3.7.jar!/reitit/pedestal.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
@@ -406,13 +413,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="176" column="9" selection-start-line="176" selection-start-column="9" selection-end-line="176" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/metosin/reitit-http/0.3.7/reitit-http-0.3.7.jar!/reitit/http.cljc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1638">
-          <caret line="164" column="24" selection-start-line="164" selection-start-column="24" selection-end-line="164" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -522,34 +522,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backup/util.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backup/spec.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backup/controller.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-100">
-          <caret column="34" lean-forward="true" selection-start-column="34" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backup/service_2.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="69" column="28" selection-start-line="69" selection-start-column="28" selection-end-line="69" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/io/pedestal/pedestal.interceptor/0.5.5/pedestal.interceptor-0.5.5.jar!/io/pedestal/interceptor/helpers.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1389">
@@ -557,24 +529,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backup/logic/board.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.10.0/clojure-1.10.0.jar!/clojure/core.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="804">
           <caret line="1875" column="10" selection-start-line="1875" selection-start-column="10" selection-end-line="1875" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backup/components.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -599,79 +557,160 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backup/server.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="60" lean-forward="true" selection-start-line="11" selection-start-column="60" selection-end-line="11" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backup/service.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-554">
-          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/stuartsierra/component/0.4.0/component-0.4.0.jar!/com/stuartsierra/component.cljc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="185" column="36" lean-forward="true" selection-start-line="185" selection-start-column="36" selection-end-line="185" selection-end-column="36" />
+        <state relative-caret-position="192">
+          <caret line="192" column="6" selection-start-line="192" selection-start-column="6" selection-end-line="192" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/pedestal/pedestal.service/0.5.5/pedestal.service-0.5.5.jar!/io/pedestal/http.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="369" column="6" selection-start-line="369" selection-start-column="6" selection-end-line="369" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backup/components.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backup/server.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backup/util.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backup/logic/board.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/logic.clj">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/service.clj">
+    <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/interceptors.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/component/storage.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="27" column="37" lean-forward="true" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+        <state relative-caret-position="374">
+          <caret line="22" column="8" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/component/system.clj">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/component/server.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+        <state relative-caret-position="510">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/server.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+        <state relative-caret-position="187">
+          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/component/service.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="97" column="11" lean-forward="true" selection-start-line="97" selection-start-column="11" selection-end-line="97" selection-end-column="11" />
+        <state relative-caret-position="-1020">
+          <caret column="41" lean-forward="true" selection-start-column="41" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/component/routes.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        <state relative-caret-position="119">
+          <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backup/service.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backup/controller.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255">
+          <caret column="34" lean-forward="true" selection-start-column="34" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/metosin/reitit-http/0.3.7/reitit-http-0.3.7.jar!/reitit/http.cljc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="66" column="12" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/metosin/reitit-swagger/0.3.7/reitit-swagger-0.3.7.jar!/reitit/swagger.cljc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-659">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/component/storage.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backup/spec.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-480">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backup/service_2.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="65" column="13" lean-forward="true" selection-start-line="64" selection-end-line="65" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/component/router.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/service.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="40" column="7" lean-forward="true" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/system.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        <state relative-caret-position="340">
+          <caret line="63" column="26" lean-forward="true" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
         </state>
       </provider>
     </entry>

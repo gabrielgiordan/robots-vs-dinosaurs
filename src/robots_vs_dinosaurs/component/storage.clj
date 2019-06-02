@@ -18,7 +18,7 @@
   (stop
     [this]
     (println "Stopping the #<MemoryStorage> component.")
-    (assoc this :memory-storage nil))
+    (dissoc this :memory-storage))
 
   Object
   (toString [_] "#<MemoryStorage>"))

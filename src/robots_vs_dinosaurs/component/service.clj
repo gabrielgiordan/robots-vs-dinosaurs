@@ -3,20 +3,21 @@
             [io.pedestal.http :as server]
             [io.pedestal.interceptor :refer [interceptor]]
             [reitit.http :as http])
-  (:import (java.io Writer)))
+  (:import (java.io Writer)
+           (clojure.lang ExceptionInfo)))
 
-(def ^:const base-service-map
+(defonce base-service-map
   {:env                 :prod
    ::server/type        :jetty
    ::http/resource-path "/public"
    ::server/routes      []})
 
-(def ^:const dev-service-map
+(defonce dev-service-map
   {:env           :dev
    ::server/join? false
    ::server/allowed-origins
                   {:creds           true
-                   :allowed-origins #(true)}
+                   :allowed-origins (constantly true)}
    ;; To allow Swagger on `dev` mode,
    ;; CSP violations due to inline styles.
    ::server/secure-headers
@@ -40,7 +41,7 @@
 
 (defn get-base-service-map
   "Gets the base service map for Pedestal."
-  [port _routes]
+  [port]
   (-> base-service-map
       (merge {::server/port port})))
 
@@ -60,32 +61,35 @@
 
 (defn get-service-map
   "Gets a service map according to the environment."
-  [env port routes]
-  (let [service-map (get-base-service-map port routes)]
+  [env port]
+  (let [service-map (get-base-service-map port)]
     (if (= env :prod)
       (get-prod-service-map service-map)
       (get-dev-service-map service-map))))
 
 (defn start-service
   "Begins the lifecycle operation and returns an updated version of the service."
-  [service {:keys [env port]} routes]
-  (let [service-map (get-service-map env port routes)]
+  [service {:keys [env port]}]
+  (let [service-map (get-service-map env port)]
     (add-component-interceptor service-map service)))
 
-(defrecord Service [options routes]
+(defrecord Service [options]
   component/Lifecycle
 
   (start
     [this]
     (println "Starting the #<Service> component.")
-    (let [service (start-service this options (:route routes))]
-        (assoc this :service service)))
+    (try
+      (let [service (start-service this options)]
+        (assoc this :service service))
+      (catch ExceptionInfo ex
+        (prn "Error when starting the #<Service>" (ex-data ex)))))
 
   (stop
     [this]
     (println "Stopping the #<Service> component.")
     ; `dissoc` returns a map and `assoc` keeps the record type.
-    (assoc this :service nil))
+    (dissoc this :service))
 
   Object
   (toString [_] "#<Service>"))
@@ -95,5 +99,6 @@
   (.write writer "#<Service>"))
 
 (defn new-service
+  "Creates a new #<Service> component."
   [options]
   (map->Service {:options options}))

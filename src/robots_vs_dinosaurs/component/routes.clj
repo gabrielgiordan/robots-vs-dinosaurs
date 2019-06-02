@@ -13,7 +13,7 @@
   (stop
     [this]
     (println "Stopping the #<Routes> component.")
-    (assoc this :routes nil))
+    (dissoc this :routes))
 
   Object
   (toString [_] "#<Routes>"))
@@ -23,5 +23,6 @@
   (.write writer "#<Routes>"))
 
 (defn new-routes
+  "Creates a new Routes component."
   [routes]
   (map->Routes {:routes routes}))

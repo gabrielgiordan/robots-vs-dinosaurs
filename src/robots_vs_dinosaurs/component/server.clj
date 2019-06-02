@@ -4,28 +4,30 @@
   (:import (java.io Writer)))
 
 (defn start-server
+  "Creates and starts the http server."
   [service-map]
   (-> service-map
       (http/create-server)
       (http/start)))
 
-(defrecord Server [service]
+(defrecord Server [router]
   component/Lifecycle
 
   (start
     [this]
     (println "Starting the #<Server> component.")
-    (if (:server this)
-      this
-      (let [server (start-server (:service service))]
-        (assoc this :server server))))
+    (try
+      (let [server (start-server (:router router))]
+        (assoc this :server server))
+      (catch Exception ex
+        (prn "Error when starting the #<Server>" ex-data ex))))
 
   (stop
     [this]
     (println "Stopping the #<Server> component.")
     (if-let [server (:server this)]
       (http/stop server))
-    (assoc this :server nil))
+    (dissoc this :server))
 
   Object
   (toString [_] "#<Server>"))
