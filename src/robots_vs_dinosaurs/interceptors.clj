@@ -1,4 +1,5 @@
-(ns robots-vs-dinosaurs.interceptors)
+(ns robots-vs-dinosaurs.interceptors
+  (:require [reitit.http.interceptors.exception :as exception]))
 
 ;; TODO:
 ;; Create a pull request at `metosin/reitit` repository

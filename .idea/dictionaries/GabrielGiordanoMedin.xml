@@ -7,8 +7,10 @@
       <w>leiningen</w>
       <w>metosin</w>
       <w>muuntaja</w>
+      <w>nrepl</w>
       <w>reitit</w>
       <w>sgen</w>
+      <w>sieppari</w>
       <w>stuartsierra</w>
       <w>uberjar</w>
     </words>

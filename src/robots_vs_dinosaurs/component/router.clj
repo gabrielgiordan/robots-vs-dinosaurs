@@ -1,4 +1,6 @@
 (ns robots-vs-dinosaurs.component.router
+  "Router component for alternative router Reitit.
+  https://metosin.github.io/reitit/performance.html"
   (:require [com.stuartsierra.component :as component]
             [reitit.http :as http]
             [reitit.pedestal :as pedestal]

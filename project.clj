@@ -15,16 +15,20 @@
                  [org.slf4j/log4j-over-slf4j "1.7.26"]
                  [environ "1.1.0"]]
   :min-lein-version "2.0.0"
-  :plugins [[lein-environ "1.1.0" :hooks false]] ;; Leiningen hooks are deprecated.
+  :plugins [[lein-environ "1.1.0" :hooks false] ; Leiningen hooks are deprecated.
+            [lein-auto "0.1.3"]]
   :test-paths ["test"]
   :target-path "target/%s"
   :resource-paths ["config", "resources"]
-  :profiles
-  {:dev
-            {:aliases      {"run-dev" ["trampoline" "run" "-m" "robots-vs-dinosaurs.server/run-dev"]}
-             :dependencies [[org.clojure/test.check "0.9.0"]
-                            [io.pedestal/pedestal.service-tools "0.5.5"]]}
-   :uberjar {:aot [robots-vs-dinosaurs.server]}}
+  :profiles {:dev     {:aliases      {"run-dev" ["trampoline" "run" "-m" "robots-vs-dinosaurs.server/run-dev"]}
+                       :source-paths ["dev"]
+                       :dependencies [[org.clojure/test.check "0.9.0"]
+                                      [org.clojure/tools.namespace "0.2.11"]
+                                      [org.clojure/tools.nrepl "0.2.13"]
+                                      [io.pedestal/pedestal.service-tools "0.5.5"]
+                                      [reloaded.repl "0.2.4"]
+                                      [org.clojure/java.classpath "0.2.0"]]}
+             :uberjar {:aot [robots-vs-dinosaurs.server]}}
   :jar-name "robots-vs-dinosaurs.jar"
   :uberjar-name "robots-vs-dinosaurs-standalone.jar"
   :main ^:skip-aot robots-vs-dinosaurs.server)

@@ -10,22 +10,24 @@
             [reitit.http.interceptors.muuntaja :as muuntaja]
             [reitit.http.interceptors.exception :as exception]
             [reitit.http.interceptors.multipart :as multipart]
+            [reitit.interceptor.sieppari :as sieppari]
             [ring.util.response :as ring-resp]))
 
 (defn- get-prod-options
   "Gets the default options."
   []
-  {:data
-   {:coercion     coercion-spec/coercion
-    :muuntaja     muuntaja.core/instance
-    :interceptors [(parameters/parameters-interceptor)
-                   (muuntaja/format-negotiate-interceptor)
-                   (muuntaja/format-response-interceptor)
-                   (exception/exception-interceptor)
-                   (muuntaja/format-request-interceptor)
-                   (coercion/coerce-response-interceptor)
-                   (coercion/coerce-request-interceptor)
-                   (multipart/multipart-interceptor)]}})
+  {:executor sieppari/executor
+   :data
+             {:coercion     coercion-spec/coercion
+              :muuntaja     muuntaja.core/instance
+              :interceptors [(parameters/parameters-interceptor)
+                             (muuntaja/format-negotiate-interceptor)
+                             (muuntaja/format-response-interceptor)
+                             (exception/exception-interceptor)
+                             (muuntaja/format-request-interceptor)
+                             (coercion/coerce-response-interceptor)
+                             (coercion/coerce-request-interceptor)
+                             (multipart/multipart-interceptor)]}})
 
 (defn- get-dev-options
   "Gets the development options merged with default."
@@ -43,7 +45,7 @@
     (get-prod-options)
     (get-dev-options)))
 
-(defn get-scoreboard
+(defn get-simulation
   "Scoreboard handler."
   [_]
   (ring-resp/response
@@ -53,10 +55,13 @@
   "Gets the Simulation routes."
   []
   ["/api"
-   ["/scoreboard" {:swagger {:tags ["Scoreboard"]}
-                   :get {:summary "Get the current simulation scoreboard."
-                         :responses {200 {:body map?}}
-                         :handler get-scoreboard}}]
+   ["/simulations"
+    {:swagger
+     {:tags ["Simulation"]}
+     :get
+     {:summary   "Lists all available simulations rooms."
+      :responses {200 {:body map?}}
+      :handler   get-simulation}}]
    ;["/board" {:swagger {:tags ["Board"]}
    ;           :get {:summary "Get the current simulation board."
    ;                 :responses {200 {:body ::spec/board}}
@@ -71,17 +76,21 @@
   "Gets the Swagger routes."
   []
   ["" {:no-doc true}
-   ["/swagger.json" {:get
-                     {:swagger {:info
-                                {:title       "Robots vs Dinosaurs"
-                                 :description "Service that provides support to run
-                                  simulations on remote-controlled robots
-                                  that fight dinosaurs."}}
-                      :handler (swagger/create-swagger-handler)}}]
-   ["/api-docs/*" {:get
-                   (swagger-ui/create-swagger-ui-handler
-                     {:config {:validatorUrl nil
-                               :docExpansion "list"}})}]])
+   ["/swagger.json"
+    {:get
+     {:swagger
+      {:info
+       {:title       "Robots vs Dinosaurs"
+        :description "Service that provides support to run
+        simulations on remote-controlled
+        robots that fight dinosaurs."}}
+      :handler
+      (swagger/create-swagger-handler)}}]
+   ["/api-docs/*"
+    {:get
+     (swagger-ui/create-swagger-ui-handler
+       {:config {:validatorUrl nil
+                 :docExpansion "list"}})}]])
 
 (defn- get-prod-routes
   "Gets the production routes."
