@@ -17,8 +17,7 @@
   "Gets the default options."
   []
   {:executor sieppari/executor
-   :data
-             {:coercion     coercion-spec/coercion
+   :data     {:coercion     coercion-spec/coercion
               :muuntaja     muuntaja.core/instance
               :interceptors [(parameters/parameters-interceptor)
                              (muuntaja/format-negotiate-interceptor)
@@ -49,7 +48,7 @@
   "Scoreboard handler."
   [_]
   (ring-resp/response
-    {:hello "world"}))
+    {:hello "world2222"}))
 
 (defn get-simulation-routes
   "Gets the Simulation routes."

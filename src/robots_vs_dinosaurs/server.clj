@@ -1,8 +1,7 @@
 (ns robots-vs-dinosaurs.server
   "Runs the project server."
   (:gen-class) ; for -main method in uberjar
-  (:require [robots-vs-dinosaurs.system :as system]
-            [io.pedestal.service-tools.dev :as dev]))
+  (:require [robots-vs-dinosaurs.system :as system]))
 
 (defn -main
   "For 'lein run' use."

@@ -5,7 +5,8 @@
 
 (defprotocol IMemoryStorage
   (pull [this key] "Gets a value from memory storage.")
-  (push! [this key value] "Persists a value to memory storage."))
+  (push! [this key value] "Persists a value to memory storage.")
+  (clean! [this] "Resets all the values from the memory storage."))
 
 (defrecord MemoryStorage []
   component/Lifecycle
@@ -13,6 +14,7 @@
   (start
     [this]
     (println "Starting the #<MemoryStorage> component.")
+    ;; Could be multiple `ref`, but preferred a single atom approach.
     (assoc this :memory-storage (atom {})))
 
   (stop
@@ -36,7 +38,11 @@
 
   (push!
     [this key value]
-    (swap! (:memory-storage this) assoc key value)))
+    (swap! (:memory-storage this) assoc key value))
+
+  (clean!
+    [this]
+    (reset! (:memory-storage this) {})))
 
 (defn new-memory-storage
   "Creates a new memory storage component."

@@ -5,6 +5,8 @@
             [clojure.tools.namespace.repl :refer (refresh refresh-all)]
             [robots-vs-dinosaurs.system :as system]))
 
+(clojure.tools.namespace.repl/set-refresh-dirs "dev" "src" "test")
+
 (def system nil)
 
 (defn init

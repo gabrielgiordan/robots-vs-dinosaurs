@@ -23,11 +23,11 @@
 
 (defn contains-in?
   [coll [key val]]
-  (nil? (filter-in-first coll [key val])))
+  (nil? (find-first coll [key val])))
 
 (defn any-in?
   [coll [key val]]
-  (nil? (filter-in-first coll [key val])))
+  (nil? (find-first coll [key val])))
 
 (defn conj-disj
   "Returns a function that join the `x` after disjoint a `key` into the `coll`."

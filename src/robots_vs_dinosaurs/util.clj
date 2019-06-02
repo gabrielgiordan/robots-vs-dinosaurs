@@ -13,3 +13,10 @@
     [parameters]
     (let [values (vec (vals parameters))]
       (= (values 0) (key-of map (values 1))))))
+
+(defn find-first
+  "Reduce with `reduced` function for first element
+  is faster than `(first (filter ...))` or `(some ...)`."
+  [coll [key val]]
+  (when-not (empty? coll)
+    (reduce #(when (= (key %2) val) (reduced %2)) nil coll)))

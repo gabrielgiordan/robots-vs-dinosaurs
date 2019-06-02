@@ -11,9 +11,9 @@
   ([{:keys [method router]}]
    (letfn [(maybe-redirect [request path]
              (if (and (seq path) (reitit.core/match-by-path router path))
-               {:status (if (= (:request-method request) :get) 301 308)
+               {:status  (if (= (:request-method request) :get) 301 308)
                 :headers {"Location" path}
-                :body ""}))
+                :body    ""}))
            (redirect-handler [request]
              (let [uri (:uri request)]
                (if (clojure.string/ends-with? uri "/")
