@@ -1,7 +1,7 @@
 (ns ^:no-doc user
   (:require [clojure.pprint :refer (pprint)]
             [clojure.repl :refer :all]
-            [clojure.test :as test]
+            [clojure.test :refer [run-tests run-all-tests]]
             [clojure.tools.namespace.repl :refer (refresh refresh-all)]
             [robots-vs-dinosaurs.system :as system]))
 
@@ -30,6 +30,11 @@
   []
   (init)
   (start))
+
+(defn tests
+  "Run all the tests."
+  []
+  (run-all-tests))
 
 (defn reset
   "Reloads the code."

@@ -13,7 +13,7 @@
             [reitit.http.interceptors.exception :as exception]
             [reitit.http.interceptors.multipart :as multipart]
             [ring.util.response :as ring-resp]
-            [robots-vs-dinosaurs.controller :as controller]
+            [robots-vs-dinosaurs.persistence :as controller]
             [robots-vs-dinosaurs.spec :as spec]
             [clojure.spec.alpha :as s]))
 

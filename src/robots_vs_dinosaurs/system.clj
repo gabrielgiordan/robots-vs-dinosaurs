@@ -34,7 +34,8 @@
         :server (new-server))
       (component/system-using
         {:router {:service :service
-                  :routes  :routes}
+                  :routes  :routes
+                  :storage :storage}
          :server {:router :router}})))
 
 (defn print-system-info

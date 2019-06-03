@@ -1,31 +1,49 @@
 (ns robots-vs-dinosaurs.logic.unit
-  (:require [robots-vs-dinosaurs.logic.point :as p]
-            [robots-vs-dinosaurs.logic.direction :as d]))
+  (:require [robots-vs-dinosaurs.logic.point :as point]
+            [robots-vs-dinosaurs.logic.direction :as direction]))
 
 (defrecord Dinosaur [id point])
 (defrecord Robot [id point direction])
 
 (defn new-dinosaur
   [id point]
-  (->Dinosaur id point))
+  (map->Dinosaur
+    {:id    id
+     :point point}))
+
+(defn dinosaur?
+  [unit]
+  (instance? Dinosaur unit))
 
 (defn new-robot
   [id point orientation]
-  (->Robot id point (d/new-four-sided-direction orientation)))
+  (map->Robot
+    {:id        id
+     :point     point
+     :direction (direction/new-four-sided orientation)}))
 
-(defn move+
+(defn robot?
   [unit]
-  (p/point+ (:point unit) (-> unit :direction :point)))
+  (instance? Robot unit))
 
-(defn move-
-  [unit]
-  (p/point- (:point unit) (-> unit :direction :point)))
+(defn move-forward
+  [{:keys [direction] :as unit}]
+  (update-in unit [:point] point/toward direction))
 
-;; defmulti or protocol for other types.
-(defn rotate++
-  [unit]
-  (d/direction++ (:direction unit) d/four-sided-directions))
+(defn move-backwards
+  [{:keys [direction] :as unit}]
+  (update-in unit [:point] point/away direction))
 
-(defn rotate--
-  [unit]
-  (d/direction-- (:direction unit) d/four-sided-directions))
+(defn turn-right
+  [{:keys [direction] :as unit}]
+  (update-in unit [:direction] direction/four-sided-inc))
+
+(defn turn-left
+  [{:keys [direction] :as unit}]
+  (update-in unit [:direction] direction/four-sided-dec))
+
+(defn attack
+  [{:keys [point]} on-attack]
+  (on-attack (point/around direction/four-sides point)))
+
+;; todo: compose functions attack with remove from board

@@ -2,14 +2,20 @@
   (:require [robots-vs-dinosaurs.logic.scoreboard :as scoreboard]
             [robots-vs-dinosaurs.logic.board :as board]))
 
-(defrecord Simulation [id scoreboard board])
+(defrecord Simulation [id title scoreboard board])
 
 (defn new-simulation
-  ([id scoreboard board]
-   (->Simulation id scoreboard board))
-  ([id board]
-   (new-simulation id (scoreboard/new-scoreboard) board)))
+  ([id title scoreboard board]
+   (map->Simulation
+     {:id         id
+      :title      title
+      :scoreboard scoreboard
+      :board      board}))
+  ([id title board]
+   (new-simulation id title (scoreboard/new-scoreboard) board))
+  ([id title]
+   (new-simulation id title (board/new-board [50 50]))))
 
 (defn reset
-  [{:keys [id board]}]
-  (new-simulation id (board/reset-board board)))
+  [{:keys [id title board]}]
+  (new-simulation id title (board/reset-board board)))

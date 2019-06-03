@@ -15,12 +15,12 @@
     [this]
     (println "Starting the #<MemoryStorage> component.")
     ;; Could be multiple `ref`, but preferred a single atom approach.
-    (assoc this :memory-storage (atom {})))
+    (assoc this :storage (atom {})))
 
   (stop
     [this]
     (println "Stopping the #<MemoryStorage> component.")
-    (dissoc this :memory-storage))
+    (dissoc this :storage))
 
   Object
   (toString [_] "#<MemoryStorage>"))
@@ -34,15 +34,15 @@
 
   (pull
     [this key]
-    (get @(:memory-storage this) key))
+    (get @(:storage this) key))
 
   (push!
     [this key value]
-    (swap! (:memory-storage this) assoc key value))
+    (key (swap! (:storage this) assoc key value)))
 
   (clean!
     [this]
-    (reset! (:memory-storage this) {})))
+    (reset! (:storage this) {})))
 
 (defn new-memory-storage
   "Creates a new memory storage component."

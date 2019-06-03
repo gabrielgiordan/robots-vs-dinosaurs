@@ -5,21 +5,23 @@
 
 (defn new-board
   ([size units]
-   (->Board size units))
+   (map->Board
+     {:size size
+      :units units}))
   ([size]
-   (->Board size #{})))
+   (new-board size #{})))
 
 (defn reset-board
   [{:keys [size]}]
   (new-board size))
 
 (defn add-unit
-  [data unit]
-  (assoc-in data [:units] (conj (:units data) unit)))
+  [{:keys [units] :as board} unit]
+  (assoc-in board [:units] (conj units unit)))
 
 (defn remove-unit
-  [data unit]
-  (assoc-in data [:units] (disj (:units data) unit)))
+  [{:keys [units] :as board} unit]
+  (assoc-in board [:units] (disj units unit)))
 
 (defn find-unit
   [{:keys [units]} id]
@@ -36,9 +38,7 @@
       unit))])
 
 (defn update-unit
-  [data unit func]
-  (if-let [new (func unit)]
-    (let [units (-> (:units data)
-                    (disj unit)
-                    (conj new))]
-      (update-in data [:units] units))))
+  [{:keys [units] :as board} unit func]
+  (if-let [updated (func unit)]
+    (let [updated-units (-> units (disj unit) (conj updated))]
+      (update-in board [:units] updated-units))))

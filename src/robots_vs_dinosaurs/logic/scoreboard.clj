@@ -4,7 +4,8 @@
 
 (defn new-scoreboard
   ([n]
-   (->Scoreboard n))
+   (map->Scoreboard
+     {:total n}))
   ([]
    (new-scoreboard 0)))
 

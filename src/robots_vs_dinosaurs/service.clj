@@ -11,12 +11,19 @@
             [reitit.http.interceptors.exception :as exception]
             [reitit.http.interceptors.multipart :as multipart]
             [reitit.interceptor.sieppari :as sieppari]
-            [ring.util.response :as ring-resp]))
+            [reitit.ring.spec :as ring-spec]
+            [reitit.spec :as reitit-spec]
+            [expound.alpha :as expound]
+            [ring.util.response :as ring-resp]
+            [robots-vs-dinosaurs.controller :as controller]
+            [robots-vs-dinosaurs.spec :as spec]))
 
 (defn- get-prod-options
   "Gets the default options."
   []
-  {:executor sieppari/executor
+  {:validate ring-spec/validate
+   ::reitit-spec/explain expound/expound-str
+   :executor sieppari/executor
    :data     {:coercion     coercion-spec/coercion
               :muuntaja     muuntaja.core/instance
               :interceptors [(parameters/parameters-interceptor)
@@ -35,7 +42,7 @@
         dev-options {:exception pretty/exception}
         dev-interceptors [swagger/swagger-feature]]
     (-> (merge dev-options options)
-        (update-in [:data :interceptors] concat dev-interceptors))))
+        (update-in [:data :interceptors] #(vec (concat %2 %1)) dev-interceptors))))
 
 (defn get-options
   "Get the option according to the current environment."
@@ -44,32 +51,58 @@
     (get-prod-options)
     (get-dev-options)))
 
-(defn get-simulation
-  "Scoreboard handler."
-  [_]
+(defn all-simulations-handler
+  "Gets all simulations."
+  [{:keys [components]}]
   (ring-resp/response
-    {:hello "world2222"}))
+    (controller/simulations
+      (:storage components))))
+
+(defn reset-simulations-handler
+  "Resets all the simulations."
+  [{:keys [components]}]
+  (ring-resp/response
+    (controller/reset-simulations
+      (:storage components))))
+
+(defn new-simulation-handler
+  "Resets all the simulations."
+  [{:keys [body-params components]}]
+  (ring-resp/response
+    (controller/new-simulation
+      (:storage components)
+      (:title body-params)
+      (:size body-params))))
+
+(defn get-simulation-handler
+  "Resets all the simulations."
+  [{:keys [components query]}]
+  (ring-resp/response
+    {}))
 
 (defn get-simulation-routes
   "Gets the Simulation routes."
   []
   ["/api"
    ["/simulations"
-    {:swagger
-     {:tags ["Simulation"]}
-     :get
-     {:summary   "Lists all available simulations rooms."
-      :responses {200 {:body map?}}
-      :handler   get-simulation}}]
-   ;["/board" {:swagger {:tags ["Board"]}
-   ;           :get {:summary "Get the current simulation board."
-   ;                 :responses {200 {:body ::spec/board}}
-   ;                 :handler get-board}
-   ;           :post {:summary "Creates a new board with a given the size."
-   ;                  :parameters {:body ::spec/size}
-   ;                  :responses {200 {:body ::spec/board}}
-   ;                  :handler new-board}}]]
-   ])
+    {:swagger {:tags ["Simulations"]}
+     :get     {:summary   "Lists all available simulations rooms."
+               :responses {200 {:body ::spec/simulations}}
+               :handler   all-simulations-handler}
+     :post    {:summary    "Creates a new simulation room."
+               :handler    new-simulation-handler
+               :responses  {200 {:body ::spec/simulation}}
+               :parameters {:body ::spec/post-simulation}}}]
+   ["/simulation/:id"
+    {:swagger {:tags ["Simulations"]}
+     :get     {:summary   "Gets a simulation room by id."
+               :responses {200 {:body ::spec/simulation}}
+               :handler   get-simulation-handler}}]
+   ["/simulations/reset"
+    {:swagger {:tags ["Simulations"]}
+     :get     {:summary   "Resets all simulations."
+               :responses {200 {:body {}}}
+               :handler   reset-simulations-handler}}]])
 
 (defn get-swagger-routes
   "Gets the Swagger routes."

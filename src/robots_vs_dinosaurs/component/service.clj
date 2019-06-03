@@ -2,42 +2,30 @@
   (:require [com.stuartsierra.component :as component]
             [io.pedestal.http :as server]
             [io.pedestal.interceptor :refer [interceptor]]
-            [reitit.http :as http])
+            [reitit.http :as http]
+            [io.pedestal.interceptor :as interceptor])
   (:import (java.io Writer)
            (clojure.lang ExceptionInfo)))
 
 (defonce base-service-map
-  {:env                 :prod
-   ::server/type        :jetty
-   ::http/resource-path "/public"
-   ::server/routes      []})
+         {:env                 :prod
+          ::server/type        :jetty
+          ::http/resource-path "/public"
+          ::server/routes      []})
 
 (defonce dev-service-map
-  {:env           :dev
-   ::server/join? false
-   ::server/allowed-origins
-                  {:creds           true
-                   :allowed-origins (constantly true)}
-   ;; To allow Swagger on `dev` mode,
-   ;; CSP violations due to inline styles.
-   ::server/secure-headers
-                  {:content-security-policy-settings
-                   {:default-src "'self'"
-                    :style-src   "'self' 'unsafe-inline'"
-                    :script-src  "'self' 'unsafe-inline'"}}})
-
-(defn insert-context-interceptor
-  "Returns an interceptor which associates key with value in the pedestal context map."
-  [key value]
-  (interceptor {:name  ::insert-context
-                :enter (fn [context] (assoc context key value))}))
-
-(defn add-component-interceptor
-  "Adds an interceptor to the `service-map` which associates the
-   `service` component into the Service context map. Must be called before starting the server."
-  [service-map service]
-  (let [interceptor (insert-context-interceptor ::service-component service)]
-    (update service-map ::http/interceptors conj interceptor)))
+         {:env           :dev
+          ::server/join? false
+          ::server/allowed-origins
+                         {:creds           true
+                          :allowed-origins (constantly true)}
+          ;; To allow Swagger on `dev` mode,
+          ;; CSP violations due to inline styles.
+          ::server/secure-headers
+                         {:content-security-policy-settings
+                          {:default-src "'self'"
+                           :style-src   "'self' 'unsafe-inline'"
+                           :script-src  "'self' 'unsafe-inline'"}}})
 
 (defn get-base-service-map
   "Gets the base service map for Pedestal."
@@ -69,9 +57,8 @@
 
 (defn start-service
   "Begins the lifecycle operation and returns an updated version of the service."
-  [service {:keys [env port]}]
-  (let [service-map (get-service-map env port)]
-    (add-component-interceptor service-map service)))
+  [{:keys [env port]}]
+  (get-service-map env port))
 
 (defrecord Service [options]
   component/Lifecycle
@@ -80,7 +67,7 @@
     [this]
     (println "Starting the #<Service> component.")
     (try
-      (let [service (start-service this options)]
+      (let [service (start-service options)]
         (assoc this :service service))
       (catch ExceptionInfo ex
         (prn "Error when starting the #<Service>" (ex-data ex)))))

@@ -1,14 +1,14 @@
 (ns robots-vs-dinosaurs.logic.direction)
 
 (defonce
-  four-sided-directions
+  four-sides
   {:up    [0 1]
    :right [1 0]
    :down  [0 -1]
    :left  [-1 0]})
 
 (defonce
-  eight-sided-directions
+  eight-sided
   {:up-left    [-1 1]
    :up         [0 1]
    :up-right   [1 1]
@@ -23,17 +23,19 @@
 (defn new-direction
   "Creates a new Direction."
   [orientation directions]
-  (->Direction orientation (orientation directions)))
+  (map->Direction
+    {:orientation orientation
+     :directions (orientation directions)}))
 
-(defn new-four-sided-direction
+(defn new-four-sided
   "Creates a directions with 4 sides."
   [orientation]
-  (new-direction orientation four-sided-directions))
+  (new-direction orientation four-sides))
 
-(defn new-eight-sided-direction
+(defn new-eight-sided
   "Creates a directions with 8 sides."
   [orientation]
-  (new-direction orientation eight-sided-directions))
+  (new-direction orientation eight-sided))
 
 (defn direction->index
   "Converts a Direction to its index."
@@ -53,18 +55,38 @@
         (first)
         (new-direction directions))))
 
-(defn direction++
-  "Gets the next Direction."
+(defn- direction-inc
+  "Gets the next direction."
   [direction directions]
   (-> direction
       (direction->index directions)
       (inc)
       (index->direction directions)))
 
-(defn direction--
+(defn- direction-dec
   "Gets the previous direction."
   [direction directions]
   (-> direction
       (direction->index directions)
       (dec)
       (index->direction directions)))
+
+(defn four-sided-inc
+  "Gets the next four sided direction."
+  [direction]
+  (direction-inc direction four-sides))
+
+(defn four-sided-dec
+  "Gets the previous four sided direction."
+  [direction]
+  (direction-dec direction four-sides))
+
+(defn eight-sided-inc
+  "Gets the next eight sided direction."
+  [direction]
+  (direction-inc direction eight-sided))
+
+(defn eight-sided-dec
+  "Gets the previous eight sided direction."
+  [direction]
+  (direction-dec direction eight-sided))

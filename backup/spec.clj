@@ -32,13 +32,13 @@
                           (u/key-value-of four-directions)))
 
 ;; Position
-(s/def ::position (s/coll-of (s/and int? #(>= % 0)) :kind vector? :count 2))
+(s/def ::point (s/coll-of (s/and int? #(>= % 0)) :kind vector? :count 2))
 
 ;; Unit
 (s/def ::score int?)
 (s/def ::type #{:robot :dinosaur})
 
-(s/def ::unit (s/keys :req-un [::id ::position]))
+(s/def ::unit (s/keys :req-un [::id ::point]))
 
 (s/def ::dinosaur ::unit)
 (s/def ::robot (s/merge ::unit (s/keys :req-un [::direction ::score])))
