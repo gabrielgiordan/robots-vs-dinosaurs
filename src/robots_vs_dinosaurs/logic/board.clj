@@ -1,12 +1,16 @@
 (ns robots-vs-dinosaurs.logic.board
-  (:require [robots-vs-dinosaurs.util :as u]))
+  (:require
+    (robots-vs-dinosaurs
+      [util :refer [find-first]])
+    (robots-vs-dinosaurs.logic
+      [unit :as unit])))
 
 (defrecord Board [size units])
 
 (defn new-board
   ([size units]
    (map->Board
-     {:size size
+     {:size  size
       :units units}))
   ([size]
    (new-board size #{})))
@@ -19,26 +23,36 @@
   [{:keys [units] :as board} unit]
   (assoc-in board [:units] (conj units unit)))
 
-(defn remove-unit
+(defn delete-unit
   [{:keys [units] :as board} unit]
   (assoc-in board [:units] (disj units unit)))
 
-(defn find-unit
+(defn get-robots
+  [{:keys [units]}]
+  (filter unit/robot? units))
+
+(defn get-dinosaurs
+  [{:keys [units]}]
+  (filter unit/dinosaur? units))
+
+(defn get-unit
   [{:keys [units]} id]
-  (u/find-first units [:id id]))
+  (find-first units [:id id]))
 
-(defn find-unit-at
+(defn get-unit-at
   [{:keys [units]} point]
-  (u/find-first units [:point point]))
+  (find-first units [:point point]))
 
-(defn find-units-at
+(defn get-units-at
   [{:keys [units]} coll]
   [(doseq [point coll]
-    (when-some [unit (find-unit-at units point)]
-      unit))])
+     (when-some [unit (get-unit-at units point)]
+       unit))])
 
 (defn update-unit
-  [{:keys [units] :as board} unit func]
-  (if-let [updated (func unit)]
-    (let [updated-units (-> units (disj unit) (conj updated))]
-      (update-in board [:units] updated-units))))
+  [{:keys [units] :as board} id f]
+  (some->
+    (get-unit board id)
+    (as->
+      $
+      (assoc-in board [:units] (conj (disj units $) (f $))))))

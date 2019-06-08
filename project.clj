@@ -22,7 +22,8 @@
   :resource-paths ["config", "resources"]
   :profiles {:dev     {:aliases      {"run-dev" ["trampoline" "run" "-m" "robots-vs-dinosaurs.server/run-dev"]}
                        :source-paths ["dev"]
-                       :dependencies [[org.clojure/test.check "0.9.0"]
+                       :dependencies [[midje "1.9.8"]
+                                      [org.clojure/test.check "0.9.0"]
                                       [org.clojure/tools.namespace "0.2.11"]
                                       [org.clojure/tools.nrepl "0.2.13"]
                                       [io.pedestal/pedestal.service-tools "0.5.5"]

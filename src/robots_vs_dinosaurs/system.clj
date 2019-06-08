@@ -14,29 +14,33 @@
 
 (defn get-system-options
   "Gets the port from args, system environment or from the default 8080."
-  [environment [port]]
-  {:service
-   {:env  environment
-    :port (or port (env :port) 8080)}
-   :router
-   {:options (service/get-options environment)
-    :redirect-trailing-slash
-          {:method :both}}})
+  [environment]
+  (let [port (or (env :port) 8080)
+        options (service/get-options environment)]
+    {:service
+     {:env  environment
+      :port port}
+     :router
+     {:options options
+      ;:redirect-trailing-slash
+      ;         {:method :both}
+      }}))
 
 (defn new-system-map
   "Creates a new system map."
   [system-options]
-  (-> (component/system-map
-        :storage (new-memory-storage)
-        :routes (new-routes (service/get-routes (-> system-options :service :env)))
-        :service (new-service (:service system-options))
-        :router (new-router (:router system-options))
-        :server (new-server))
-      (component/system-using
-        {:router {:service :service
-                  :routes  :routes
-                  :storage :storage}
-         :server {:router :router}})))
+  (let [service-options (:service system-options)
+        router-options (:router system-options)
+        environment (:env service-options)]
+    (component/system-using
+      (component/system-map
+          :storage (new-memory-storage)
+          :routes (new-routes (service/get-routes environment))
+          :service (new-service service-options)
+          :router (new-router router-options)
+          :server (new-server))
+          {:router [:service :routes :storage]
+           :server [:router :router]})))
 
 (defn print-system-info
   "Prints the ascii art with system information."
@@ -50,9 +54,9 @@
 
 (defn start-system
   "Starts the #<SystemMap>."
-  [environment args]
+  [environment]
   (try
-    (let [system-options (get-system-options environment args)
+    (let [system-options (get-system-options environment)
           system-map (new-system-map system-options)]
       (print-system-info system-map)
       (println "Starting the #<SystemMap>.")

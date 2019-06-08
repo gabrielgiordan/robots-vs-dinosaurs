@@ -1,7 +1,10 @@
 (ns robots-vs-dinosaurs.component.storage
   "The storage for the server."
-  (:require [com.stuartsierra.component :as component])
-  (:import (java.io Writer)))
+  (:require
+    (com.stuartsierra
+      [component :as component]))
+  (:import
+    (java.io Writer)))
 
 (defprotocol IMemoryStorage
   (pull [this key] "Gets a value from memory storage.")
@@ -37,8 +40,8 @@
     (get @(:storage this) key))
 
   (push!
-    [this key value]
-    (key (swap! (:storage this) assoc key value)))
+    [this k v]
+    (k (swap! (:storage this) assoc k v)))
 
   (clean!
     [this]

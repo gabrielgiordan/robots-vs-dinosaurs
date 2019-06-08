@@ -1,47 +1,50 @@
 (ns robots-vs-dinosaurs.component.router
-  "Router component for alternative router Reitit.
+  "Router component for alternative Reitit router.
   https://metosin.github.io/reitit/performance.html"
-  (:require [com.stuartsierra.component :as component]
-            [reitit.http :as http]
-            [reitit.pedestal :as pedestal]
-            [reitit.ring :as ring]
-            [robots-vs-dinosaurs.interceptors :refer [redirect-trailing-slash-handler]])
-  (:import (java.io Writer)
-           (clojure.lang ExceptionInfo)))
+  (:require
+    (com.stuartsierra
+      [component :as component])
+    (reitit
+      [http :as http]
+      [pedestal :as pedestal])
+    (robots-vs-dinosaurs
+      [interceptors :refer [redirect-trailing-slash-handler]]))
+  (:import
+    (java.io Writer)
+    (clojure.lang ExceptionInfo)))
 
 (defn no-routes-match-handlers
   "Add handlers when no routes match."
   [options router]
-  (ring/routes
-    (redirect-trailing-slash-handler
-      {:method (-> options :redirect-trailing-slash :method)
-       :router router})
-    (ring/create-resource-handler)
-    (ring/create-default-handler)))
+  (redirect-trailing-slash-handler
+    {:method (get-in options [:redirect-trailing-slash :method] :both)
+     :router router}))
 
-(defn request-component-interceptor
-  "Attaches the components to the Reitit request."
-  [component]
+(defn request-components-interceptor
+  "Intercepts the Reitit request with the components."
+  [components]
   {:name        ::components
    :description "Components interceptor for Reitit."
    :enter       (fn [context]
-                  (merge-with merge context {:request {:components component}}))})
+                  (merge-with merge context {:request {:components components}}))})
 
-(defn merge-components-interceptors
-  "Add the components to the data to get intercepted."
+(defn components-interceptors
+  "Add the components to the data interceptors."
   [data components]
-  (let [interceptor (request-component-interceptor components)]
+  (let [interceptor (request-components-interceptor components)]
     (update-in data [:data :interceptors] #(vec (concat %1 %2)) [interceptor])))
 
 (defn start-router
   "Starts the Reitit router."
-  [component options service routes]
-  (let [data (merge-components-interceptors
-               (:options options)
-               {:storage (:storage component)})
+  [component]
+  (let [options (get-in component [:options :options])
+        routes (get-in component [:routes :routes])
+        service-map (get-in component [:service :service])
+        storage-component (:storage component)
+        data (components-interceptors options {:storage storage-component})
         router (http/router routes data)]
     (pedestal/replace-last-interceptor
-      service
+      service-map
       (pedestal/routing-interceptor
         router
         (no-routes-match-handlers options router)))))
@@ -53,11 +56,7 @@
     [this]
     (println "Starting the #<Router> component.")
     (try
-      (let [router (start-router
-                     this
-                     options
-                     (:service service)
-                     (:routes routes))]
+      (let [router (start-router this)]
         (assoc this :router router))
       (catch ExceptionInfo ex
         (prn "Error when starting the #<Service>" (ex-data ex)))))

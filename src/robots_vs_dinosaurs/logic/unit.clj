@@ -1,14 +1,17 @@
 (ns robots-vs-dinosaurs.logic.unit
-  (:require [robots-vs-dinosaurs.logic.point :as point]
-            [robots-vs-dinosaurs.logic.direction :as direction]))
+  (:require
+    (robots-vs-dinosaurs.logic
+      [point :as point]
+      [direction :as direction])))
 
-(defrecord Dinosaur [id point])
-(defrecord Robot [id point direction])
+(defrecord Dinosaur [id type point])
+(defrecord Robot [id type point direction])
 
 (defn new-dinosaur
   [id point]
   (map->Dinosaur
     {:id    id
+     :type  :dinosaur
      :point point}))
 
 (defn dinosaur?
@@ -19,6 +22,7 @@
   [id point orientation]
   (map->Robot
     {:id        id
+     :type      :robot
      :point     point
      :direction (direction/new-four-sided orientation)}))
 

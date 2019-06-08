@@ -1,7 +1,12 @@
 (ns robots-vs-dinosaurs.component.server
-  (:require [com.stuartsierra.component :as component]
-            [io.pedestal.http :as http])
-  (:import (java.io Writer)))
+  (:require
+    (com.stuartsierra
+      [component :as component])
+
+    (io.pedestal
+      [http :as http]))
+  (:import
+    (java.io Writer)))
 
 (defn start-server
   "Creates and starts the http server."

@@ -1,24 +1,75 @@
 (ns robots-vs-dinosaurs.db.simulations
   (:require [robots-vs-dinosaurs.component.storage :as storage]))
 
-(defn next-id
-  [storage]
-  (let [id (or (storage/pull storage :identifier) 0)]
-    (storage/push! storage :identifier (inc id))))
+(def ^:private ^:const k :simulations)
+(def ^:private ^:const i :identifiers)
 
-(defn simulations
+(defn get-id!
+  "Generates a next Id and gets the current."
   [storage]
-  (or (storage/pull storage :simulations) {}))
+  (let [id (or (storage/pull storage i) 0)]
+    (storage/push! storage i (inc id)) id))
 
-(defn reset-simulations
+(defn get-simulations
+  "Gets all simulations of the storage."
   [storage]
-  (storage/push! storage :simulations {}))
+  (or
+    (some->
+      (storage/pull storage k)
+      (vals))
+    []))
 
-(defn add-simulation
-  [storage simulation]
-  (->> (assoc (simulations storage) (:id simulation) simulation)
-       (storage/push! storage :simulations)))
+(defn create-simulation!
+  "Creates a simulation into the storage."
+  [storage {:keys [id] :as simulation}]
+  (when
+    (some->
+      (or (storage/pull storage k) {})
+      (assoc id simulation)
+      (as-> $ (storage/push! storage k $)))
+    simulation))
+
+(defn update-simulation!
+  "Updates a simulation into the storage."
+  [storage id f]
+  (when-some
+    [simulations (storage/pull storage k)]
+    (when-some
+      [simulation (update simulations id f)]
+      (when
+        (->>
+          (assoc simulations id simulation)
+          (storage/push! storage k))
+        simulation))))
+
+(defn update-simulation-in!
+  "Updates-in a simulation into the storage."
+  [storage id ks f]
+  (when-some
+    [simulations (storage/pull storage k)]
+    (some->
+      (get simulations id)
+      (update-in ks f)
+      (as->
+        $
+        (assoc simulations id $)
+        (storage/push! storage k $)))))
 
 (defn get-simulation
+  "Gets a simulation from the storage."
   [storage id]
-  (get (simulations storage) id))
+  (some->
+    (storage/pull storage k)
+    (get id)))
+
+(defn delete-simulation!
+  "Returns `true` when deleted from storage with success, otherwise `false`."
+  [storage id]
+  (if
+    (some->
+      (storage/pull storage k)
+      (as-> $ (when (contains? $ id) $))
+      (dissoc id)
+      (as-> $ (storage/push! storage k $)))
+    true
+    false))

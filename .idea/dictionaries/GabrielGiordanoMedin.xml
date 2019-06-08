@@ -4,9 +4,12 @@
       <w>creds</w>
       <w>defproject</w>
       <w>failjure</w>
+      <w>jonase</w>
+      <w>kibit</w>
       <w>lein</w>
       <w>leiningen</w>
       <w>metosin</w>
+      <w>midje</w>
       <w>muuntaja</w>
       <w>nrepl</w>
       <w>reitit</w>
@@ -14,6 +17,8 @@
       <w>sieppari</w>
       <w>stuartsierra</w>
       <w>uberjar</w>
+      <w>venantius</w>
+      <w>yagni</w>
     </words>
   </dictionary>
 </component>

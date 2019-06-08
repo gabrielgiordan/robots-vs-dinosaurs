@@ -1,29 +1,38 @@
-(ns robots-vs-dinosaurs.logic.point)
+(ns robots-vs-dinosaurs.logic.point
+  (:require
+    (clojure.spec
+      [alpha :as s])))
+
+(s/def :point/x int?)
+(s/def :point/y int?)
+(s/def :point/point (s/keys :req-un [:point/x :point/y]))
+
+(defrecord Point [x y])
 
 (defn new-point
   "Creates a new point."
   [x y]
-  [x y])
+  (->Point x y))
 
 (defn point+
   "Sum two points."
   [a b]
-  (mapv + a b))
+  (apply merge-with + [a b]))
 
 (defn point-
   "Subtract two points."
   [a b]
-  (mapv - a b))
+  (apply merge-with - [a b]))
 
 (defn points+
-  "Sum a collection of points."
+  "Sum a collection of points, each point plus the given point."
   [coll point]
-  (mapv (partial point+ point) coll point))
+  (map (partial point+ point) coll))
 
 (defn points-
-  "Subtract a collection of points."
+  "Subtract a collection of points, each point minus the given point."
   [coll point]
-  (mapv (partial point+ point) coll point))
+  (map #(point- % point) coll))
 
 (defn around
   "Gets a coll of summed direction points."
@@ -33,15 +42,14 @@
 (defn toward
   "Move the point towards the direction."
   [point direction]
-  (point+ (:point direction) point))
+  (point+ point (:point direction)))
 
 (defn away
   "Move the point away from the direction."
   [point direction]
-  (point- (:point direction) point))
+  (point- point (:point direction)))
 
 (defn inbound?
   "Checks if a point is inbound a width and height."
-  [[x y] [w h]]
-  (and (>= x 0) (>= y 0) (< x w) (< y h)))
-
+  [{:keys [x y]} {:keys [width height]}]
+  (and (>= x 0) (>= y 0) (< x width) (< y height)))

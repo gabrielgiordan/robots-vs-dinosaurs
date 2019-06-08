@@ -1,6 +1,9 @@
 (ns robots-vs-dinosaurs.component.routes
-  (:require [com.stuartsierra.component :as component])
-  (:import (java.io Writer)))
+  (:require
+    (com.stuartsierra
+      [component :as component]))
+  (:import
+    (java.io Writer)))
 
 (defrecord Routes [routes]
   component/Lifecycle

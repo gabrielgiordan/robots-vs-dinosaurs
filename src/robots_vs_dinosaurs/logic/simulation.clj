@@ -1,6 +1,8 @@
 (ns robots-vs-dinosaurs.logic.simulation
-  (:require [robots-vs-dinosaurs.logic.scoreboard :as scoreboard]
-            [robots-vs-dinosaurs.logic.board :as board]))
+  (:require
+    (robots-vs-dinosaurs.logic
+      [scoreboard :as scoreboard]
+      [board :as board])))
 
 (defrecord Simulation [id title scoreboard board])
 
@@ -19,3 +21,4 @@
 (defn reset
   [{:keys [id title board]}]
   (new-simulation id title (board/reset-board board)))
+

@@ -1,17 +1,24 @@
 (ns robots-vs-dinosaurs.component.service
-  (:require [com.stuartsierra.component :as component]
-            [io.pedestal.http :as server]
-            [io.pedestal.interceptor :refer [interceptor]]
-            [reitit.http :as http]
-            [io.pedestal.interceptor :as interceptor])
-  (:import (java.io Writer)
-           (clojure.lang ExceptionInfo)))
+  (:require
+    (com.stuartsierra
+      [component :as component])
+    (io.pedestal
+      [http :as server]
+      [interceptor :refer [interceptor]])
+    (reitit
+      [http :as http])
+    (robots-vs-dinosaurs
+      [interceptors :as interceptors]))
+  (:import
+    (java.io Writer)
+    (clojure.lang ExceptionInfo)))
 
 (defonce base-service-map
-         {:env                 :prod
-          ::server/type        :jetty
-          ::http/resource-path "/public"
-          ::server/routes      []})
+         {:env                           :prod
+          ::server/type                  :jetty
+          ::http/resource-path           "/public"
+          ::server/routes                []
+          ::server/not-found-interceptor interceptors/not-found-interceptor})
 
 (defonce dev-service-map
          {:env           :dev

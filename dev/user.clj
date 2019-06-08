@@ -7,23 +7,23 @@
 
 (clojure.tools.namespace.repl/set-refresh-dirs "dev" "src" "test")
 
-(def system nil)
+(def *state (atom nil))
 
 (defn init
   "Constructs the current development system."
   []
-  (let [options (system/get-system-options :dev [])]
-  (alter-var-root #'system (constantly (system/new-system-map options)))))
+  (let [options (system/get-system-options :dev)]
+    (swap! *state (constantly (system/new-system-map options)))))
 
 (defn start
   "Starts the current development system."
   []
-  (alter-var-root #'system (constantly (system/start-system :dev []))))
+  (swap! *state (constantly (system/start-system :dev))))
 
 (defn stop
   "Shuts down and destroys the current development system."
   []
-  (alter-var-root #'system (fn [s] (when s (system/stop-system s)))))
+  (swap! *state (fn [s] (when s (system/stop-system s)))))
 
 (defn go
   "Initializes the current development system and starts it running."
@@ -41,3 +41,4 @@
   []
   (stop)
   (refresh :after 'user/go))
+

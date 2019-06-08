@@ -2,21 +2,21 @@
 
 (defn key-of
   "Gets the key of the given `val` value into the `map`."
-  [map val]
-  (first (keep #(when (= (val %) val) (key %)) map)))
+  [m v]
+  (first (keep #(when (= (v %) v) (key %)) m)))
 
 (defn key-value-of
   "Returns a function that gets the first two map `m` values,
   and compare to the given map."
-  [map]
+  [m]
   (fn
     [parameters]
-    (let [values (vec (vals parameters))]
-      (= (values 0) (key-of map (values 1))))))
+    (let [v (vec (vals parameters))]
+      (= (v 0) (key-of m (v 1))))))
 
 (defn find-first
   "Reduce with `reduced` function for first element
   is faster than `(first (filter ...))` or `(some ...)`."
-  [coll [key val]]
-  (when-not (empty? coll)
-    (reduce #(when (= (key %2) val) (reduced %2)) nil coll)))
+  [coll [k v]]
+  (when (seq coll)
+    (reduce #(when (= (k %2) v) (reduced %2)) nil coll)))

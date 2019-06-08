@@ -1,22 +1,31 @@
-(ns robots-vs-dinosaurs.logic.direction)
+(ns robots-vs-dinosaurs.logic.direction
+  (:require
+    (clojure.spec
+      [alpha :as s])
+    (robots-vs-dinosaurs.logic
+      [point :as point])))
+
+(s/def :direction/orientation string?)
+(s/def :direction/direction
+  (s/keys :req-un [:direction/orientation :point/point]))
 
 (defonce
   four-sides
-  {:up    [0 1]
-   :right [1 0]
-   :down  [0 -1]
-   :left  [-1 0]})
+  {:up    (point/new-point 0 1)
+   :right (point/new-point 1 0)
+   :down  (point/new-point 0 -1)
+   :left  (point/new-point -1 0)})
 
 (defonce
-  eight-sided
-  {:up-left    [-1 1]
-   :up         [0 1]
-   :up-right   [1 1]
-   :right      [1 0]
-   :down-right [1 -1]
-   :down       [0 -1]
-   :down-left  [-1 -1]
-   :left       [-1 0]})
+  eight-sides
+  {:up-left    (point/new-point -1 1)
+   :up         (point/new-point 0 1)
+   :up-right   (point/new-point 1 1)
+   :right      (point/new-point 1 0)
+   :down-right (point/new-point 1 -1)
+   :down       (point/new-point 0 -1)
+   :down-left  (point/new-point -1 -1)
+   :left       (point/new-point -1 0)})
 
 (defrecord Direction [orientation point])
 
@@ -25,7 +34,7 @@
   [orientation directions]
   (map->Direction
     {:orientation orientation
-     :directions (orientation directions)}))
+     :point       (orientation directions)}))
 
 (defn new-four-sided
   "Creates a directions with 4 sides."
@@ -35,14 +44,15 @@
 (defn new-eight-sided
   "Creates a directions with 8 sides."
   [orientation]
-  (new-direction orientation eight-sided))
+  (new-direction orientation eight-sides))
 
 (defn direction->index
   "Converts a Direction to its index."
   [{:keys [orientation]} directions]
-  (->> (keep-indexed #(when (= orientation (key %2)) %1) directions)
-       (take 1)
-       (first)))
+  (->>
+    (keep-indexed #(when (= orientation (key %2)) %1) directions)
+    (take 1)
+    (first)))
 
 (defn index->direction
   "Converts an index to a Direction.
@@ -50,26 +60,29 @@
   [index directions]
   (let [length (count directions)
         normalized (mod index length)]
-    (-> (take 1 (keep-indexed #(when (= normalized %1) %2) directions))
-        (first)
-        (first)
-        (new-direction directions))))
+    (some->
+      (take 1 (keep-indexed #(when (= normalized %1) %2) directions))
+      (first)
+      (first)
+      (new-direction directions))))
 
 (defn- direction-inc
   "Gets the next direction."
   [direction directions]
-  (-> direction
-      (direction->index directions)
-      (inc)
-      (index->direction directions)))
+  (some->
+    direction
+    (direction->index directions)
+    (inc)
+    (index->direction directions)))
 
 (defn- direction-dec
   "Gets the previous direction."
   [direction directions]
-  (-> direction
-      (direction->index directions)
-      (dec)
-      (index->direction directions)))
+  (some->
+    direction
+    (direction->index directions)
+    (dec)
+    (index->direction directions)))
 
 (defn four-sided-inc
   "Gets the next four sided direction."
@@ -84,9 +97,9 @@
 (defn eight-sided-inc
   "Gets the next eight sided direction."
   [direction]
-  (direction-inc direction eight-sided))
+  (direction-inc direction eight-sides))
 
 (defn eight-sided-dec
   "Gets the previous eight sided direction."
   [direction]
-  (direction-dec direction eight-sided))
+  (direction-dec direction eight-sides))
