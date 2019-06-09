@@ -2,7 +2,9 @@
   "The storage for the server."
   (:require
     (com.stuartsierra
-      [component :as component]))
+      [component :as component])
+    (robots-vs-dinosaurs.storage
+      [default-data :refer [get-default-data]]))
   (:import
     (java.io Writer)))
 
@@ -18,7 +20,7 @@
     [this]
     (println "Starting the #<MemoryStorage> component.")
     ;; Could be multiple `ref`, but preferred a single atom approach.
-    (assoc this :storage (atom {})))
+    (assoc this :storage (atom (get-default-data))))
 
   (stop
     [this]

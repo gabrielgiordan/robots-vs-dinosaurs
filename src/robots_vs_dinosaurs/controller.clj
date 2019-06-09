@@ -4,12 +4,12 @@
       [simulation :as simulation]
       [board :as board]
       [unit :as unit])
-    (robots-vs-dinosaurs.db
+    (robots-vs-dinosaurs.storage
       [simulations :as db])))
 
-;; --------
+;;
 ;; Simulations
-;; --------
+;;
 (defn get-id
   [{:keys [id]}]
   id)
@@ -41,16 +41,15 @@
   [storage simulation-id]
   (db/delete-simulation! storage simulation-id))
 
-;; --------
+;;
 ;; Robots
-;; --------
+;;
 (defn create-robot!
   "Creates a robot inside of the simulation board."
   [storage simulation-id point orientation]
-  (when-let
-    [robot (some->
-             (db/get-id! storage)
-             (unit/new-robot point orientation))]
+  (let [robot-id (db/get-id! storage)
+        robot (unit/new-robot robot-id point orientation)]
+
     (when
       (letfn
         [(add-robot
@@ -64,15 +63,15 @@
   [storage simulation-id robot-id]
   (some->
     (get-simulation storage simulation-id)
-    (get :board)
-    (board/get-unit robot-id)))
+    (:board)
+    (board/get-robot robot-id)))
 
 (defn get-robots
   "List the robots inside of the simulation board."
   [storage simulation-id]
   (some->
     (get-simulation storage simulation-id)
-    (get :board)
+    (:board)
     (board/get-robots)))
 
 (defn- update-unit!
@@ -80,13 +79,23 @@
   [storage simulation-id unit-id f]
   (when-let [simulation (get-simulation storage simulation-id)]
     (when-let [updated-board (board/update-unit (:board simulation) unit-id f)]
-      (when (->>
-        (assoc simulation :board updated-board)
-        (constantly)
-        (db/update-simulation! storage simulation-id)))
-      )))
+      (when
+        (->>
+          (assoc simulation :board updated-board)
+          (constantly)
+          (db/update-simulation! storage simulation-id))
+        (board/get-unit updated-board unit-id)))))
 
 (defn turn-robot-left!
   ""
   [storage simulation-id robot-id]
-  (update-unit! storage simulation-id robot-id unit/turn-left))
+  (update-unit! storage simulation-id robot-id unit/turn-left-4))
+
+(defn turn-robot-right!
+  ""
+  [storage simulation-id robot-id]
+  (update-unit! storage simulation-id robot-id unit/turn-right-4))
+
+(defn move-robot-forward!
+  [storage simulation-id robot-id]
+  (update-unit! storage simulation-id robot-id unit/move-forward))

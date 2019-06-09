@@ -29,10 +29,7 @@
   "Gets the default options."
   []
   {:redirect-trailing-slash {:method :both}
-   ;:exception              pretty/exception
    :conflicts               nil
-   ;:validate               ring-spec/validate
-   ;::reitit-spec/explain   expound/expound-str
    :executor                sieppari/executor
    :data                    {:coercion     coercion.spec/coercion
                              :muuntaja     core.muuntaja/instance
@@ -68,7 +65,9 @@
     (get-prod-options)
     (get-dev-options)))
 
+;;
 ;; Simulations
+;;
 (defn get-simulations-response-handler
   "Creates a 200 response with all the simulations."
   [{{:keys [storage]} :components}]
@@ -130,7 +129,7 @@
          (some->>
            (adapter/string->orientation orientation)
            (controller/create-robot! storage $ point))))]
-    (some->
+    (->
       uri
       (str "/" (controller/get-id robot))
       (ring.response/created robot))))
@@ -168,6 +167,19 @@
       (some->>
         (adapter/string->int robot-id)
         (controller/turn-robot-left! storage $)
+        (ring.response/response)))))
+
+(defn turn-robot-right-response-handler!
+  "Creates a 200 response with the requested Robot rotated to the right."
+  [{{:keys [storage]}                :components
+    {:keys [simulation-id robot-id]} :path-params}]
+  (some->
+    (adapter/string->int simulation-id)
+    (as->
+      $
+      (some->>
+        (adapter/string->int robot-id)
+        (controller/turn-robot-right! storage $)
         (ring.response/response)))))
 
 
@@ -245,7 +257,7 @@
     {:swagger {:tags ["Robots"]}
      :get     {:summary    "Rotates a robot to the right."
                :responses  {200 {:body ::spec/robots}}
-               :handler    get-simulations-response-handler
+               :handler    turn-robot-right-response-handler!
                :parameters {:path
                             {:simulation-id ::spec/id
                              :robot-id      ::spec/id}}}}]

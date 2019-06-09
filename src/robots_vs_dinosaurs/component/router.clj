@@ -37,12 +37,13 @@
 (defn start-router
   "Starts the Reitit router."
   [component]
-  (let [options (get-in component [:options :options])
-        routes (get-in component [:routes :routes])
-        service-map (get-in component [:service :service])
+  (let [options           (get-in component [:options :options])
+        routes            (get-in component [:routes :routes])
+        service-map       (get-in component [:service :service])
         storage-component (:storage component)
-        data (components-interceptors options {:storage storage-component})
-        router (http/router routes data)]
+        data              (components-interceptors options {:storage storage-component})
+        router            (http/router routes data)]
+
     (pedestal/replace-last-interceptor
       service-map
       (pedestal/routing-interceptor

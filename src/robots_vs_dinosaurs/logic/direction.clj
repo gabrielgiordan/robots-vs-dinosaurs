@@ -84,12 +84,12 @@
     (dec)
     (index->direction directions)))
 
-(defn four-sided-inc
+(defn inc-4-sided
   "Gets the next four sided direction."
   [direction]
   (direction-inc direction four-sides))
 
-(defn four-sided-dec
+(defn dec-4-sided
   "Gets the previous four sided direction."
   [direction]
   (direction-dec direction four-sides))

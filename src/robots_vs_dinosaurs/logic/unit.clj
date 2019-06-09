@@ -14,10 +14,6 @@
      :type  :dinosaur
      :point point}))
 
-(defn dinosaur?
-  [unit]
-  (instance? Dinosaur unit))
-
 (defn new-robot
   [id point orientation]
   (map->Robot
@@ -26,28 +22,50 @@
      :point     point
      :direction (direction/new-four-sided orientation)}))
 
+(defn dinosaur?
+  [o]
+  (instance? Dinosaur o))
+
 (defn robot?
-  [unit]
-  (instance? Robot unit))
+  [o]
+  (instance? Robot o))
+
+(defn- move
+  "Gets the new point of `movement`
+  to the `move-handler` handle the movement."
+  [{:keys [direction point] :as unit} movement move-handler]
+  (move-handler unit (movement point direction)))
 
 (defn move-forward
-  [{:keys [direction] :as unit}]
-  (update-in unit [:point] point/toward direction))
+  "Moves the unit point towards
+  the current direction."
+  [unit move-handler]
+  (move unit point/toward move-handler))
 
-(defn move-backwards
-  [{:keys [direction] :as unit}]
-  (update-in unit [:point] point/away direction))
+(defn move-backward
+  "Moves the unit point away
+  of the current direction."
+  [unit move-handler]
+  (move unit point/away move-handler))
 
-(defn turn-right
-  [{:keys [direction] :as unit}]
-  (update-in unit [:direction] direction/four-sided-inc))
+(defn turn-right-4
+  "Rotates the unit to the right."
+  [unit]
+  (update unit :direction direction/inc-4-sided))
 
-(defn turn-left
-  [{:keys [direction] :as unit}]
-  (update-in unit [:direction] direction/four-sided-dec))
+(defn turn-left-4
+  "Rotates the unit to the left."
+  [unit]
+  (update unit :direction direction/dec-4-sided))
 
-(defn attack
-  [{:keys [point]} on-attack]
-  (on-attack (point/around direction/four-sides point)))
+(defn- attack
+  "Attacks around the given directions.
+  The `attack-handler` takes 2 arguments,
+  the attacker and the points to be attacked."
+  [{:keys [point] :as unit} directions attack-handler]
+  (attack-handler (point/around directions point)))
 
-;; todo: compose functions attack with remove from board
+(defn attack-4-directions
+  "Attacks around the four sides."
+  [unit attack-handler]
+  (attack unit direction/four-sides attack-handler))

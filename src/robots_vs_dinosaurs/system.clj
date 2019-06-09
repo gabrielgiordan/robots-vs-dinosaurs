@@ -21,10 +21,7 @@
      {:env  environment
       :port port}
      :router
-     {:options options
-      ;:redirect-trailing-slash
-      ;         {:method :both}
-      }}))
+     {:options options}}))
 
 (defn new-system-map
   "Creates a new system map."
