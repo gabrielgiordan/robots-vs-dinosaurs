@@ -1,1 +1,1 @@
-web: java $JVM_OPTS -cp target/uberjar/robots-vs-dinosaurs-standalone.jar clojure.main -m robots-vs-dinosaurs.server $PORT
+web: java $JVM_OPTS -cp target/uberjar/robots-vs-dinosaurs-standalone.jar clojure.main -m robots-vs-dinosaurs.server
