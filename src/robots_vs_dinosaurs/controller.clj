@@ -7,6 +7,13 @@
     (robots-vs-dinosaurs.storage
       [simulations :as db])))
 
+(defn- result-handler
+  [result]
+  (if (keyword? result)
+    (throw
+      (ex-info "Invalid operation." {:type result})))
+  result)
+
 ;;
 ;; Simulations
 ;;
@@ -37,13 +44,14 @@
   "Updates simulation and stores the simulation."
   [storage simulation-id simulation-handler]
   (when-some
-    [{:keys [updated response] :as result}
+    [{:keys [updated response]}
      (some->
        (db/get-simulation storage simulation-id)
-       (simulation-handler))]
-    (if updated
-      (when (db/save-simulation! storage updated) response)
-      result)))                                             ; TODO Throw error
+       (simulation-handler)
+       (result-handler))]
+    (when
+      (db/save-simulation! storage updated)
+      response)))
 
 ;;
 ;; Robots
@@ -57,12 +65,20 @@
 (defn get-robot
   "Gets the robot inside the simulation board."
   [storage simulation-id robot-id]
-  (some-> (get-simulation storage simulation-id) (:board) (board/get-robot robot-id)))
+  (some->
+    (get-simulation storage simulation-id)
+    (:board)
+    (board/get-robot robot-id)
+    (result-handler)))
 
 (defn get-robots
   "List the robots inside the simulation board."
   [storage simulation-id]
-  (some-> (get-simulation storage simulation-id) (:board) (board/get-robots)))
+  (some->
+    (get-simulation storage simulation-id)
+    (:board)
+    (board/get-robots)
+    (result-handler)))
 
 (defn turn-robot-left!
   "Turns and stores the robot left inside the simulation board."
@@ -101,9 +117,17 @@
 (defn get-dinosaur
   "Gets the dinosaur inside of the simulation board."
   [storage simulation-id dinosaur-id]
-  (some-> (get-simulation storage simulation-id) (:board) (board/get-dinosaur dinosaur-id)))
+  (some->
+    (get-simulation storage simulation-id)
+    (:board)
+    (board/get-dinosaur dinosaur-id)
+    (result-handler)))
 
 (defn get-dinosaurs
   "List the dinosaurs inside of the simulation board."
   [storage simulation-id]
-  (some-> (get-simulation storage simulation-id) (:board) (board/get-dinosaurs)))
+  (some->
+    (get-simulation storage simulation-id)
+    (:board)
+    (board/get-dinosaurs)
+    (result-handler)))

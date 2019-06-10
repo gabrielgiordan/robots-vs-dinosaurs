@@ -193,10 +193,10 @@
 ;;
 (defn create-dinosaur-response-handler!
   "Creates a 201 response with the location header for the created Dinosaur."
-  [{uri                         :uri
-    {:keys [storage]}           :components
-    {:keys [simulation-id]}     :path-params
-    {:keys [point]} :body-params}]
+  [{uri                     :uri
+    {:keys [storage]}       :components
+    {:keys [simulation-id]} :path-params
+    {:keys [point]}         :body-params}]
   (when-some
     [dinosaur
      (some->
@@ -221,7 +221,7 @@
 
 (defn- get-dinosaur-response-handler
   "Creates a 200 response with the requested Dinosaur"
-  [{{:keys [storage]}                :components
+  [{{:keys [storage]}                   :components
     {:keys [simulation-id dinosaur-id]} :path-params}]
   (some->
     (adapter/string->int simulation-id)
@@ -320,9 +320,9 @@
                             {:simulation-id ::spec/id
                              :robot-id      ::spec/id}}}}]
 
-   ["/simulations/:simulation-id/robots/:robot-id/move-backwards"
+   ["/simulations/:simulation-id/robots/:robot-id/move-backward"
     {:swagger {:tags ["Robots"]}
-     :get     {:summary    "Moves a robot backwards."
+     :get     {:summary    "Moves a robot backward."
                :responses  {200 {:body ::spec/robots}}
                :handler    move-robot-backward-response-handler!
                :parameters {:path
@@ -341,30 +341,26 @@
 
    ["/simulations/:simulation-id/dinosaurs"
     {:swagger {:tags ["Dinosaurs"]}
+     :get     {:summary    "Gets all dinosaurs."
+               :responses  {200 {:body ::spec/dinosaurs}}
+               :handler    get-dinosaurs-response-handler
+               :parameters {:path
+                            {:simulation-id ::spec/id}}}
      :post    {:summary    "Create a dinosaur in a certain position."
-               :responses  {200 {:body ::spec/robots}}
+               :responses  {200 {:body ::spec/dinosaurs}}
                :handler    create-dinosaur-response-handler!
                :parameters {:path
                             {:simulation-id ::spec/id
-                             :robot-id      ::spec/id}}}}]
+                             :dinosaur-id   ::spec/id}}}}]
 
-   ["/simulations/:simulation-id/dinosaurs/"
+   ["/simulations/:simulation-id/dinosaurs/:dinosaur-id"
     {:swagger {:tags ["Dinosaurs"]}
-     :get     {:summary    "Gets all dinosaurs."
+     :get     {:summary    "Gets a dinosaurs."
                :responses  {200 {:body ::spec/dinosaurs}}
                :handler    get-dinosaur-response-handler
                :parameters {:path
                             {:simulation-id ::spec/id
-                             :robot-id      ::spec/id}}}}]
-
-   ["/simulations/:simulation-id/dinosaurs/:dinosaur-id"
-    {:swagger {:tags ["Dinosaurs"]}
-     :get     {:summary    "Gets a dinosaur."
-               :responses  {200 {:body ::spec/dinosaurs}}
-               :handler    get-dinosaurs-response-handler
-               :parameters {:path
-                            {:simulation-id ::spec/id
-                             :robot-id      ::spec/id}}}}]
+                             :dinosaur-id   ::spec/id}}}}]
    ])
 
 (defn get-swagger-routes

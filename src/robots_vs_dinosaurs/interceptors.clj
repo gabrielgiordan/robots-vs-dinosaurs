@@ -59,7 +59,7 @@
       (let [resp (:response context)]
         (if-not (and (map? resp) (integer? (:status resp)))
           (do (log/meter ::not-found)
-              (assoc context :response (error-response-encoded 404 0 "Could not found the requested resource.")))
+              (assoc context :response (error-response-encoded 404 0 "Could not find the requested resource.")))
           context)))))
 
 ; :muuntaja/decode, input can't be decoded with the negotiated format & charset.
@@ -72,7 +72,14 @@
   "Intercept exceptions with custom Json messages."
   []
   (exception/exception-interceptor
-    {;; Spec exceptions.
+    {;; Simulation exceptions.
+     :out-of-bounds               (exception-handler 403 10 "Invalid operation. Out of bounds.")
+     :not-a-robot                 (exception-handler 403 11 "Invalid operation. Not a Robot.")
+     :not-a-dinosaur              (exception-handler 403 12 "Invalid operation. Not a Dinosaur.")
+     :occupied                    (exception-handler 403 13 "Invalid operation. Position is occupied.")
+     :attack-missed               (exception-handler 400 14 "Invalid operation. No units to attack.")
+
+     ;; Spec exceptions.
      ::coercion/request-coercion  (exception-handler 400 1 "Invalid request.")
      ::coercion/response-coercion (exception-handler 500 2 "Response validation failed.")
 
