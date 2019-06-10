@@ -97,6 +97,15 @@
     (controller/get-simulation storage)
     (ring.response/response)))
 
+(defn get-simulation-as-string-matrix-response-handler
+  "Creates a 200 response with the requested Simulation string matrix."
+  [{{:keys [storage]}       :components
+    {:keys [simulation-id]} :path-params}]
+  (some->>
+    (adapter/string->int simulation-id)
+    (controller/get-simulation-as-game storage)
+    (ring.response/response)))
+
 (defn delete-simulation-response-handler!
   "Creates a 200 response with `success` payload for the deleted Simulation."
   [{{:keys [storage]}       :components
@@ -219,7 +228,7 @@
     (controller/get-dinosaurs storage)
     (ring.response/response)))
 
-(defn- get-dinosaur-response-handler
+(defn get-dinosaur-response-handler
   "Creates a 200 response with the requested Dinosaur"
   [{{:keys [storage]}                   :components
     {:keys [simulation-id dinosaur-id]} :path-params}]
@@ -267,6 +276,15 @@
                             404 {:body ::spec/error-response}
                             400 {:body ::spec/error-response}}
                :handler    delete-simulation-response-handler!}}]
+
+   ["/simulations/:simulation-id/as-game"
+    {:swagger {:tags ["Simulations"]}
+     :get     {:summary    "Gets a simulation space as a simple string game."
+               :responses  {200 {:body ::spec/simulation}
+                            404 {:body ::spec/error-response}
+                            400 {:body ::spec/error-response}}
+               :handler    get-simulation-as-string-matrix-response-handler
+               :parameters {:path {:simulation-id ::spec/id}}}}]
 
    ;; Robots
 

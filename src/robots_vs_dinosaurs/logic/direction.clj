@@ -11,20 +11,20 @@
 
 (defonce
   four-sides
-  {:up    (point/new-point 0 1)
+  {:up    (point/new-point 0 -1)
    :right (point/new-point 1 0)
-   :down  (point/new-point 0 -1)
+   :down  (point/new-point 0 1)
    :left  (point/new-point -1 0)})
 
 (defonce
   eight-sides
-  {:up-left    (point/new-point -1 1)
-   :up         (point/new-point 0 1)
-   :up-right   (point/new-point 1 1)
+  {:up-left    (point/new-point -1 -1)
+   :up         (point/new-point 0 -1)
+   :up-right   (point/new-point 1 -1)
    :right      (point/new-point 1 0)
-   :down-right (point/new-point 1 -1)
-   :down       (point/new-point 0 -1)
-   :down-left  (point/new-point -1 -1)
+   :down-right (point/new-point 1 1)
+   :down       (point/new-point 0 1)
+   :down-left  (point/new-point -1 1)
    :left       (point/new-point -1 0)})
 
 (defrecord Direction [orientation point])

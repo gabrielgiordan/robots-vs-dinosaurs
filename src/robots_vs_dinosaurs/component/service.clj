@@ -21,14 +21,13 @@
           ::server/routes                []
           ::server/not-found-interceptor interceptors/not-found-interceptor})
 
+;; To allow Swagger on `dev` mode, allow CSP unsafe-inline, to render inline styles.
 (defonce dev-service-map
          {:env           :dev
           ::server/join? false
           ::server/allowed-origins
                          {:creds           true
                           :allowed-origins (constantly true)}
-          ;; To allow Swagger on `dev` mode,
-          ;; CSP violations due to inline styles.
           ::server/secure-headers
                          {:content-security-policy-settings
                           {:default-src "'self'"
@@ -83,7 +82,6 @@
   (stop
     [this]
     (println "Stopping the #<Service> component.")
-    ; `dissoc` returns a map and `assoc` keeps the record type.
     (dissoc this :service))
 
   Object

@@ -1,24 +1,21 @@
 (ns robots-vs-dinosaurs.storage.simulations
   (:require [robots-vs-dinosaurs.component.storage :as storage]))
 
-(def ^:private ^:const k :simulations)
-(def ^:private ^:const i :identifiers)
-
 ;;
 ;; Simulations
 ;;
 (defn get-id!
   "Generates a next id and returns the current."
   [storage]
-  (let [id (or (storage/pull storage i) 0)]
-    (storage/push! storage i (inc id)) id))
+  (let [id (or (storage/pull storage :next-id) 0)]
+    (storage/push! storage :next-id (inc id)) id))
 
 (defn get-simulations
   "Gets all simulations of the storage."
   [storage]
   (or
     (some->
-      (storage/pull storage k)
+      (storage/pull storage :simulations)
       (vals))
     []))
 
@@ -26,7 +23,7 @@
   "Gets a simulation from the storage."
   [storage id]
   (some->
-    (storage/pull storage k)
+    (storage/pull storage :simulations)
     (get id)))
 
 (defn new-simulation!
@@ -34,9 +31,9 @@
   [storage {:keys [id] :as simulation}]
   (when
     (some->
-      (or (storage/pull storage k) {})
+      (or (storage/pull storage :simulations) {})
       (assoc id simulation)
-      (as-> $ (storage/push! storage k $)))
+      (as-> $ (storage/push! storage :simulations $)))
     simulation))
 
 (defn save-simulation!
@@ -44,10 +41,10 @@
   [storage simulation]
   (if
     (some->
-      (storage/pull storage k)
+      (storage/pull storage :simulations)
       (as-> $ (when (contains? $ (:id simulation)) $))
       (assoc (:id simulation) simulation)
-      (as-> $ (storage/push! storage k $)))
+      (as-> $ (storage/push! storage :simulations $)))
     true
     false))
 
@@ -56,10 +53,10 @@
   [storage id]
   (if
     (some->
-      (storage/pull storage k)
+      (storage/pull storage :simulations)
       (as-> $ (when (contains? $ id) $))
       (dissoc id)
-      (as-> $ (storage/push! storage k $)))
+      (as-> $ (storage/push! storage :simulations $)))
     true
     false))
 

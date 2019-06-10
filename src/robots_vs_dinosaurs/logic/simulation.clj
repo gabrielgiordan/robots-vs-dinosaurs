@@ -90,8 +90,8 @@
   [{:keys [board] :as simulation} robot-id]
   (when-let
     [{:keys [response] :as result} (some->>
-              (board/robot-attack board robot-id)
-              (update-board simulation))]
+                                     (board/robot-attack board robot-id)
+                                     (update-board simulation))]
     (if response
       (update-in result [:updated :scoreboard] #(scoreboard/total* % (count response)))
       result)))
@@ -116,8 +116,38 @@
   [{:keys [board]} dinosaur-id]
   (board/get-dinosaur board dinosaur-id))
 
+;;
+;; Matrix
+;;
+(defn- as-matrix
+  "Converts a simulation to matrix."
+  [{{{:keys [width height]} :size :as board} :board}]
+  (->>
+    (repeat height (repeat width "_"))
+    (map-indexed
+      (fn [y coll]
+        (vec
+          (map-indexed
+            (fn [x item]
+              (let [unit (board/get-unit-at board (point/new-point x y))]
+                (cond
+                  (unit/robot? unit) (str "R")
+                  (unit/dinosaur? unit) (str "D")
+                  :else item)))
+            coll))))
+    (vec)))
 
-
+(defn as-game
+  "Converts a simulation to a simple game string."
+  [{{:keys [total]} :scoreboard :as simulation}]
+  (str
+    "Robots vs Dinosaurs\n"
+    "\nScore: " total "\n\n"
+    (->>
+      (map
+        (partial clojure.string/join "|")
+        (as-matrix simulation))
+      (clojure.string/join "\n"))))
 
 #_(def data
     (new-simulation

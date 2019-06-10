@@ -53,6 +53,12 @@
       (db/save-simulation! storage updated)
       response)))
 
+(defn get-simulation-as-game
+  [storage simulation-id]
+  (some->
+    (db/get-simulation storage simulation-id)
+    (simulation/as-game)))
+
 ;;
 ;; Robots
 ;;
