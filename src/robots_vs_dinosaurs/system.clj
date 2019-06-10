@@ -6,7 +6,8 @@
             [robots-vs-dinosaurs.component.service :refer [new-service]]
             [robots-vs-dinosaurs.component.server :refer [new-server]]
             [robots-vs-dinosaurs.component.storage :refer [new-memory-storage]]
-            [environ.core :refer [env]])
+            [environ.core :refer [env]]
+            [robots-vs-dinosaurs.adapter :as adapter])
   ;(:import (com.stuartsierra.component SystemMap))
   )
 
@@ -15,7 +16,7 @@
 (defn get-system-options
   "Gets the port from args, system environment or from the default 8080."
   [environment]
-  (let [port (or (env :port) 8080)
+  (let [port (adapter/string->int (or (env :port) "8080"))
         options (service/get-options environment)]
     {:service
      {:env  environment
