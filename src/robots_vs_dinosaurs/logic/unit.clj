@@ -20,7 +20,7 @@
     {:id        id
      :type      :robot
      :point     point
-     :direction (direction/new-four-sided orientation)}))
+     :direction (direction/new-8-sided orientation)}))
 
 (defn dinosaur?
   [o]

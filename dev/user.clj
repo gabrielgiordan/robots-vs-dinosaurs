@@ -36,6 +36,10 @@
   []
   (run-all-tests))
 
+(defn storage
+  []
+  (:storage @*state))
+
 (defn reset
   "Reloads the code."
   []

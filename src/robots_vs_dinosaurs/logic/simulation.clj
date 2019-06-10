@@ -7,9 +7,13 @@
       [unit :as unit]
       [point :as point])))
 
+;;
+;; Simulation
+;;
 (defrecord Simulation [id title scoreboard board])
 
 (defn new-simulation
+  "Creates a new simulation."
   ([id title scoreboard board]
    (map->Simulation
      {:id         id
@@ -19,68 +23,101 @@
   ([id title board]
    (new-simulation id title (scoreboard/new-scoreboard) board))
   ([id title]
-   (new-simulation id title (board/new-board [50 50]))))
+   (new-simulation id title (board/new-board))))
 
 ;;
-;; Units
+;; Board
 ;;
-(defn- update-unit
-  [simulation unit-id f]
-  (when-let [result (f (:board simulation) unit-id)]
-    (if (board/message? result)
-      result
-      {:updated  (assoc simulation :board (:updated result))
-       :response (:response result)})))
+(defn- update-board
+  "Updates the simulation board, returns an `:updated`
+  simulation and a `:response`, else a keyword message."
+  [simulation result]
+  (if (board/message? result)
+    result
+    {:updated  (assoc simulation :board (:updated result))
+     :response (:response result)}))
 
 ;;
 ;; Robots
 ;;
 (defn add-robot
-  [simulation robot]
-  (board/add-robot (:board simulation) robot))
+  "Add a robot."
+  [{:keys [board] :as simulation} robot]
+  (some->>
+    (board/add-robot board robot)
+    (update-board simulation)))
 
 (defn get-robots
-  [simulation]
-  (board/get-robots (:board simulation)))
+  "Gets all robots."
+  [{:keys [board]}]
+  (board/get-robots board))
 
 (defn get-robot
-  [simulation robot-id]
-  (board/get-robot (:board simulation) robot-id))
+  "Gets a robot."
+  [{:keys [board]} robot-id]
+  (board/get-robot board robot-id))
 
 (defn move-robot-forward
-  [simulation robot-id]
-  (update-unit simulation robot-id board/move-robot-forward))
+  "Makes a robot move forward."
+  [{:keys [board] :as simulation} robot-id]
+  (some->>
+    (board/move-robot-forward board robot-id)
+    (update-board simulation)))
 
 (defn move-robot-backward
-  [simulation robot-id]
-  (update-unit simulation robot-id board/move-robot-backward))
+  "Makes a robot move backward."
+  [{:keys [board] :as simulation} robot-id]
+  (some->>
+    (board/move-robot-backward board robot-id)
+    (update-board simulation)))
 
 (defn turn-robot-left
-  [simulation robot-id]
-  (update-unit simulation robot-id board/turn-robot-left))
+  "Makes a robot turn left."
+  [{:keys [board] :as simulation} robot-id]
+  (some->>
+    (board/turn-robot-left board robot-id)
+    (update-board simulation)))
 
 (defn turn-robot-right
-  [simulation robot-id]
-  (update-unit simulation robot-id board/turn-robot-right))
+  "Makes a robot turn right."
+  [{:keys [board] :as simulation} robot-id]
+  (some->>
+    (board/turn-robot-right board robot-id)
+    (update-board simulation)))
 
 (defn robot-attack
-  [simulation robot-id]
-  (update-unit simulation robot-id board/robot-attack))
+  "Makes a robot attack, then add the result to the scoreboard."
+  [{:keys [board] :as simulation} robot-id]
+  (when-let
+    [{:keys [response] :as result} (some->>
+              (board/robot-attack board robot-id)
+              (update-board simulation))]
+    (if response
+      (update-in result [:updated :scoreboard] #(scoreboard/total* % (count response)))
+      result)))
 
 ;;
 ;; Dinosaurs
 ;;
 (defn add-dinosaur
-  [simulation dinosaur]
-  (board/add-dinosaur (:board simulation) dinosaur))
+  "Adds a dinosaur."
+  [{:keys [board] :as simulation} dinosaur]
+  (some->>
+    (board/add-dinosaur board dinosaur)
+    (update-board simulation)))
 
 (defn get-dinosaurs
-  [simulation]
-  (board/get-dinosaurs (:board simulation)))
+  "Gets all dinosaurs."
+  [{:keys [board]}]
+  (board/get-dinosaurs board))
 
 (defn get-dinosaur
-  [simulation dinosaur-id]
-  (board/get-dinosaur (:board simulation) dinosaur-id))
+  "Gets a dinosaur."
+  [{:keys [board]} dinosaur-id]
+  (board/get-dinosaur board dinosaur-id))
+
+
+
 
 #_(def data
     (new-simulation

@@ -95,7 +95,7 @@
       (p 4 6) (away (p 5 7) (d :up-right eight-sides))
       (p 6 6) (away (p 5 7) (d :up-left eight-sides)))))
 
-(deftest point--validation
+#_ (deftest point--validation
 
   (testing "Out of bounds when lower than 0 and greater than size minus 1."
     (is (not (inbound? (p -1 0) (s 20 20))))

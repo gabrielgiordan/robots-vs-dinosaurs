@@ -82,10 +82,10 @@
     {:keys [storage]}                                       :components
     {:keys [title size], :or {size {:width 50 :height 50}}} :body-params}]
   (when-some
-    [simulation (controller/create-simulation! storage title size)]
+    [simulation (controller/new-simulation! storage title size)]
     (some->
       uri
-      (str "/" (controller/get-id simulation))
+      (str "/" (:id simulation))
       (ring.response/created simulation))))
 
 (defn get-simulation-response-handler
@@ -107,12 +107,27 @@
       (controller/delete-simulation! storage))
     (ring.response/response {:success true})))
 
+;;
 ;; Robots
-
+;;
 (s/def ::orientation string?)
 (s/def ::post-robot
   (s/keys :req-un [::spec/point]
           :opt-un [::orientation]))
+
+(defn- robot-response-handler!
+  "Creates a 200 response with `requested-handler` function."
+  [{{:keys [storage]}                :components
+    {:keys [simulation-id robot-id]} :path-params}
+   request-handler]
+  (some->
+    (adapter/string->int simulation-id)
+    (as->
+      $
+      (some->>
+        (adapter/string->int robot-id)
+        (request-handler storage $)
+        (ring.response/response)))))
 
 (defn create-robot-response-handler!
   "Creates a 201 response with the location header for the created Robot."
@@ -128,27 +143,14 @@
          $
          (some->>
            (adapter/string->orientation orientation)
-           (controller/create-robot! storage $ point))))]
+           (controller/new-robot! storage $ point))))]
     (->
       uri
-      (str "/" (controller/get-id robot))
+      (str "/" (:id robot))
       (ring.response/created robot))))
 
-(defn get-robot-response-handler
-  "Gets a response of a robot."
-  [{{:keys [storage]}                :components
-    {:keys [simulation-id robot-id]} :path-params}]
-  (some->
-    (adapter/string->int simulation-id)
-    (as->
-      $
-      (some->>
-        (adapter/string->int robot-id)
-        (controller/get-robot storage $)
-        (ring.response/response)))))
-
 (defn get-robots-response-handler
-  "Creates a 200 response with the requested Robot."
+  "Creates a 200 response with the requested Robots."
   [{{:keys [storage]}       :components
     {:keys [simulation-id]} :path-params}]
   (some->>
@@ -156,32 +158,79 @@
     (controller/get-robots storage)
     (ring.response/response)))
 
+(defn get-robot-response-handler
+  "Gets a 200 response of a Robot."
+  [request]
+  (robot-response-handler! request controller/get-robot))
+
 (defn turn-robot-left-response-handler!
   "Creates a 200 response with the requested Robot rotated to the left."
-  [{{:keys [storage]}                :components
-    {:keys [simulation-id robot-id]} :path-params}]
-  (some->
-    (adapter/string->int simulation-id)
-    (as->
-      $
-      (some->>
-        (adapter/string->int robot-id)
-        (controller/turn-robot-left! storage $)
-        (ring.response/response)))))
+  [request]
+  (robot-response-handler! request controller/turn-robot-left!))
 
 (defn turn-robot-right-response-handler!
   "Creates a 200 response with the requested Robot rotated to the right."
+  [request]
+  (robot-response-handler! request controller/turn-robot-right!))
+
+(defn move-robot-forward-response-handler!
+  "Creates a 200 response with the requested Robot moved forward."
+  [request]
+  (robot-response-handler! request controller/move-robot-forward!))
+
+(defn move-robot-backward-response-handler!
+  "Creates a 200 response with the requested Robot moved backward."
+  [request]
+  (robot-response-handler! request controller/move-robot-backward!))
+
+(defn robot-attack-response-handler!
+  "Creates a 200 response with the Robot attacked Dinosaurs."
+  [request]
+  (robot-response-handler! request controller/robot-attack!))
+
+;;
+;; Dinosaurs
+;;
+(defn create-dinosaur-response-handler!
+  "Creates a 201 response with the location header for the created Dinosaur."
+  [{uri                         :uri
+    {:keys [storage]}           :components
+    {:keys [simulation-id]}     :path-params
+    {:keys [point]} :body-params}]
+  (when-some
+    [dinosaur
+     (some->
+       (adapter/string->int simulation-id)
+       (as->
+         $
+         (some->>
+           (controller/new-dinosaur! storage $ point))))]
+    (->
+      uri
+      (str "/" (:id dinosaur))
+      (ring.response/created dinosaur))))
+
+(defn get-dinosaurs-response-handler
+  "Creates a 200 response with the requested Dinosaurs."
+  [{{:keys [storage]}       :components
+    {:keys [simulation-id]} :path-params}]
+  (some->>
+    (adapter/string->int simulation-id)
+    (controller/get-dinosaurs storage)
+    (ring.response/response)))
+
+(defn- get-dinosaur-response-handler
+  "Creates a 200 response with the requested Dinosaur"
   [{{:keys [storage]}                :components
-    {:keys [simulation-id robot-id]} :path-params}]
+    {:keys [simulation-id dinosaur-id]} :path-params}]
   (some->
     (adapter/string->int simulation-id)
     (as->
       $
       (some->>
-        (adapter/string->int robot-id)
-        (controller/turn-robot-right! storage $)
+        (adapter/string->int dinosaur-id)
+        (controller/get-dinosaur storage $)
         (ring.response/response)))))
-
 
 (defn get-simulation-routes
   "Gets the Simulation routes."
@@ -193,11 +242,11 @@
    ["/simulations"
     {:swagger {:tags ["Simulations"]}
 
-     :get     {:summary   "Lists all simulations."
+     :get     {:summary   "Gets all the simulation spaces."
                :responses {200 {:body ::spec/simulations}}
                :handler   get-simulations-response-handler}
 
-     :post    {:summary    "Creates a simulation."
+     :post    {:summary    "Create an empty simulation space."
                :handler    create-simulation-response-handler!
                :responses  {201 {:body ::spec/simulation}
                             400 {:body ::spec/error-response}}
@@ -205,14 +254,14 @@
 
    ["/simulations/:simulation-id"
     {:swagger {:tags ["Simulations"]}
-     :get     {:summary    "Gets a simulation."
+     :get     {:summary    "Gets a simulation space."
                :responses  {200 {:body ::spec/simulation}
                             404 {:body ::spec/error-response}
                             400 {:body ::spec/error-response}}
                :handler    get-simulation-response-handler
                :parameters {:path {:simulation-id ::spec/id}}}
 
-     :delete  {:summary    "Deletes a simulation."
+     :delete  {:summary    "Deletes a simulation space."
                :parameters {:path {:simulation-id ::spec/id}}
                :responses  {200 {:body ::spec/delete-response} ; Could return 204, but has content.
                             404 {:body ::spec/error-response}
@@ -223,12 +272,12 @@
 
    ["/simulations/:simulation-id/robots"
     {:swagger {:tags ["Robots"]}
-     :get     {:summary    "List all robots inside a simulation board."
+     :get     {:summary    "Gets all robots."
                :responses  {200 {:body ::spec/robots}}
                :handler    get-robots-response-handler
                :parameters {:path {:simulation-id ::spec/id}}}
 
-     :post    {:summary    "Creates a robot inside a simulation board."
+     :post    {:summary    "Create a robot in a certain position and facing direction."
                :handler    create-robot-response-handler!
                :responses  {201 {:body ::spec/robot}
                             400 {}}
@@ -237,7 +286,7 @@
 
    ["/simulations/:simulation-id/robots/:robot-id"
     {:swagger {:tags ["Robots"]}
-     :get     {:summary    "Gets a robot by id."
+     :get     {:summary    "Gets a robot."
                :responses  {200 {:body ::spec/robots}}
                :handler    get-robot-response-handler
                :parameters {:path
@@ -246,7 +295,7 @@
 
    ["/simulations/:simulation-id/robots/:robot-id/turn-left"
     {:swagger {:tags ["Robots"]}
-     :get     {:summary    "Rotates a robot to the left."
+     :get     {:summary    "Turns a robot to the left."
                :responses  {200 {:body ::spec/robots}}
                :handler    turn-robot-left-response-handler!
                :parameters {:path
@@ -255,7 +304,7 @@
 
    ["/simulations/:simulation-id/robots/:robot-id/turn-right"
     {:swagger {:tags ["Robots"]}
-     :get     {:summary    "Rotates a robot to the right."
+     :get     {:summary    "Turns a robot to the right."
                :responses  {200 {:body ::spec/robots}}
                :handler    turn-robot-right-response-handler!
                :parameters {:path
@@ -266,7 +315,7 @@
     {:swagger {:tags ["Robots"]}
      :get     {:summary    "Moves a robot forward."
                :responses  {200 {:body ::spec/robots}}
-               :handler    get-simulations-response-handler
+               :handler    move-robot-forward-response-handler!
                :parameters {:path
                             {:simulation-id ::spec/id
                              :robot-id      ::spec/id}}}}]
@@ -275,7 +324,7 @@
     {:swagger {:tags ["Robots"]}
      :get     {:summary    "Moves a robot backwards."
                :responses  {200 {:body ::spec/robots}}
-               :handler    get-simulations-response-handler
+               :handler    move-robot-backward-response-handler!
                :parameters {:path
                             {:simulation-id ::spec/id
                              :robot-id      ::spec/id}}}}]
@@ -285,34 +334,34 @@
      :get     {:summary    "Makes a robot attack around it:
      in front, to the left, to the right and behind."
                :responses  {200 {:body ::spec/robots}}
-               :handler    get-simulations-response-handler
+               :handler    robot-attack-response-handler!
                :parameters {:path
                             {:simulation-id ::spec/id
                              :robot-id      ::spec/id}}}}]
 
    ["/simulations/:simulation-id/dinosaurs"
     {:swagger {:tags ["Dinosaurs"]}
-     :post    {:summary    "Creates a new dinosaur."
+     :post    {:summary    "Create a dinosaur in a certain position."
                :responses  {200 {:body ::spec/robots}}
-               :handler    get-simulations-response-handler
+               :handler    create-dinosaur-response-handler!
                :parameters {:path
                             {:simulation-id ::spec/id
                              :robot-id      ::spec/id}}}}]
 
    ["/simulations/:simulation-id/dinosaurs/"
     {:swagger {:tags ["Dinosaurs"]}
-     :get     {:summary    "Gets all available dinosaurs into a simulation room."
+     :get     {:summary    "Gets all dinosaurs."
                :responses  {200 {:body ::spec/dinosaurs}}
-               :handler    get-simulations-response-handler
+               :handler    get-dinosaur-response-handler
                :parameters {:path
                             {:simulation-id ::spec/id
                              :robot-id      ::spec/id}}}}]
 
    ["/simulations/:simulation-id/dinosaurs/:dinosaur-id"
     {:swagger {:tags ["Dinosaurs"]}
-     :get     {:summary    "Gets a dinosaurs by id."
+     :get     {:summary    "Gets a dinosaur."
                :responses  {200 {:body ::spec/dinosaurs}}
-               :handler    get-simulations-response-handler
+               :handler    get-dinosaurs-response-handler
                :parameters {:path
                             {:simulation-id ::spec/id
                              :robot-id      ::spec/id}}}}]

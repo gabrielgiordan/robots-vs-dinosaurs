@@ -7,13 +7,13 @@
       [unit :as unit]
       [point :as point])))
 
-; Alias
-(def s simulation/new-simulation)
-(def b board/new-board)
-(def z size/new-size)
-(def p point/new-point)
-(def r unit/new-robot)
-(def d unit/new-dinosaur)
+; Aliases
+(def ^:const s simulation/new-simulation)
+(def ^:const b board/new-board)
+(def ^:const z size/new-size)
+(def ^:const p point/new-point)
+(def ^:const r unit/new-robot)
+(def ^:const d unit/new-dinosaur)
 
 (defn get-default-simulations
   []

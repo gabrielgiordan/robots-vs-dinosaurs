@@ -4,8 +4,11 @@
 (def ^:private ^:const k :simulations)
 (def ^:private ^:const i :identifiers)
 
+;;
+;; Simulations
+;;
 (defn get-id!
-  "Generates a next Id and gets the current."
+  "Generates a next id and returns the current."
   [storage]
   (let [id (or (storage/pull storage i) 0)]
     (storage/push! storage i (inc id)) id))
@@ -19,7 +22,14 @@
       (vals))
     []))
 
-(defn create-simulation!
+(defn get-simulation
+  "Gets a simulation from the storage."
+  [storage id]
+  (some->
+    (storage/pull storage k)
+    (get id)))
+
+(defn new-simulation!
   "Creates a simulation into the storage."
   [storage {:keys [id] :as simulation}]
   (when
@@ -29,36 +39,17 @@
       (as-> $ (storage/push! storage k $)))
     simulation))
 
-(defn update-simulation!
-  "Updates a simulation into the storage."
-  [storage id f]
-  (some->
-    (storage/pull storage k)
-    (update id f)
-    (as->
-      $
-      (storage/push! storage k $)
-      (get $ id))))
-
-(defn update-simulation-in!
-  "Updates-in a simulation into the storage."
-  [storage id ks f]
-  (when-some
-    [simulations (storage/pull storage k)]
+(defn save-simulation!
+  "Assoc a simulation using its `id`, returns `true` when success, else `false`."
+  [storage simulation]
+  (if
     (some->
-      (get simulations id)
-      (update-in ks f)
-      (as->
-        $
-        (assoc simulations id $)
-        (storage/push! storage k $)))))
-
-(defn get-simulation
-  "Gets a simulation from the storage."
-  [storage id]
-  (some->
-    (storage/pull storage k)
-    (get id)))
+      (storage/pull storage k)
+      (as-> $ (when (contains? $ (:id simulation)) $))
+      (assoc (:id simulation) simulation)
+      (as-> $ (storage/push! storage k $)))
+    true
+    false))
 
 (defn delete-simulation!
   "Returns `true` when deleted from storage with success, otherwise `false`."
@@ -71,3 +62,5 @@
       (as-> $ (storage/push! storage k $)))
     true
     false))
+
+

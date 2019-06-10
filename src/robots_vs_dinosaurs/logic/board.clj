@@ -9,18 +9,21 @@
       [point :as point]
       [size :as size])))
 
-(defrecord Board [size units])
-
 ;;
 ;; Board
 ;;
+(defrecord Board [size units])
+
 (defn new-board
+  "Creates a new board."
   ([size units]
    (map->Board
      {:size  size
       :units units}))
   ([size]
-   (new-board size #{})))
+   (new-board size #{}))
+  ([]
+   (new-board [50 50])))
 
 ;;
 ;; Units
@@ -85,10 +88,12 @@
   (update-unit board unit (turn unit)))
 
 (defn- turn-unit-right-4
+  "Turns a unit right with 4 directions side."
   [board unit]
   (turn-unit board unit unit/turn-right-4))
 
 (defn- turn-unit-left-4
+  "Turns a unit left with 4 directions side."
   [board unit]
   (turn-unit board unit unit/turn-left-4))
 
@@ -221,10 +226,12 @@
   (update-robot board robot-id move-unit-backward))
 
 (defn turn-robot-right
+  "Turns a robot to the right."
   [board robot-id]
   (update-robot board robot-id turn-unit-right-4))
 
 (defn turn-robot-left
+  "Turns a robot to the left."
   [board robot-id]
   (update-robot board robot-id turn-unit-left-4))
 
@@ -248,6 +255,9 @@
   [board robot-id]
   (when-let [unit (get-unit board robot-id)]
     (if (unit/dinosaur? unit) unit :not-a-dinosaur)))
+
+
+
 
 #_(def data
     (new-board

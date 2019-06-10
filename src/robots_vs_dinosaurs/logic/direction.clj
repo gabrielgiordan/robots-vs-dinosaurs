@@ -36,12 +36,12 @@
     {:orientation orientation
      :point       (orientation directions)}))
 
-(defn new-four-sided
+(defn new-8-sided
   "Creates a directions with 4 sides."
   [orientation]
   (new-direction orientation four-sides))
 
-(defn new-eight-sided
+(defn new-8-sided
   "Creates a directions with 8 sides."
   [orientation]
   (new-direction orientation eight-sides))
@@ -94,12 +94,12 @@
   [direction]
   (direction-dec direction four-sides))
 
-(defn eight-sided-inc
+(defn inc-8-sided
   "Gets the next eight sided direction."
   [direction]
   (direction-inc direction eight-sides))
 
-(defn eight-sided-dec
+(defn dec-8-sided
   "Gets the previous eight sided direction."
   [direction]
   (direction-dec direction eight-sides))
