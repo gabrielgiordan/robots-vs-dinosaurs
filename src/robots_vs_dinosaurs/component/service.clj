@@ -17,6 +17,7 @@
          {:env                           :prod
           ::server/type                  :jetty
           ::http/resource-path           "/public"
+          ::server/host                  "0.0.0.0"
           ::server/routes                []
           ::server/not-found-interceptor interceptors/not-found-interceptor})
 
