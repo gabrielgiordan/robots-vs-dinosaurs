@@ -124,6 +124,9 @@
   (s/keys :req-un [::spec/point]
           :opt-un [::orientation]))
 
+(s/def ::post-dinosaur
+  (s/keys :req-un [::spec/point]))
+
 (defn- robot-response-handler!
   "Creates a 200 response with `requested-handler` function."
   [{{:keys [storage]}                :components
@@ -152,7 +155,7 @@
          $
          (some->>
            (adapter/string->orientation orientation)
-           (controller/new-robot! storage $ point))))]
+           (controller/new-robot! storage $ (adapter/map->point point)))))]
     (->
       uri
       (str "/" (:id robot))
@@ -213,7 +216,7 @@
        (as->
          $
          (some->>
-           (controller/new-dinosaur! storage $ point))))]
+           (controller/new-dinosaur! storage $ (adapter/map->point point)))))]
     (->
       uri
       (str "/" (:id dinosaur))
@@ -362,14 +365,12 @@
      :get     {:summary    "Gets all dinosaurs."
                :responses  {200 {:body ::spec/dinosaurs}}
                :handler    get-dinosaurs-response-handler
-               :parameters {:path
-                            {:simulation-id ::spec/id}}}
+               :parameters {:path {:simulation-id ::spec/id}}}
      :post    {:summary    "Create a dinosaur in a certain position."
                :responses  {200 {:body ::spec/dinosaurs}}
                :handler    create-dinosaur-response-handler!
-               :parameters {:path
-                            {:simulation-id ::spec/id
-                             :dinosaur-id   ::spec/id}}}}]
+               :parameters {:body ::post-dinosaur
+                            :path {:simulation-id ::spec/id}}}}]
 
    ["/simulations/:simulation-id/dinosaurs/:dinosaur-id"
     {:swagger {:tags ["Dinosaurs"]}

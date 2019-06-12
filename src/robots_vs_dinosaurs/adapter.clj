@@ -1,7 +1,8 @@
 (ns robots-vs-dinosaurs.adapter
   (:require
     (robots-vs-dinosaurs.logic
-      [direction :as direction])))
+      [direction :as direction])
+    [robots-vs-dinosaurs.logic.point :as point]))
 
 (defn string->int [s]
   (if (number? s)
@@ -15,3 +16,7 @@
   (when-let [k (find-keyword s)]
     (when (k direction/four-sides)
       k)))
+
+(defn map->point
+  [{:keys [x y]}]
+  (point/new-point x y))
