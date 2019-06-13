@@ -22,7 +22,7 @@
    :left       [-1 0]})
 
 (defonce min-size 5)
-(defonce max-size 100)
+(defonce max-size 50)
 
 ;; Id
 (s/def ::id (s/and nat-int?))

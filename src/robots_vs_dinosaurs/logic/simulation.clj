@@ -139,15 +139,12 @@
 
 (defn as-game
   "Converts a simulation to a simple game string."
-  [{{:keys [total]} :scoreboard :as simulation}]
-  (str
-    "Robots vs Dinosaurs\n"
-    "\nScore: " total "\n\n"
-    (->>
-      (map
-        (partial clojure.string/join "|")
-        (as-matrix simulation))
-      (clojure.string/join "\n"))))
+  [simulation]
+  (->>
+    (map
+      (partial clojure.string/join "|")
+      (as-matrix simulation))
+    (clojure.string/join "\n")))
 
 #_(def data
     (new-simulation

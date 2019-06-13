@@ -19,6 +19,7 @@
           ::http/resource-path           "/public"
           ::server/host                  "0.0.0.0"
           ::server/routes                []
+          ::server/allowed-origins       ["https://robots-vs-dinosaurs-reagent.herokuapp.com"]
           ::server/not-found-interceptor interceptors/not-found-interceptor})
 
 ;; To allow Swagger on `dev` mode, allow CSP unsafe-inline, to render inline styles.
