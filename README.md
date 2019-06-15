@@ -13,16 +13,18 @@ Clojure/ClojureScript applications to support simulations on an army of remote-c
 - [Deploy](#deploy)
 - [Curl](#curl)
 
-
-## Overview <a name="overview"></a>
+<a name="overview"></a>
+## Overview 
 
 The **Robots vs Dinosaurs** project is separated into two apps: the server-side app in Clojure and the extra client-side app in ClojureScript.
 
-### Architecture <a name="architecture"></a>
+<a name="architecture"></a>
+### Architecture 
 
 The **API** is written in Clojure based on the **Alistair Cockburn's Hexagonal Architecture** with the **Stuart Sierra's Component Model** for managing the life-cycle of components which have run-time state, that can be seen as the dependency injection for immutable data structures.
 
-#### Ports <a name="ports"></a>
+<a name="ports"></a>
+#### Ports 
 Each **port** has a corresponding **Component** on the **System Map**:
 
 - **Storage**
@@ -46,13 +48,16 @@ Each **port** has a corresponding **Component** on the **System Map**:
 - **Server**
 	- With **Jetty** as the default http server which listens to `PORT` environment variable (useful for Heroku) or `8080` as the default port binding.
 
-#### Adapters <a name="adapters"></a>
+<a name="adapters"></a>
+#### Adapters 
 Used to wire the external spec to the internal spec.
 
-#### Controllers <a name="controllers"></a>
+<a name="controllers"></a>
+#### Controllers 
 The bridge between **ports**, **adapters** and **logic** layers.
 
-#### Logic <a name="logic"></a>
+<a name="logic"></a>
+#### Logic 
 The logic is the largest part of the application and is made of the below business entities with Clojure's **Spec** to domain modelling coercion: 
 
 - **Simulation**
@@ -81,35 +86,43 @@ The logic is the largest part of the application and is made of the below busine
 - **Direction**
 	- Has `orientation` and `point`
 
-> How to deal with state is a good topic of thinking, the decision to use Records instead of maps is because of the performance of it (as read in **Joy of Clojure**), but other methods could also be used, e.g. the ones in this repository: [Managing State in Clojure](https://github.com/oubiwann/maintaining-state-in-clojure).
+**Notes:** How to deal with state is a good topic of thinking, the decision to use Records instead of maps is because of the performance of it (as read in **Joy of Clojure**), but other methods could also be used, e.g. the ones in this repository: [Managing State in Clojure](https://github.com/oubiwann/maintaining-state-in-clojure).
 
-### Development <a name="development"></a>
+<a name="development"></a>
+### Development
 The development workflow is based on the **Stuart Sierra's** [Clojure Reloaded Workflow](http://thinkrelevance.com/blog/2013/06/04/clojure-workflow-reloaded) to build the system while simultaneously interacting with it using **REPL**.
 
 #### REPL
 Start **REPL** with the `dev` profile:
+
 `lein repl +dev`
 
 Reload the **System**:
+
 `user=> (user/reset)`
 
 #### Aliases
 Run with `dev` profile:
+
 `lein run-dev` 
 
-### Deploy <a name="deploy"></a>
+<a name="deploy"></a>
+### Deploy 
 
 #### Uberjar
 
 Compile the `uberjar`:
+
 `lein uberjar`
 
 Run with optional `port`:
+
 `java -Dport=4000 -jar target\uberjar\robots-vs-dinosaurs-standalone.jar`
 
 #### Docker
 
 To build and run the **Docker** container with the **Dockerfile** with the **uberjar** execute:
+
 `docker build -t <image_tag> . && docker run --env PORT=4000 --name robots-vs-dinosaurs <image_tag> `
 
 #### Heroku
@@ -142,6 +155,7 @@ curl -X POST --header 'Content-Type: application/json' -d
 #### Robots
 
 `curl -X GET localhost:4000/api/simulations/16/robots`
+
 ```
 curl -X POST --header 'Content-Type: application/json' -d 
 '{ \ 
@@ -152,15 +166,23 @@ curl -X POST --header 'Content-Type: application/json' -d
    "orientation": "right" \ 
  }' localhost:4000/api/simulations/16/robots
 ```
+
 `curl -X GET localhost:4000/api/simulations/16/robots/17`
+
 `curl -X GET localhost:4000/api/simulations/16/robots/17/turn-left`
+
 `curl -X GET localhost:4000/api/simulations/16/robots/17/turn-right`
+
 `curl -X GET localhost:4000/api/simulations/16/robots/17/move-forward`
+
 `curl -X GET localhost:4000/api/simulations/16/robots/17/move-backward`
+
 `curl -X GET localhost:4000/api/simulations/16/robots/17/attack`
 
 #### Dinosaurs
+
 `curl -X GET localhost:4000/api/simulations/16/dinosaurs`
+
 ```
 curl -X POST --header 'Content-Type: application/json' -d 
 '{ \ 
@@ -170,6 +192,7 @@ curl -X POST --header 'Content-Type: application/json' -d
    } \ 
  }' localhost:4000/api/simulations/16/dinosaurs
 ```
+
 `curl -X GET localhost:4000/api/simulations/16/dinosaurs/20`
 
 ## License
