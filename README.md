@@ -95,16 +95,22 @@ The development workflow is based on the **Stuart Sierra's** [Clojure Reloaded W
 #### REPL
 Start **REPL** with the `dev` profile:
 
-`lein repl +dev`
+```posh
+lein repl +dev
+```
 
 Reload the **System**:
 
-`user=> (user/reset)`
+```clj
+user=> (user/reset)
+```
 
 #### Aliases
 Run with `dev` profile:
 
-`lein run-dev` 
+```clj
+lein run-dev
+``` 
 
 <a name="deploy"></a>
 ### Deploy 
@@ -113,17 +119,23 @@ Run with `dev` profile:
 
 Compile the `uberjar`:
 
-`lein uberjar`
+```posh
+lein uberjar
+```
 
 Run with optional `port`:
 
-`java -Dport=4000 -jar target\uberjar\robots-vs-dinosaurs-standalone.jar`
+```posh
+java -Dport=4000 -jar target\uberjar\robots-vs-dinosaurs-standalone.jar
+```
 
 #### Docker
 
 To build and run the **Docker** container with the **Dockerfile** with the **uberjar** execute:
 
-`docker build -t <image_tag> . && docker run --env PORT=4000 --name robots-vs-dinosaurs <image_tag> `
+```posh
+docker build -t <image_tag> . && docker run --env PORT=4000 --name robots-vs-dinosaurs <image_tag>
+```
 
 #### Heroku
 
