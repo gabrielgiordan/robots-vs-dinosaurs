@@ -179,8 +179,6 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 <img src="doc/img/new-robot-response.png?raw=true" width=250 />
 
 
-Makes a robot attack around it: in front, to the left, to the right and behind.
-
 `curl -X GET localhost:4000/api/simulations/16/robots/17/attack`
 
 `200 Content-Type: application/json`
