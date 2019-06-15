@@ -148,11 +148,51 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 ```posh
 curl -X GET localhost:4000/api/simulations
 ```
-
-<img src="/doc/img/get-simulation-as-game.png?raw=true" height="100">
+```jsonc
+[
+    {
+        "id": 0,
+        "title": "Aerodynamic chinchilla",
+        "board": {
+            // ...
+        },
+        "scoreboard": {
+            "total": 0
+        }
+    },
+    {
+        "id": 16,
+        "board": {
+            // ...
+        },
+        "title": "Heavy voracious bunny buffalo",
+        "scoreboard": {
+            "total": 20
+        }
+    }, // ...
+]
+```
 
 ```posh
 curl -X GET localhost:4000/api/simulations/16
+```
+```jsonc
+{
+    "id": 16,
+    "title": "Heavy voracious bunny buffalo",
+    "scoreboard": {
+        "total": 20
+    },
+    "board": {
+        "size": {
+            "width": 6,
+            "height": 6
+        },
+        "units": [
+            //...
+        ]
+    }
+}
 ```
 
 ```posh
