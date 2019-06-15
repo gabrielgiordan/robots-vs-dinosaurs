@@ -86,7 +86,7 @@ The logic is the largest part of the application and is made of the below busine
 - **Direction**
 	- Has `orientation` and `point`
 
-**Notes:** How to deal with state is a good topic of thinking, the decision to use Records over maps is because of the its performance  (as read in **Joy of Clojure**), but other state maintaining methods could also be used, e.g. [Managing State in Clojure](https://github.com/oubiwann/maintaining-state-in-clojure).
+**Notes:** How to deal with state is a good topic of thinking, the decision to use Records over maps is because of its performance  (as read in **Joy of Clojure**), but other state maintaining methods could also be used, e.g. [Managing State in Clojure](https://github.com/oubiwann/maintaining-state-in-clojure).
 
 <a name="development"></a>
 ### Development
