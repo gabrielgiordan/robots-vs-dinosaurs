@@ -164,15 +164,7 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 <img src="doc/img/get-simulation-as-game-response.png?raw=true" width=120 />
 
 
-`curl -X POST --header 'Content-Type: application/json' -d 
-'{ \ 
-   "point": { \ 
-     "x": 5, \ 
-     "y": 5 \ 
-   }, \ 
-   "orientation": "right" \ 
- }' localhost:4000/api/simulations/16/robots
-`
+`curl -X POST --header 'Content-Type: application/json' -d '{"point": {"x": 5, "y": 5}, "orientation": "right"}' localhost:4000/api/simulations/16/robots`
 
 `201 Content-Type: application/json`
 
