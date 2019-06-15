@@ -86,7 +86,7 @@ The logic is the largest part of the application and is made of the below busine
 - **Direction**
 	- Has `orientation` and `point`
 
-**Notes:** How to deal with state is a good topic of thinking, the decision to use Records over maps is because of its performance  (as read in **Joy of Clojure**), but other state maintaining methods could also be used, e.g. [Managing State in Clojure](https://github.com/oubiwann/maintaining-state-in-clojure).
+**Notes:** How to deal with state is a good topic of thinking, the decision to use Records over maps is because of its performance (as read in **Joy of Clojure**), but other state maintaining methods could also be used, e.g. [Managing State in Clojure](https://github.com/oubiwann/maintaining-state-in-clojure).
 
 <a name="development"></a>
 ### Development
@@ -127,7 +127,7 @@ To build and run the **Docker** container with the **Dockerfile** with the **ube
 
 #### Heroku
 
-The project has a `Procfile` file for Heroku deployment which can be executed with **Heroku Git** or **Heroku GitHub** integration which support automatic deployment on a specific branch.
+The project has a `Procfile` file for Heroku deployment which can be executed with **Heroku Git** or **Heroku GitHub** integration which supports automatic deployment on a branch of choice.
 
 ### Curl e.g. <a name="curl"></a>
 
