@@ -16,7 +16,7 @@ Clojure/ClojureScript applications to support simulations on an army of remote-c
 <a name="overview"></a>
 ## Overview 
 
-The **Robots vs Dinosaurs** project is separated into two apps: the server-side app in Clojure and the extra client-side app in ClojureScript.
+The **Robots vs Dinosaurs** project is separated into two apps: the **Clojure** server-side app and the extra **ClojureScript** client-side app.
 
 <a name="architecture"></a>
 ### Architecture 
