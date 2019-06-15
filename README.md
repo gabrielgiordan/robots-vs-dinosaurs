@@ -143,7 +143,7 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 
 `200 Content-Type: application/json`
 
-<img src="doc/img/get-simulations-response.png?raw=true" width=400 />
+<img src="doc/img/get-simulations-response.png?raw=true" width=380 />
 
 
 `curl -X DELETE localhost:4000/api/simulations/16`
@@ -159,7 +159,7 @@ Gets a simulation space as a simple `text/plain` game.
 
 `200 Content-Type: text/plain`
 
-<img src="doc/img/get-simulation-as-game-response.png?raw=true" width=150 />
+<img src="doc/img/get-simulation-as-game-response.png?raw=true" width=120 />
 
 
 
