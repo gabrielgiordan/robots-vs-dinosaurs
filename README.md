@@ -194,6 +194,8 @@ Gets a simulation space.
 ```posh
 curl -X GET localhost:4000/api/simulations/16
 ```
+<img src="doc/img/get-simulation.png?raw=true" width=400 />
+
 ```jsonc
 {
     "id": 16,
@@ -217,6 +219,8 @@ Gets a simulation space as a simple string game.
 ```posh
 curl -X GET localhost:4000/api/simulations/16/as-game
 ```
+<img src="doc/img/get-simulation-as-game.png?raw=true" width=150 />
+
 ```
 R|_|_|_|_|_
 _|_|_|_|_|_
