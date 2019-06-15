@@ -137,31 +137,23 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 
 ### Examples <a name="examples"></a>
 
-- Gets all the simulation spaces:
-```posh
-curl -X GET localhost:4000/api/simulations
-```
+`curl -X GET localhost:4000/api/simulations`
 
 `200 Content-Type: application/json`
 
 <img src="doc/img/get-simulations-response.png?raw=true" width=400 />
 
 
+`curl -X DELETE localhost:4000/api/simulations/16`
 
-- Deletes a simulation space.
-```posh
-curl -X DELETE localhost:4000/api/simulations/16
-```
 `200 Content-Type: application/json`
 
 <img src="doc/img/delete-simulation-response.png?raw=true" width=200 />
 
 
+Gets a simulation space as a simple `text/plain` game.
 
-- Gets a simulation space as a simple `text/plain` game.
-```posh
-curl -X GET localhost:4000/api/simulations/16/as-game
-```
+`curl -X GET localhost:4000/api/simulations/16/as-game`
 
 `200 Content-Type: text/plain`
 
@@ -169,9 +161,9 @@ curl -X GET localhost:4000/api/simulations/16/as-game
 
 
 
-- Create a robot in a certain position and facing direction.
-```posh
-curl -X POST --header 'Content-Type: application/json' -d 
+Create a robot in a certain position and facing direction.
+
+`curl -X POST --header 'Content-Type: application/json' -d 
 '{ \ 
    "point": { \ 
      "x": 5, \ 
@@ -179,7 +171,7 @@ curl -X POST --header 'Content-Type: application/json' -d
    }, \ 
    "orientation": "right" \ 
  }' localhost:4000/api/simulations/16/robots
-```
+`
 
 `201 Content-Type: application/json`
 
@@ -187,10 +179,9 @@ curl -X POST --header 'Content-Type: application/json' -d
 
 
 
-- Makes a robot attack around it: in front, to the left, to the right and behind.
-```posh
-curl -X GET localhost:4000/api/simulations/16/robots/17/attack
-```
+Makes a robot attack around it: in front, to the left, to the right and behind.
+
+`curl -X GET localhost:4000/api/simulations/16/robots/17/attack`
 
 `200 Content-Type: application/json`
 
