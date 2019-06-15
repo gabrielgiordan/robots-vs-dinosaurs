@@ -11,7 +11,7 @@ Clojure/ClojureScript apps to support simulations on an army of remote-controlle
 		- [Logic](#logic)
 - [Development](#development)
 - [Deploy](#deploy)
-- [Curl](#curl)
+- [Examples](#examples)
 
 <a name="overview"></a>
 ## Overview 
@@ -143,99 +143,21 @@ Gets all the simulation spaces:
 ```posh
 curl -X GET localhost:4000/api/simulations
 ```
-```jsonc
-[
-    {
-        "id": 0,
-        "title": "Aerodynamic chinchilla",
-        "board": {
-            // ...
-        },
-        "scoreboard": {
-            "total": 0
-        }
-    },
-    {
-        "id": 16,
-        "board": {
-            // ...
-        },
-        "title": "Heavy voracious bunny buffalo",
-        "scoreboard": {
-            "total": 20
-        }
-    }, // ...
-]
-```
-
-Create an empty simulation space.
-```posh
-curl -X POST --header 'Content-Type: application/json' -d 
-'{ \  
-    "title": "Aerodynamic Chinchilla", \ 
-    "size": { \ 
-      "width": 15, \ 
-      "height": 15 \ 
-    } \
- }' localhost:4000/api/simulations
-```
+<img src="doc/img/get-simulations-response.png?raw=true" width=400 />
 
 Deletes a simulation space.
 ```posh
 curl -X DELETE localhost:4000/api/simulations/16
 ```
-```
-{
-  "success": true
-}
-```
+<img src="doc/img/delete-simulation-response.png?raw=true" width=200 />
 
-Gets a simulation space.
-```posh
-curl -X GET localhost:4000/api/simulations/16
-```
-<img src="doc/img/get-simulation.png?raw=true" width=400 />
-
-```jsonc
-{
-    "id": 16,
-    "title": "Heavy voracious bunny buffalo",
-    "scoreboard": {
-        "total": 20
-    },
-    "board": {
-        "size": {
-            "width": 6,
-            "height": 6
-        },
-        "units": [
-            //...
-        ]
-    }
-}
-```
-
-Gets a simulation space as a simple string game.
+Gets a simulation space as a simple `text/plain` game.
 ```posh
 curl -X GET localhost:4000/api/simulations/16/as-game
 ```
-<img src="doc/img/get-simulation-as-game.png?raw=true" width=150 />
-
-```
-R|_|_|_|_|_
-_|_|_|_|_|_
-_|_|_|_|_|_
-_|_|_|_|_|_
-_|_|_|D|_|_
-_|D|R|D|_|_
-```
+<img src="doc/img/get-simulation-as-game-response.png?raw=true" width=150 />
 
 #### Robots
-
-Gets all robots.
-```posh
-curl -X GET localhost:4000/api/simulations/16/robots
-```
 
 Create a robot in a certain position and facing direction.
 ```posh
@@ -249,79 +171,13 @@ curl -X POST --header 'Content-Type: application/json' -d
  }' localhost:4000/api/simulations/16/robots
 ```
 
-Gets a robot.
-```posh
-curl -X GET localhost:4000/api/simulations/16/robots/17
-```
-
-Turns a robot to the left.
-```posh
-curl -X GET localhost:4000/api/simulations/16/robots/17/turn-left
-```
-
-Turns a robot to the right.
-```posh
-curl -X GET localhost:4000/api/simulations/16/robots/17/turn-right
-```
-
-Moves a robot forward.
-```posh
-curl -X GET localhost:4000/api/simulations/16/robots/17/move-forward
-```
-
-Moves a robot backward.
-```posh
-curl -X GET localhost:4000/api/simulations/16/robots/17/move-backward
-```
 
 Makes a robot attack around it: in front, to the left, to the right and behind.
 ```posh
 curl -X GET localhost:4000/api/simulations/16/robots/17/attack
 ```
-```json
-[
-    {
-        "id": 18,
-        "type": "dinosaur",
-        "point": {
-            "y": 5,
-            "x": 3
-        }
-    },
-    {
-        "id": 19,
-        "type": "dinosaur",
-        "point": {
-            "y": 5,
-            "x": 1
-        }
-    }
-]
-```
+<img src="doc/img/robot-attack-response.png?raw=true" width=250 />
 
-
-#### Dinosaurs
-
-Gets all dinosaurs.
-```posh
-curl -X GET localhost:4000/api/simulations/16/dinosaurs
-```
-
-Create a dinosaur in a certain position.
-```posh
-curl -X POST --header 'Content-Type: application/json' -d 
-'{ \ 
-   "point": { \ 
-     "x": 4, \ 
-     "y": 4 \ 
-   } \ 
- }' localhost:4000/api/simulations/16/dinosaurs
-```
-
-Gets a dinosaurs.
-```posh
-curl -X GET localhost:4000/api/simulations/16/dinosaurs/20
-```
 
 ## License
 
