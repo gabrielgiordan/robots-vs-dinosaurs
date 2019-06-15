@@ -192,8 +192,29 @@ Makes a robot attack around it: in front, to the left, to the right and behind.
 
 #### 4xx
 
-`curl -X GET --header http://localhost:8080/api/simulations/string`
+`curl -X GET --header http://localhost:4000/api/simulations/93`
 
+<img src="doc/img/error-0-response.png?raw=true" height=200 />
+
+
+`curl -X GET --header http://localhost:4000/api/simulations/string`
+
+<img src="doc/img/error-1-response.png?raw=true" height=200 />
+
+
+`curl -X GET --header http://localhost:4000/api/simulations/16/robots/53/move-forward`
+
+<img src="doc/img/error-10-response.png?raw=true" height=200 />
+
+
+`curl -X GET --header http://localhost:4000/api/simulations/16/robots/63/attack`
+
+<img src="doc/img/error-11-response.png?raw=true" height=200 />
+
+
+`curl -X GET --header http://localhost:4000/api/simulations/16/robots/53/move-backward`
+
+<img src="doc/img/error-13-response.png?raw=true" height=200 />
 
 
 ## License
