@@ -10,7 +10,7 @@ Clojure/ClojureScript apps to support simulations on an army of remote-controlle
 		- [Controllers](#controllers)
 		- [Logic](#logic)
 - [Development](#development)
-- [Deploy](#deploy)
+- [Deployment](#deployment)
 - [Examples](#examples)
 	- [2xx](#examples-2xx)
 	- [4xx](#examples-4xx)
@@ -20,10 +20,12 @@ Clojure/ClojureScript apps to support simulations on an army of remote-controlle
 
 The **Robots vs Dinosaurs** project is separated into two apps: the **Clojure** server-side app and the extra **ClojureScript** client-side app.
 
+---
+
 <a name="architecture"></a>
 ### Architecture 
 
-The **API** is written in Clojure based on the **Alistair Cockburn's Hexagonal Architecture** with the **Stuart Sierra's Component Model** for managing the life-cycle of components which have run-time state, can be seen as the dependency injection for immutable data structures.
+The **API** is written in Clojure based on the **Alistair Cockburn's Hexagonal Architecture** with the **Stuart Sierra's Component Model** for managing the life-cycle of components which have run-time state, also can be seen as the dependency injection for immutable data structures.
 
 <img src="doc/hexagonal-architecture.png" width="600" />
 
@@ -84,6 +86,8 @@ The logic is the largest part of the application and is made of the below busine
 
 **Notes:** How to deal with state is a good topic of discussion, the decision to use Records over maps is because of its performance (as read in **Joy of Clojure**), but other state maintaining methods could also be used, e.g. [Managing State in Clojure](https://github.com/oubiwann/maintaining-state-in-clojure).
 
+---
+
 <a name="development"></a>
 ### Development
 The development workflow is based on the **Stuart Sierra's** [Clojure Reloaded Workflow](http://thinkrelevance.com/blog/2013/06/04/clojure-workflow-reloaded) to build the system while simultaneously interacting with it using **REPL**.
@@ -108,8 +112,10 @@ Run with `dev` profile:
 lein run-dev
 ``` 
 
-<a name="deploy"></a>
-### Deploy 
+---
+
+<a name="deployment"></a>
+### Deployment 
 
 #### Uberjar
 
@@ -127,7 +133,7 @@ java -Dport=4000 -jar target\uberjar\robots-vs-dinosaurs-standalone.jar
 
 #### Docker
 
-To build and run the **Docker** container with the **Dockerfile** with the **uberjar** execute:
+To build and run the **Docker** container with the **uberjar** execute:
 
 ```posh
 docker build -t <image_tag> . && docker run --env PORT=4000 --name robots-vs-dinosaurs <image_tag>
@@ -136,6 +142,8 @@ docker build -t <image_tag> . && docker run --env PORT=4000 --name robots-vs-din
 #### Heroku
 
 The project has a `Procfile` file for Heroku deployment which can be executed with **Heroku Git** or **Heroku GitHub** integration which supports automatic deployment on a branch of choice.
+
+---
 
 <a name="examples"></a>
 ### Examples
@@ -215,6 +223,7 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 
 <img src="doc/img/error-13-response.png?raw=true" height=200 />
 
+---
 
 ## License
 
