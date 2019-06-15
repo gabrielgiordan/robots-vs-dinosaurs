@@ -198,20 +198,33 @@ curl -X GET localhost:4000/api/simulations/16
 ```posh
 curl -X POST --header 'Content-Type: application/json' -d 
 '{ \  
-	"title": "Aerodynamic Chinchilla", \ 
-	"size": { \ 
-		"width": 15, \ 
-		"height": 15 \ 
-   } \
+    "title": "Aerodynamic Chinchilla", \ 
+    "size": { \ 
+      "width": 15, \ 
+      "height": 15 \ 
+    } \
  }' localhost:4000/api/simulations
  ```
  
 ```posh
 curl -X DELETE localhost:4000/api/simulations/16
 ```
+```
+{
+  "success": true
+}
+```
 
 ```posh
 curl -X GET localhost:4000/api/simulations/16/as-game
+```
+```
+R|_|_|_|_|_
+_|_|_|_|_|_
+_|_|_|_|_|_
+_|_|_|_|_|_
+_|_|_|D|_|_
+_|D|R|D|_|_
 ```
 
 #### Robots
@@ -254,6 +267,27 @@ curl -X GET localhost:4000/api/simulations/16/robots/17/move-backward
 ```posh
 curl -X GET localhost:4000/api/simulations/16/robots/17/attack
 ```
+```json
+[
+    {
+        "id": 18,
+        "type": "dinosaur",
+        "point": {
+            "y": 5,
+            "x": 3
+        }
+    },
+    {
+        "id": 19,
+        "type": "dinosaur",
+        "point": {
+            "y": 5,
+            "x": 1
+        }
+    }
+]
+```
+
 
 #### Dinosaurs
 
