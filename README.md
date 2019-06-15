@@ -157,17 +157,12 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 <img src="doc/img/delete-simulation-response.png?raw=true" width=180 />
 
 
-Gets a simulation space as a simple `text/plain` game.
-
 `curl -X GET localhost:4000/api/simulations/16/as-game`
 
 `200 Content-Type: text/plain`
 
 <img src="doc/img/get-simulation-as-game-response.png?raw=true" width=120 />
 
-
-
-Create a robot in a certain position and facing direction.
 
 `curl -X POST --header 'Content-Type: application/json' -d 
 '{ \ 
@@ -182,7 +177,6 @@ Create a robot in a certain position and facing direction.
 `201 Content-Type: application/json`
 
 <img src="doc/img/new-robot-response.png?raw=true" width=250 />
-
 
 
 Makes a robot attack around it: in front, to the left, to the right and behind.
