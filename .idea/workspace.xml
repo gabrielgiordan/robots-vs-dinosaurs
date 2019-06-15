@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fff1221a-9306-4ed8-a7aa-ed7a85d4e639" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/doc/img/delete-simulation-response.png" beforeDir="false" afterPath="$PROJECT_DIR$/doc/img/delete-simulation-response.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/img/get-simulation-as-game.png" beforeDir="false" afterPath="$PROJECT_DIR$/doc/img/get-simulation-as-game.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/img/get-simulations.png" beforeDir="false" afterPath="$PROJECT_DIR$/doc/img/get-simulations.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/img/robot-attack-response.png" beforeDir="false" afterPath="$PROJECT_DIR$/doc/img/robot-attack-response.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,7 +15,22 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/component/router.clj">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/interceptors.clj">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="76" column="92" lean-forward="true" selection-start-line="76" selection-start-column="61" selection-end-line="76" selection-end-column="92" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -165,6 +177,24 @@
               <item name="robots-vs-dinosaurs" type="462c0819:PsiDirectoryNode" />
               <item name="doc" type="462c0819:PsiDirectoryNode" />
               <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="robots-vs-dinosaurs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="robots-vs-dinosaurs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="robots-vs-dinosaurs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="robots-vs-dinosaurs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="robots_vs_dinosaurs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="robots-vs-dinosaurs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="robots-vs-dinosaurs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="robots_vs_dinosaurs" type="462c0819:PsiDirectoryNode" />
+              <item name="component" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -313,6 +343,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="735" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49717513" visible="true" weight="0.24291497" />
       <window_info id="Structure" order="1" sideWeight="0.50282484" side_tool="true" weight="0.21538462" />
@@ -483,7 +514,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/storage/initial_data.clj" />
     <entry file="jar://$MAVEN_REPOSITORY$/io/pedestal/pedestal.interceptor/0.5.5/pedestal.interceptor-0.5.5.jar!/io/pedestal/interceptor/helpers.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
@@ -685,13 +715,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/interceptors.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-277">
-          <caret line="75" column="84" selection-start-line="75" selection-start-column="84" selection-end-line="75" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/util.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -796,6 +819,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/doc/img/robot-attack-response.png">
       <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/component/router.clj">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/interceptors.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="76" column="92" lean-forward="true" selection-start-line="76" selection-start-column="61" selection-end-line="76" selection-end-column="92" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
