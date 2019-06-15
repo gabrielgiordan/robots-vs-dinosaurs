@@ -12,6 +12,8 @@ Clojure/ClojureScript apps to support simulations on an army of remote-controlle
 - [Development](#development)
 - [Deploy](#deploy)
 - [Examples](#examples)
+	- [2xx](#examples-2xx)
+	- [4xx](#examples-4xx)
 
 <a name="overview"></a>
 ## Overview 
@@ -135,8 +137,10 @@ docker build -t <image_tag> . && docker run --env PORT=4000 --name robots-vs-din
 
 The project has a `Procfile` file for Heroku deployment which can be executed with **Heroku Git** or **Heroku GitHub** integration which supports automatic deployment on a branch of choice.
 
-### Examples <a name="examples"></a>
+<a name="examples"></a>
+### Examples
 
+<a name="examples-2xx"></a>
 #### 2xx
 
 `curl -X GET localhost:4000/api/simulations`
@@ -190,6 +194,7 @@ Makes a robot attack around it: in front, to the left, to the right and behind.
 <img src="doc/img/robot-attack-response.png?raw=true" width=250 />
 
 
+<a name="examples-4xx"></a>
 #### 4xx
 
 `curl -X GET --header http://localhost:4000/api/simulations/93`
