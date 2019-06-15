@@ -1,6 +1,6 @@
-# Welcome to Robots vs Dinosaurs!
+# Robots vs Dinosaurs
 
-Clojure/ClojureScript applications to support simulations on an army of remote-controlled robots that fight dinosaurs!
+Clojure/ClojureScript apps to support simulations on an army of remote-controlled robots that fight dinosaurs!
 
 ## Contents
 - [Overview](#overview)
@@ -21,7 +21,7 @@ The **Robots vs Dinosaurs** project is separated into two apps: the **Clojure** 
 <a name="architecture"></a>
 ### Architecture 
 
-The **API** is written in Clojure based on the **Alistair Cockburn's Hexagonal Architecture** with the **Stuart Sierra's Component Model** for managing the life-cycle of components which have run-time state, which can be seen as the dependency injection for immutable data structures.
+The **API** is written in Clojure based on the **Alistair Cockburn's Hexagonal Architecture** with the **Stuart Sierra's Component Model** for managing the life-cycle of components which have run-time state, can be seen as the dependency injection for immutable data structures.
 
 <img src="doc/hexagonal-architecture.png" width="600" />
 
@@ -62,33 +62,25 @@ The bridge between **ports**, **adapters** and **logic** layers.
 #### Logic 
 The logic is the largest part of the application and is made of the below business entities with Clojure's **Spec** to domain modelling coercion: 
 
-- **Simulation**
-	- Has `id` `title` `scoreboard` and `board`.
+- **Simulation** has `id` `title` `scoreboard` and `board`.
 
-- **Scoreboard**
-	- Has `total`
+- **Scoreboard** has `total`
 	
-- **Board**
-	- Has `size` and `units`.
+- **Board** has `size` and `units`.
 
 - **Unit**
 	
-	- **Robot**
-		- Has `id` `point` `direction`.
+	- **Robot** has `id` `point` and `direction`.
 				
-	- **Dinosaur**
-		- Has `id` `point`.
+	- **Dinosaur** has `id` and `point`.
 	
-- **Size**
-	- Has `width` and `height`.
+- **Size** has `width` and `height`.
 	
-- **Point**
-	- Has `x` and `y`
+- **Point** has `x` and `y`
 
-- **Direction**
-	- Has `orientation` and `point`
+- **Direction** has `orientation` and `point`
 
-**Notes:** How to deal with state is a good topic of thinking, the decision to use Records over maps is because of its performance (as read in **Joy of Clojure**), but other state maintaining methods could also be used, e.g. [Managing State in Clojure](https://github.com/oubiwann/maintaining-state-in-clojure).
+**Notes:** How to deal with state is a good topic of discussion, the decision to use Records over maps is because of its performance (as read in **Joy of Clojure**), but other state maintaining methods could also be used, e.g. [Managing State in Clojure](https://github.com/oubiwann/maintaining-state-in-clojure).
 
 <a name="development"></a>
 ### Development
@@ -147,6 +139,7 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 
 #### Simulations
 
+Gets all the simulation spaces:
 ```posh
 curl -X GET localhost:4000/api/simulations
 ```
@@ -175,6 +168,29 @@ curl -X GET localhost:4000/api/simulations
 ]
 ```
 
+Create an empty simulation space.
+```posh
+curl -X POST --header 'Content-Type: application/json' -d 
+'{ \  
+    "title": "Aerodynamic Chinchilla", \ 
+    "size": { \ 
+      "width": 15, \ 
+      "height": 15 \ 
+    } \
+ }' localhost:4000/api/simulations
+```
+
+Deletes a simulation space.
+```posh
+curl -X DELETE localhost:4000/api/simulations/16
+```
+```
+{
+  "success": true
+}
+```
+
+Gets a simulation space.
 ```posh
 curl -X GET localhost:4000/api/simulations/16
 ```
@@ -197,26 +213,7 @@ curl -X GET localhost:4000/api/simulations/16
 }
 ```
 
-```posh
-curl -X POST --header 'Content-Type: application/json' -d 
-'{ \  
-    "title": "Aerodynamic Chinchilla", \ 
-    "size": { \ 
-      "width": 15, \ 
-      "height": 15 \ 
-    } \
- }' localhost:4000/api/simulations
- ```
- 
-```posh
-curl -X DELETE localhost:4000/api/simulations/16
-```
-```
-{
-  "success": true
-}
-```
-
+Gets a simulation space as a simple string game.
 ```posh
 curl -X GET localhost:4000/api/simulations/16/as-game
 ```
@@ -231,10 +228,12 @@ _|D|R|D|_|_
 
 #### Robots
 
+Gets all robots.
 ```posh
 curl -X GET localhost:4000/api/simulations/16/robots
 ```
 
+Create a robot in a certain position and facing direction.
 ```posh
 curl -X POST --header 'Content-Type: application/json' -d 
 '{ \ 
@@ -246,26 +245,32 @@ curl -X POST --header 'Content-Type: application/json' -d
  }' localhost:4000/api/simulations/16/robots
 ```
 
+Gets a robot.
 ```posh
 curl -X GET localhost:4000/api/simulations/16/robots/17
 ```
 
+Turns a robot to the left.
 ```posh
 curl -X GET localhost:4000/api/simulations/16/robots/17/turn-left
 ```
 
+Turns a robot to the right.
 ```posh
 curl -X GET localhost:4000/api/simulations/16/robots/17/turn-right
 ```
 
+Moves a robot forward.
 ```posh
 curl -X GET localhost:4000/api/simulations/16/robots/17/move-forward
 ```
 
+Moves a robot backward.
 ```posh
 curl -X GET localhost:4000/api/simulations/16/robots/17/move-backward
 ```
 
+Makes a robot attack around it: in front, to the left, to the right and behind.
 ```posh
 curl -X GET localhost:4000/api/simulations/16/robots/17/attack
 ```
@@ -293,10 +298,12 @@ curl -X GET localhost:4000/api/simulations/16/robots/17/attack
 
 #### Dinosaurs
 
+Gets all dinosaurs.
 ```posh
 curl -X GET localhost:4000/api/simulations/16/dinosaurs
 ```
 
+Create a dinosaur in a certain position.
 ```posh
 curl -X POST --header 'Content-Type: application/json' -d 
 '{ \ 
@@ -307,6 +314,7 @@ curl -X POST --header 'Content-Type: application/json' -d
  }' localhost:4000/api/simulations/16/dinosaurs
 ```
 
+Gets a dinosaurs.
 ```posh
 curl -X GET localhost:4000/api/simulations/16/dinosaurs/20
 ```
@@ -314,14 +322,3 @@ curl -X GET localhost:4000/api/simulations/16/dinosaurs/20
 ## License
 
 Copyright © 2019
-
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
-
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
