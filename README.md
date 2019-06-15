@@ -23,6 +23,8 @@ The **Robots vs Dinosaurs** project is separated into two apps: the **Clojure** 
 
 The **API** is written in Clojure based on the **Alistair Cockburn's Hexagonal Architecture** with the **Stuart Sierra's Component Model** for managing the life-cycle of components which have run-time state, that can be seen as the dependency injection for immutable data structures.
 
+<img src="doc/hexagonal-architecture.png" width="600" />
+
 <a name="ports"></a>
 #### Ports 
 Each **port** has a corresponding **Component** on the **System Map**:
