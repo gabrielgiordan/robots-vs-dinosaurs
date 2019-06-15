@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fff1221a-9306-4ed8-a7aa-ed7a85d4e639" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/intro.md" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,8 +40,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="774">
-                <caret line="165" column="5" lean-forward="true" selection-start-line="165" selection-start-column="5" selection-end-line="165" selection-end-column="5" />
+              <first_editor relative-caret-position="281">
+                <caret line="139" column="45" selection-start-line="139" selection-start-column="45" selection-end-line="139" selection-end-column="45" />
               </first_editor>
               <second_editor />
             </state>
@@ -194,6 +194,17 @@
               <item name="robots-vs-dinosaurs" type="462c0819:PsiDirectoryNode" />
               <item name="dev" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="robots-vs-dinosaurs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="robots-vs-dinosaurs" type="462c0819:PsiDirectoryNode" />
+              <item name="doc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="robots-vs-dinosaurs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="robots-vs-dinosaurs" type="462c0819:PsiDirectoryNode" />
+              <item name="doc" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -343,7 +354,7 @@
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49717513" weight="0.24291497" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49717513" visible="true" weight="0.24291497" />
       <window_info id="Structure" order="1" sideWeight="0.50282484" side_tool="true" weight="0.21538462" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -827,8 +838,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="774">
-            <caret line="165" column="5" lean-forward="true" selection-start-line="165" selection-start-column="5" selection-end-line="165" selection-end-column="5" />
+          <first_editor relative-caret-position="281">
+            <caret line="139" column="45" selection-start-line="139" selection-start-column="45" selection-end-line="139" selection-end-column="45" />
           </first_editor>
           <second_editor />
         </state>

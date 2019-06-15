@@ -135,6 +135,8 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 
 `curl -X GET localhost:4000/api/simulations`
 
+<img src="/doc/img/get-simulation-as-game.png?raw=true" height="25%">
+
 `curl -X GET localhost:4000/api/simulations/16`
 
 ```
