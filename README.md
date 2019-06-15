@@ -148,30 +148,83 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 ```posh
 curl -X GET localhost:4000/api/simulations
 ```
-
-<img src="/doc/img/get-simulation-as-game.png?raw=true" height="100">
+```jsonc
+[
+    {
+        "id": 0,
+        "title": "Aerodynamic chinchilla",
+        "board": {
+            // ...
+        },
+        "scoreboard": {
+            "total": 0
+        }
+    },
+    {
+        "id": 16,
+        "board": {
+            // ...
+        },
+        "title": "Heavy voracious bunny buffalo",
+        "scoreboard": {
+            "total": 20
+        }
+    }, // ...
+]
+```
 
 ```posh
 curl -X GET localhost:4000/api/simulations/16
+```
+```jsonc
+{
+    "id": 16,
+    "title": "Heavy voracious bunny buffalo",
+    "scoreboard": {
+        "total": 20
+    },
+    "board": {
+        "size": {
+            "width": 6,
+            "height": 6
+        },
+        "units": [
+            //...
+        ]
+    }
+}
 ```
 
 ```posh
 curl -X POST --header 'Content-Type: application/json' -d 
 '{ \  
-	"title": "Aerodynamic Chinchilla", \ 
-	"size": { \ 
-		"width": 15, \ 
-		"height": 15 \ 
-   } \
+    "title": "Aerodynamic Chinchilla", \ 
+    "size": { \ 
+      "width": 15, \ 
+      "height": 15 \ 
+    } \
  }' localhost:4000/api/simulations
  ```
  
 ```posh
 curl -X DELETE localhost:4000/api/simulations/16
 ```
+```
+{
+  "success": true
+}
+```
 
 ```posh
 curl -X GET localhost:4000/api/simulations/16/as-game
+```
+```
+R|_|_|_|_|_
+_|_|_|_|_|_
+_|_|_|_|_|_
+_|_|_|_|_|_
+_|_|_|D|_|_
+_|D|R|D|_|_
 ```
 
 #### Robots
@@ -214,6 +267,27 @@ curl -X GET localhost:4000/api/simulations/16/robots/17/move-backward
 ```posh
 curl -X GET localhost:4000/api/simulations/16/robots/17/attack
 ```
+```json
+[
+    {
+        "id": 18,
+        "type": "dinosaur",
+        "point": {
+            "y": 5,
+            "x": 3
+        }
+    },
+    {
+        "id": 19,
+        "type": "dinosaur",
+        "point": {
+            "y": 5,
+            "x": 1
+        }
+    }
+]
+```
+
 
 #### Dinosaurs
 
