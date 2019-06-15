@@ -1,7 +1,6 @@
 FROM java:8-alpine
 
-ADD target/robots-vs-dinosaurs-0.1.0-SNAPSHOT-standalone.jar /robots-vs-dinosaurs/app.jar
+ADD target/uberjar/robots-vs-dinosaurs-standalone.jar app/robots-vs-dinosaurs.jar
 
-EXPOSE 8080
-
-CMD ["java", "-jar", "/robots-vs-dinosaurs/app.jar"]
+ENV PORT="5000"
+CMD java -Dport=$PORT -jar /app/robots-vs-dinosaurs.jar
