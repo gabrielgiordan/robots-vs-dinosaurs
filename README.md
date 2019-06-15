@@ -133,13 +133,17 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 
 #### Simulations
 
-`curl -X GET localhost:4000/api/simulations`
-
-<img src="/doc/img/get-simulation-as-game.png?raw=true" height="25%">
-
-`curl -X GET localhost:4000/api/simulations/16`
-
+```posh
+curl -X GET localhost:4000/api/simulations
 ```
+
+<img src="/doc/img/get-simulation-as-game.png?raw=true" height="100">
+
+```posh
+curl -X GET localhost:4000/api/simulations/16
+```
+
+```posh
 curl -X POST --header 'Content-Type: application/json' -d 
 '{ \  
 	"title": "Aerodynamic Chinchilla", \ 
@@ -150,15 +154,21 @@ curl -X POST --header 'Content-Type: application/json' -d
  }' localhost:4000/api/simulations
  ```
  
-`curl -X DELETE localhost:4000/api/simulations/16`
+```posh
+curl -X DELETE localhost:4000/api/simulations/16
+```
 
-`curl -X GET localhost:4000/api/simulations/16/as-game`
+```posh
+curl -X GET localhost:4000/api/simulations/16/as-game
+```
 
 #### Robots
 
-`curl -X GET localhost:4000/api/simulations/16/robots`
-
+```posh
+curl -X GET localhost:4000/api/simulations/16/robots
 ```
+
+```posh
 curl -X POST --header 'Content-Type: application/json' -d 
 '{ \ 
    "point": { \ 
@@ -169,23 +179,37 @@ curl -X POST --header 'Content-Type: application/json' -d
  }' localhost:4000/api/simulations/16/robots
 ```
 
-`curl -X GET localhost:4000/api/simulations/16/robots/17`
+```posh
+curl -X GET localhost:4000/api/simulations/16/robots/17
+```
 
-`curl -X GET localhost:4000/api/simulations/16/robots/17/turn-left`
+```posh
+curl -X GET localhost:4000/api/simulations/16/robots/17/turn-left
+```
 
-`curl -X GET localhost:4000/api/simulations/16/robots/17/turn-right`
+```posh
+curl -X GET localhost:4000/api/simulations/16/robots/17/turn-right
+```
 
-`curl -X GET localhost:4000/api/simulations/16/robots/17/move-forward`
+```posh
+curl -X GET localhost:4000/api/simulations/16/robots/17/move-forward
+```
 
-`curl -X GET localhost:4000/api/simulations/16/robots/17/move-backward`
+```posh
+curl -X GET localhost:4000/api/simulations/16/robots/17/move-backward
+```
 
-`curl -X GET localhost:4000/api/simulations/16/robots/17/attack`
+```posh
+curl -X GET localhost:4000/api/simulations/16/robots/17/attack
+```
 
 #### Dinosaurs
 
-`curl -X GET localhost:4000/api/simulations/16/dinosaurs`
-
+```posh
+curl -X GET localhost:4000/api/simulations/16/dinosaurs
 ```
+
+```posh
 curl -X POST --header 'Content-Type: application/json' -d 
 '{ \ 
    "point": { \ 
@@ -195,7 +219,9 @@ curl -X POST --header 'Content-Type: application/json' -d
  }' localhost:4000/api/simulations/16/dinosaurs
 ```
 
-`curl -X GET localhost:4000/api/simulations/16/dinosaurs/20`
+```posh
+curl -X GET localhost:4000/api/simulations/16/dinosaurs/20
+```
 
 ## License
 
