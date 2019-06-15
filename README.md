@@ -135,29 +135,39 @@ docker build -t <image_tag> . && docker run --env PORT=4000 --name robots-vs-din
 
 The project has a `Procfile` file for Heroku deployment which can be executed with **Heroku Git** or **Heroku GitHub** integration which supports automatic deployment on a branch of choice.
 
-### Curl e.g. <a name="curl"></a>
-
-#### Simulations
+### Examples <a name="examples"></a>
 
 Gets all the simulation spaces:
 ```posh
 curl -X GET localhost:4000/api/simulations
 ```
+
+`200 Content-Type: application/json`
+
 <img src="doc/img/get-simulations-response.png?raw=true" width=400 />
+
+
 
 Deletes a simulation space.
 ```posh
 curl -X DELETE localhost:4000/api/simulations/16
 ```
+`200 Content-Type: application/json`
+
 <img src="doc/img/delete-simulation-response.png?raw=true" width=200 />
+
+
 
 Gets a simulation space as a simple `text/plain` game.
 ```posh
 curl -X GET localhost:4000/api/simulations/16/as-game
 ```
+
+`200 Content-Type: text/plain`
+
 <img src="doc/img/get-simulation-as-game-response.png?raw=true" width=150 />
 
-#### Robots
+
 
 Create a robot in a certain position and facing direction.
 ```posh
@@ -171,12 +181,21 @@ curl -X POST --header 'Content-Type: application/json' -d
  }' localhost:4000/api/simulations/16/robots
 ```
 
+`201 Content-Type: application/json`
+
+<img src="doc/img/new-robot-response.png?raw=true" width=250 />
+
+
 
 Makes a robot attack around it: in front, to the left, to the right and behind.
 ```posh
 curl -X GET localhost:4000/api/simulations/16/robots/17/attack
 ```
+
+`200 Content-Type: application/json`
+
 <img src="doc/img/robot-attack-response.png?raw=true" width=250 />
+
 
 
 ## License
