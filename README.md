@@ -137,6 +137,8 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 
 ### Examples <a name="examples"></a>
 
+#### 2xx
+
 `curl -X GET localhost:4000/api/simulations`
 
 `200 Content-Type: application/json`
@@ -148,7 +150,7 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 
 `200 Content-Type: application/json`
 
-<img src="doc/img/delete-simulation-response.png?raw=true" width=200 />
+<img src="doc/img/delete-simulation-response.png?raw=true" width=180 />
 
 
 Gets a simulation space as a simple `text/plain` game.
@@ -186,6 +188,11 @@ Makes a robot attack around it: in front, to the left, to the right and behind.
 `200 Content-Type: application/json`
 
 <img src="doc/img/robot-attack-response.png?raw=true" width=250 />
+
+
+#### 4xx
+
+`curl -X GET --header http://localhost:8080/api/simulations/string`
 
 
 
