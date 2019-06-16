@@ -245,8 +245,6 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 
 The **Swagger UI** integration is available in `dev` mode at `/docs`.
 
-<img src="doc/img/swagger.png?raw=true" height=300 />
-
 
 ## License
 
