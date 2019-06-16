@@ -53,7 +53,7 @@ Each **port** has a corresponding **Component** on the **System Map**:
 		- EDN (used in Clojure and Datomic)
 		
 - **Server**
-	- With **Jetty** as the default http server which listens to `PORT` environment variable (useful for Heroku) or `8080` as the default port binding.
+	- With **Jetty** as the default http server which listens to `PORT` environment variable (useful for Heroku) or `4000` as the default port binding.
 
 <a name="adapters"></a>
 #### Adapters 
