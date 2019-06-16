@@ -4,9 +4,7 @@
               [direction :refer [four-sides]]
               [unit :refer [dinosaur-subtype]])
             (clojure.spec
-              [alpha :as s])
-            (clojure.test.check
-              [generators :as gen])))
+              [alpha :as s])))
 
 ;;;;;;;;;;;;;;;;;;
 ;;
@@ -113,10 +111,10 @@
 ;;
 ;; Custom Generators
 ;;
-(defn gen-string-pos-int
-  "Generates a string positive integer."
-  []
-  (gen/fmap str gen/pos-int))
+;(defn gen-string-pos-int
+;  "Generates a string positive integer."
+;  []
+;  (gen/fmap str gen/pos-int))
 
 ;;;;;;;;;;;;;;;;;;
 ;;

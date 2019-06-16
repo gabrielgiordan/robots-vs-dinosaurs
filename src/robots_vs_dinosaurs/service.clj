@@ -16,6 +16,7 @@
     (ring.util
       [response :as ring.response])
     (robots-vs-dinosaurs
+      [spec] ; Load Specs
       [controller :as controller]
       [adapter :as adapter]
       [interceptors :as interceptors])
