@@ -1,4 +1,4 @@
-# Robots vs Dinosaurs
+# Robots vs Dinosaurs [![CircleCI](https://circleci.com/gh/gabrielgiordan/robots-vs-dinosaurs.svg?style=svg&circle-token=954c8aa4101100fc9fb48f3729736e23fcc8b2cd)](https://circleci.com/gh/gabrielgiordan/robots-vs-dinosaurs) [![codecov](https://codecov.io/gh/gabrielgiordan/robots-vs-dinosaurs/branch/master/graph/badge.svg?token=qRIPgTLw1S)](https://codecov.io/gh/gabrielgiordan/robots-vs-dinosaurs)
 
 Clojure/ClojureScript apps to support simulations on an army of remote-controlled robots that fight dinosaurs!
 
