@@ -1,22 +1,18 @@
-(ns robots-vs-dinosaurs.logic.point
-  (:require
-    (clojure.spec
-      [alpha :as s])))
+(ns robots-vs-dinosaurs.logic.point)
 
-(s/def :point/x int?)
-(s/def :point/y int?)
-(s/def :point/point (s/keys :req-un [:point/x :point/y]))
-
+;;
+;; Point
+;;
 (defrecord Point [x y])
-
-(defn point?
-  [o]
-  (instance? Point o))
 
 (defn new-point
   "Creates a new point."
   [x y]
   (->Point x y))
+
+(defn point?
+  [o]
+  (instance? Point o))
 
 (defn point+
   "Sum two points."

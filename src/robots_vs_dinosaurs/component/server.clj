@@ -21,11 +21,8 @@
   (start
     [this]
     (println "Starting the #<Server> component.")
-    (try
-      (let [server (start-server (:router router))]
-        (assoc this :server server))
-      (catch Exception ex
-        (prn "Error when starting the #<Server>" ex-data ex))))
+    (let [server (start-server (:router router))]
+      (assoc this :server server)))
 
   (stop
     [this]

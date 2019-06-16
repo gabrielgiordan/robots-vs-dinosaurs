@@ -1,112 +1,179 @@
 (ns robots-vs-dinosaurs.spec
   "Clojure specs for project domain model."
-  (:require [clojure.spec.alpha :as s]
-            [robots-vs-dinosaurs.util :as u]))
+  (:require (robots-vs-dinosaurs.logic
+              [direction :refer [four-sides]]
+              [unit :refer [dinosaur-subtype]])
+            (clojure.spec
+              [alpha :as s])
+            (clojure.test.check
+              [generators :as gen])))
 
-(defonce
-  four-directions
-  {:up    [0 1]
-   :right [1 0]
-   :down  [0 -1]
-   :left  [-1 0]})
+;;;;;;;;;;;;;;;;;;
+;;
+;; Logic Spec
+;;
 
-(defonce
-  eight-directions
-  {:up-left    [-1 1]
-   :up         [0 1]
-   :up-right   [1 1]
-   :right      [1 0]
-   :down-right [1 -1]
-   :down       [0 -1]
-   :down-left  [-1 -1]
-   :left       [-1 0]})
+;;
+;; Direction Spec
+;;
+(s/def :direction/orientation (set (keys four-sides)))
+(s/def :direction/point (set (vals four-sides)))
 
-(defonce min-size 5)
-(defonce max-size 50)
+(s/def :direction/direction
+  (s/and
+    (s/keys :req-un [:direction/orientation :direction/point])
+    (fn [{:keys [orientation point]}]
+      (= (orientation four-sides) point))))
 
-;; Id
-(s/def ::id (s/and nat-int?))
-(s/def ::ids (s/coll-of ::id))
-(s/def ::title (s/and string? #(> (count %) 2)))
+;;
+;; Size Spec
+;;
+(s/def :size/width pos-int?)
+(s/def :size/height pos-int?)
+(s/def :size/size
+  (s/keys :req-un [:size/width :size/height]))
 
+;;
+;; Point Spec
+;;
+(s/def :point/x int?)
+(s/def :point/y int?)
+(s/def :point/point
+  (s/keys :req-un [:point/x :point/y]))
 
-;;(s/def ::point-spec (s/int-in 0 (dec max-size)))
-(s/def ::x int?)
-(s/def ::y int?)
-(s/def ::point (s/keys :req-un [::x ::y]))
+;;
+;; Unit Spec
+;;
+(s/def :unit/id nat-int?)
+(s/def :unit/type #{:dinosaur :robot})
 
-(s/def ::size-spec (s/int-in min-size max-size))
-(s/def ::width ::size-spec)
-(s/def ::height ::size-spec)
-(s/def ::size (s/keys :req-un [::width ::height]))
+(s/def :dinosaur/subtype dinosaur-subtype)
+(s/def :unit/dinosaur
+  (s/and
+    (s/keys :req-un [:unit/id :unit/type :point/point :dinosaur/subtype])
+    (fn [{:keys [type]}]
+      (= :dinosaur type))))
 
-(s/def ::orientation string?)
-(s/def ::direction (s/keys :req-un [::orientation ::point]))
+(s/def :unit/dinosaurs
+  (s/* :unit/dinosaur))
 
-;; Direction
-;(s/def ::orientation (set (vals four-directions)))
-;(s/def ::name (set (keys four-directions)))
+(s/def :unit/robot
+  (s/and
+    (s/keys :req-un [:unit/id :unit/type :point/point :direction/direction])
+    (fn [{:keys [type]}]
+      (= :robot type))))
 
-;(s/def ::orientation (s/keys :req-un [::x ::y]))
-;(s/def ::facing string?)
+(s/def :unit/robots
+  (s/* :unit/robot))
 
-;(s/def ::direction
-;  (s/and
-;    (s/keys :req-un [::facing ::orientation])
-;    (fn [{:keys [name orientation]}]
-;      (= (name four-directions) orientation))))
+;;
+;; Board Spec
+;;
+(def ^:const min-size 5)
+(def ^:const max-size 50)
 
-;; Unit
-(s/def ::type
-  #{:robot :dinosaur})
+(s/def :board/width (s/int-in min-size max-size))
+(s/def :board/height (s/int-in min-size max-size))
+(s/def :board/size
+  (s/keys :req-un [:board/width :board/height]))
 
-(s/def ::score int?)
+(s/def :board/unit
+  (s/or :robot :unit/robot :dinosaur :unit/dinosaur))
 
-(s/def ::unit
-  (s/keys :req-un [::id ::point]))
+(s/def :board/units
+  (s/and (s/coll-of :board/unit :kind set?)))
 
-(s/def ::dinosaur (s/keys :req-un [::id ::type ::point]))
-(s/def ::dinosaurs (s/coll-of ::dinosaur))
+(s/def :board/board
+  (s/keys :req-un [:board/size]
+          :opt-un [:board/units]))
 
-(s/def ::robot (s/keys :req-un [::id ::type ::point ::direction]))
-(s/def ::robots (s/coll-of ::robot))
+;;
+;; Scoreboard Spec
+;;
+(s/def :scoreboard/total int?)
+(s/def :scoreboard/scoreboard
+  (s/keys :req-un [:scoreboard/total]))
 
-(s/def ::units
-  (s/coll-of
-    (s/or :robot ::robot
-          :dinosaur ::dinosaur)))
+;;
+;; Simulation Spec
+;;
+(s/def :simulation/id nat-int?)
+(s/def :simulation/title (s/and string? #(> (count %) 2)))
 
-;; Board
-(s/def ::board
-  (s/keys :req-un [::size]
-          :opt-un [::units]))
+(s/def :simulation/simulation
+  (s/keys :req-un [:simulation/id
+                   :simulation/title
+                   :scoreboard/scoreboard
+                   :board/board]))
 
-;; Scoreboard
-(s/def ::total int?)
+(s/def :simulation/simulations
+  (s/* :simulation/simulation))
 
-(s/def ::scoreboard
-  (s/keys :req-un [::total]))
+;;;;;;;;;;;;;;;;;;
+;;
+;; Custom Generators
+;;
+(defn gen-string-pos-int
+  "Generates a string positive integer."
+  []
+  (gen/fmap str gen/pos-int))
 
-;; Simulation
-(s/def ::simulation
-  (s/keys :req-un [::id ::title ::scoreboard ::board]))
+;;;;;;;;;;;;;;;;;;
+;;
+;; Request Spec
+;;
 
-(s/def ::simulations (s/coll-of ::simulation))
+;; Request Point Spec
+(s/def :request/x (s/int-in 0 (dec max-size)))
+(s/def :request/y (s/int-in 0 (dec max-size)))
 
-;; Request
-(s/def ::post-simulation
-  (s/keys :req-un [::title]
-          :opt-un [::size]))
+(s/def :request/point
+  (s/keys :req-un [:request/x :request/y]))
 
-(s/def ::post-robot
-  (s/keys :req-un [::point]
-          :opt-un [::orientation]))
+;; Request Direction Spec
+(s/def :request/orientation (set (map name (keys four-sides))))
+(s/def :request/direction
+  (s/keys :req-un [:request/point :request/orientation]))
 
-(s/def ::status pos-int?)
-(s/def ::code pos-int?)
-(s/def ::message string?)
-(s/def ::error (s/keys :req-un [::status ::code ::message]))
-(s/def ::error-response (s/keys :req-un [::error]))
+;; Request Size Spec
+(s/def :request/width (s/int-in min-size max-size))
+(s/def :request/height (s/int-in min-size max-size))
 
-(s/def ::success boolean?)
-(s/def ::delete-response (s/keys :req-un [::success]))
+(s/def :request/size
+  (s/keys :req-un [:request/width :request/height]))
+
+;; Request Robot Spec
+(s/def :request/robot
+  (s/keys :req-un [:request/point :request/orientation]))
+
+;; Request Dinosaur Spec
+(s/def :request/subtype (set (map name dinosaur-subtype)))
+
+(s/def :request/dinosaur
+  (s/keys :req-un [:request/point :request/subtype]))
+
+(s/def :request/title (s/and string? not-empty))
+
+(s/def :request/simulation
+  (s/keys :req-un [:request/size :request/title]))
+
+;;;;;;;;;;;;;;;;;;
+;;
+;; Response Spec
+;;
+
+(s/def :response/robot-attack
+  (s/map-of #{:attacked} :unit/dinosaurs))
+
+;; Success
+(s/def :response/success
+  (s/map-of #{:success} boolean?))
+
+;; Error
+(s/def :response/code nat-int?)
+(s/def :response/status nat-int?)
+(s/def :response/message string?)
+(s/def :response/error
+  (s/keys :req-un [:response/code
+                   :response/status
+                   :response/message]))

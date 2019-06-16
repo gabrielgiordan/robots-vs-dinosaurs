@@ -4,15 +4,21 @@
       [point :as point]
       [direction :as direction])))
 
+;;
+;; Unit
+;;
 (defrecord Dinosaur [id type point])
 (defrecord Robot [id type point direction])
 
+(def dinosaur-subtype #{:vita :doux :mort :tard})
+
 (defn new-dinosaur
-  [id point]
+  [id point subtype]
   (map->Dinosaur
-    {:id    id
-     :type  :dinosaur
-     :point point}))
+    {:id      id
+     :type    :dinosaur
+     :subtype subtype
+     :point   point}))
 
 (defn new-robot
   [id point orientation]
@@ -20,7 +26,7 @@
     {:id        id
      :type      :robot
      :point     point
-     :direction (direction/new-8-sided orientation)}))
+     :direction (direction/new-4-sided orientation)}))
 
 (defn dinosaur?
   [o]
@@ -62,7 +68,7 @@
   "Attacks around the given directions.
   The `attack-handler` takes 2 arguments,
   the attacker and the points to be attacked."
-  [{:keys [point] :as unit} directions attack-handler]
+  [{:keys [point]} directions attack-handler]
   (attack-handler (point/around directions point)))
 
 (defn attack-4-directions

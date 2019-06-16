@@ -1,23 +1,27 @@
 (ns robots-vs-dinosaurs.system
-  (:require [com.stuartsierra.component :as component]
-            [robots-vs-dinosaurs.service :as service]
-            [robots-vs-dinosaurs.component.router :refer [new-router]]
-            [robots-vs-dinosaurs.component.routes :refer [new-routes]]
-            [robots-vs-dinosaurs.component.service :refer [new-service]]
-            [robots-vs-dinosaurs.component.server :refer [new-server]]
-            [robots-vs-dinosaurs.component.storage :refer [new-memory-storage]]
-            [environ.core :refer [env]]
-            [robots-vs-dinosaurs.adapter :as adapter])
-  ;(:import (com.stuartsierra.component SystemMap))
-  )
+  (:require
+    (com.stuartsierra
+      [component :as component])
+    (io.pedestal
+      [log :as log])
+    (environ
+      [core :refer [env]])
+    (robots-vs-dinosaurs
+      [service :as service]
+      [adapter :as adapter])
+    (robots-vs-dinosaurs.component
+      [router :refer [new-router]]
+      [service :refer [new-service]]
+      [server :refer [new-server]]
+      [storage :refer [new-memory-storage]])))
 
 (declare system-ascii)
 
 (defn get-system-options
-  "Gets the port from args, system environment or from the default 8080."
+  "Gets the port from args, system environment or from the default 4000."
   [environment]
-  (let [port (adapter/string->int (or (env :port) "8080"))
-        options (service/get-options environment)]
+  (let [port (adapter/string->int (or (env :port) "4000"))
+        options (service/options environment)]
     {:service
      {:env  environment
       :port port}
@@ -32,13 +36,12 @@
         environment (:env service-options)]
     (component/system-using
       (component/system-map
-          :storage (new-memory-storage)
-          :routes (new-routes (service/get-routes environment))
-          :service (new-service service-options)
-          :router (new-router router-options)
-          :server (new-server))
-          {:router [:service :routes :storage]
-           :server [:router :router]})))
+        :storage (new-memory-storage)
+        :service (new-service service-options)
+        :router (new-router router-options (service/routes environment))
+        :server (new-server))
+      {:router [:service :storage]
+       :server [:router :router]})))
 
 (defn print-system-info
   "Prints the ascii art with system information."
@@ -59,8 +62,10 @@
       (print-system-info system-map)
       (println "Starting the #<SystemMap>.")
       (component/start system-map))
-    (catch Exception ex
-      (prn "Error when starting the #<SystemMap>" (ex-data ex)))))
+    (catch Throwable ex
+      (log/error
+        :system-map
+        (component/ex-without-components ex)))))
 
 (defn stop-system
   [system]

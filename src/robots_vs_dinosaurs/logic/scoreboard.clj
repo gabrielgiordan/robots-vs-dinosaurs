@@ -2,8 +2,14 @@
 
 (defrecord Scoreboard [total])
 
-(defonce default-score 10)
-
+(defonce scores
+         {:dinosaur {:vita 5
+                     :doux 10
+                     :tard 15
+                     :mort 25}})
+;;
+;; Scoreboard
+;;
 (defn new-scoreboard
   "Creates a new scoreboard."
   ([n]
@@ -17,7 +23,14 @@
   [scoreboard n]
   (update scoreboard :total + n))
 
-(defn total*
-  "Multiplies the score."
-  [scoreboard n]
-  (total+ scoreboard (* n default-score)))
+(defn sum-score
+  "Updates the scoreboard according
+  to the attacked units."
+  [scoreboard units]
+  (total+
+    scoreboard
+    (reduce
+      (fn [total {:keys [type subtype]}]
+        (if-let [score (get-in scores [type subtype])]
+          (+ total score)
+          total)) 0 units)))

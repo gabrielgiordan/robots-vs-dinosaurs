@@ -10,8 +10,7 @@
     (robots-vs-dinosaurs
       [interceptors :refer [redirect-trailing-slash-handler]]))
   (:import
-    (java.io Writer)
-    (clojure.lang ExceptionInfo)))
+    (java.io Writer)))
 
 (defn no-routes-match-handlers
   "Add handlers when no routes match."
@@ -38,7 +37,7 @@
   "Starts the Reitit router."
   [component]
   (let [options           (get-in component [:options :options])
-        routes            (get-in component [:routes :routes])
+        routes            (:routes component)
         service-map       (get-in component [:service :service])
         storage-component (:storage component)
         data              (components-interceptors options {:storage storage-component})
@@ -50,17 +49,14 @@
         router
         (no-routes-match-handlers options router)))))
 
-(defrecord Router [options service routes storage]
+(defrecord Router [options routes service storage]
   component/Lifecycle
 
   (start
     [this]
     (println "Starting the #<Router> component.")
-    (try
-      (let [router (start-router this)]
-        (assoc this :router router))
-      (catch ExceptionInfo ex
-        (prn "Error when starting the #<Service>" (ex-data ex)))))
+    (let [router (start-router this)]
+      (assoc this :router router)))
 
   (stop
     [this]
@@ -76,6 +72,8 @@
 
 (defn new-router
   "Creates a new Router component."
-  [options]
-  (map->Router {:options options}))
+  [options routes]
+  (map->Router
+    {:options options
+     :routes routes}))
 

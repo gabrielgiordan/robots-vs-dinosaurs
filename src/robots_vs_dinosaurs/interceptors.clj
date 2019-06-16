@@ -1,55 +1,74 @@
 (ns robots-vs-dinosaurs.interceptors
   (:require [reitit.http.interceptors.exception :as exception]
             [reitit.coercion :as coercion]
-            [io.pedestal.log :refer [log]]
-            [muuntaja.core :as muuntaja]
+            [io.pedestal.log :as log]
             [io.pedestal.interceptor.helpers :as interceptor]
-            [io.pedestal.log :as log]))
+            [muuntaja.core :as muuntaja]))
 
-(defn response
+;;
+;; Error handler
+;;
+(defn- error-response
+  "Gets an response response with
+  `status` and `body`."
   [status body]
   {:status status :body body})
 
-(defn error-body
-  [status code message]
-  {:error {:status status, :code code, :message message}})
+(defn- safe-format
+  "Checks if a format is supported by encoder/decoder,
+  else returns the default format"
+  [format]
+  (if-let [_ (get (:formats muuntaja/default-options) format)]
+    format
+    (:default-format muuntaja/default-options)))
 
-(defn error-body-encoded
-  [status code message]
-  (->>
-    (error-body status code message)
-    (muuntaja/encode "application/json")
+(defn- error-body
+  "Gets the encoded response body."
+  [status code message format]
+  (some->>
+    {:error {:status status, :code code, :message message}}
+    (muuntaja/encode (safe-format format))
     (slurp)))
 
-(defn error-response-map
-  [status code message]
-  (response status (error-body status code message)))
+(defn- error-response-encoded
+  "Gets an error response encoded."
+  [status code message format]
+  (error-response status (error-body status code message format)))
 
-(defn error-response-encoded
-  [status code message]
-  (response status (error-body-encoded status code message)))
-
-(defn error-response
-  [status code message log-data]
-  (let [response (error-body status code message)]
-    (when-not (nil? log-data)
-      (log {:log-data log-data :response response}))
-    response))
-
-(defn error-response-400
-  [message log-data]
-  (error-response 400 8 message log-data))
-
-(defn error-response-404
-  [message log-data]
-  (error-response 404 9 message log-data))
-
-(defn exception-handler
-  "Creates a new exception handler."
+(defn- ex-handler
+  "Handles an exception."
   ([status code message]
-   (fn [_exception _request]
-     {:status status
-      :body   (error-body-encoded status code message)})))
+   (fn [ex {{accept "accept"} :headers}]
+     (log/error status (ex-message ex))
+     {:status  status
+      :headers {"Content-type" accept}
+      :body    (error-body status code message accept)})))
+
+(defn exception-interceptor
+  "Intercept exceptions with custom messages."
+  []
+  (exception/exception-interceptor
+    {;; Simulation exceptions.
+     :out-of-bounds                         (ex-handler 403 10 "Invalid operation. Out of bounds.")
+     :not-a-robot                           (ex-handler 403 11 "Invalid operation. Not a Robot.")
+     :not-a-dinosaur                        (ex-handler 403 12 "Invalid operation. Not a Dinosaur.")
+     :occupied                              (ex-handler 403 13 "Invalid operation. Position is occupied.")
+     :attack-missed                         (ex-handler 400 14 "Invalid operation. No units to attack.")
+
+     ;; Spec exceptions.
+     ::coercion/request-coercion            (ex-handler 400 1 "Invalid request.")
+     ::coercion/response-coercion           (ex-handler 500 2 "Response validation failed.")
+
+     ;; Malformed exceptions.
+     :muuntaja/decode                       (ex-handler 400 3 "Malformed format when decoding.")
+     :muuntaja/encode                       (ex-handler 400 4 "Malformed format when encoding.")
+     :muuntaja/request-charset-negotiation  (ex-handler 400 15 "Could not negotiate a charset for the request.")
+     :muuntaja/response-charset-negotiation (ex-handler 400 16 "Could not negotiate a charset for the response.")
+     :muuntaja/response-format-negotiation  (ex-handler 400 17 "Could not negotiate a format for the response.")
+
+     ;; Generic Exceptions.
+     ::exception/exception                  (ex-handler 500 5 "Internal server error.")
+     ::exception/default                    (ex-handler 500 6 "Internal server error.")}))
 
 (def not-found-interceptor
   "An interceptor that returns a 404 when routing failed to resolve a route."
@@ -58,44 +77,14 @@
     (fn [context]
       (let [resp (:response context)]
         (if-not (and (map? resp) (integer? (:status resp)))
-          (do (log/meter ::not-found)
-              (assoc context :response (error-response-encoded 404 0 "Could not find the requested resource.")))
+          (do (log/error 404 (:request context))
+              (let [{{{accept "accept"} :headers} :request} context]
+                (assoc context :response (error-response-encoded 404 0 "Could not find the requested resource." accept))))
           context)))))
 
-; :muuntaja/decode, input can't be decoded with the negotiated format & charset.
-; :muuntaja/request-charset-negotiation, request charset is illegal.
-; :muuntaja/response-charset-negotiation, could not negotiate a charset for the response.
-; :muuntaja/response-format-negotiation, could not negotiate a format for the response.
-
-
-(defn exception-interceptor
-  "Intercept exceptions with custom Json messages."
-  []
-  (exception/exception-interceptor
-    {;; Simulation exceptions.
-     :out-of-bounds               (exception-handler 403 10 "Invalid operation. Out of bounds.")
-     :not-a-robot                 (exception-handler 403 11 "Invalid operation. Not a Robot.")
-     :not-a-dinosaur              (exception-handler 403 12 "Invalid operation. Not a Dinosaur.")
-     :occupied                    (exception-handler 403 13 "Invalid operation. Position is occupied.")
-     :attack-missed               (exception-handler 400 14 "Invalid operation. No units to attack.")
-
-     ;; Spec exceptions.
-     ::coercion/request-coercion  (exception-handler 400 1 "Invalid request.")
-     ::coercion/response-coercion (exception-handler 500 2 "Response validation failed.")
-
-     ;; Malformed exceptions.
-     :muuntaja/decode             (exception-handler 400 3 "Malformed format when decoding.")
-     :muuntaja/encode             (exception-handler 400 4 "Malformed format when encoding.")
-
-     ;; Generic Exceptions.
-     ::exception/exception        (exception-handler 500 5 "Internal server error.")
-     ::exception/default          (exception-handler 500 6 "Internal server error.")
-
-     ;; Wrap stack-traces for all exceptions.
-     ::exception/wrap             (fn [handler exception request]
-                                    (log (ex-data exception))
-                                    (handler exception request))}))
-
+;;
+;; Redirect trailing slash `/`
+;;
 ;; TODO: Create a pull request at `metosin/reitit` repository
 (defn redirect-trailing-slash-handler
   "301/308 redirects trailing slashes, with support for custom router."

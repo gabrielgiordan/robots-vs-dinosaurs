@@ -1,4 +1,4 @@
-(ns robots-vs-dinosaurs.storage.simulations
+(ns robots-vs-dinosaurs.storage.db
   (:require [robots-vs-dinosaurs.component.storage :as storage]))
 
 ;;

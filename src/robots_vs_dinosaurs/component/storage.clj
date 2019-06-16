@@ -4,7 +4,7 @@
     (com.stuartsierra
       [component :as component])
     (robots-vs-dinosaurs.storage
-      [default-data :refer [get-default-data]]))
+      [placeholder :refer [placeholder]]))
   (:import
     (java.io Writer)))
 
@@ -20,7 +20,7 @@
     [this]
     (println "Starting the #<MemoryStorage> component.")
     ;; Could be multiple `ref`, but preferred a single atom approach.
-    (assoc this :storage (atom (get-default-data))))
+    (assoc this :storage (atom placeholder)))
 
   (stop
     [this]

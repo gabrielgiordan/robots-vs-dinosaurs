@@ -1,32 +1,29 @@
 (ns robots-vs-dinosaurs.logic.direction
   (:require
-    (clojure.spec
-      [alpha :as s])
     (robots-vs-dinosaurs.logic
-      [point :as point])))
-
-(s/def :direction/orientation string?)
-(s/def :direction/direction
-  (s/keys :req-un [:direction/orientation :point/point]))
+      [point :refer [new-point]])))
 
 (defonce
   four-sides
-  {:up    (point/new-point 0 -1)
-   :right (point/new-point 1 0)
-   :down  (point/new-point 0 1)
-   :left  (point/new-point -1 0)})
+  {:up    (new-point 0 -1)
+   :right (new-point 1 0)
+   :down  (new-point 0 1)
+   :left  (new-point -1 0)})
 
-(defonce
-  eight-sides
-  {:up-left    (point/new-point -1 -1)
-   :up         (point/new-point 0 -1)
-   :up-right   (point/new-point 1 -1)
-   :right      (point/new-point 1 0)
-   :down-right (point/new-point 1 1)
-   :down       (point/new-point 0 1)
-   :down-left  (point/new-point -1 1)
-   :left       (point/new-point -1 0)})
+;(defonce
+;  eight-sides
+;  {:up-left    (point/new-point -1 -1)
+;   :up         (point/new-point 0 -1)
+;   :up-right   (point/new-point 1 -1)
+;   :right      (point/new-point 1 0)
+;   :down-right (point/new-point 1 1)
+;   :down       (point/new-point 0 1)
+;   :down-left  (point/new-point -1 1)
+;   :left       (point/new-point -1 0)})
 
+;;
+;; Direction
+;;
 (defrecord Direction [orientation point])
 
 (defn new-direction
@@ -36,15 +33,10 @@
     {:orientation orientation
      :point       (orientation directions)}))
 
-(defn new-8-sided
+(defn new-4-sided
   "Creates a directions with 4 sides."
   [orientation]
   (new-direction orientation four-sides))
-
-(defn new-8-sided
-  "Creates a directions with 8 sides."
-  [orientation]
-  (new-direction orientation eight-sides))
 
 (defn direction->index
   "Converts a Direction to its index."
@@ -93,13 +85,3 @@
   "Gets the previous four sided direction."
   [direction]
   (direction-dec direction four-sides))
-
-(defn inc-8-sided
-  "Gets the next eight sided direction."
-  [direction]
-  (direction-inc direction eight-sides))
-
-(defn dec-8-sided
-  "Gets the previous eight sided direction."
-  [direction]
-  (direction-dec direction eight-sides))

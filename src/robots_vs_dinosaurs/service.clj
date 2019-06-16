@@ -17,38 +17,33 @@
       [response :as ring.response])
     (robots-vs-dinosaurs
       [controller :as controller]
-      [spec :as spec]
       [adapter :as adapter]
       [interceptors :as interceptors])
     (muuntaja
-      [core :as core.muuntaja])
-    (clojure.spec
-      [alpha :as s])))
+      [core :as core.muuntaja])))
 
-(defn- get-prod-options
+;;
+;; Service Options
+;;
+(defn- get-options
   "Gets the default options."
   []
   {:redirect-trailing-slash {:method :both}
-   :conflicts               nil
    :executor                sieppari/executor
    :data                    {:coercion     coercion.spec/coercion
                              :muuntaja     core.muuntaja/instance
-                             :interceptors [
-                                            ;(parameters/parameters-interceptor)
-                                            ;(multipart/multipart-interceptor)
-                                            (interceptors/exception-interceptor)
+                             :interceptors [(interceptors/exception-interceptor)
                                             (interceptors.muuntaja/format-interceptor)
                                             (interceptors.muuntaja/format-negotiate-interceptor)
                                             (interceptors.muuntaja/format-response-interceptor)
                                             (interceptors.muuntaja/format-request-interceptor)
                                             (coercion/coerce-request-interceptor)
-                                            ;(coercion/coerce-response-interceptor)
-                                            ]}})
+                                            (coercion/coerce-response-interceptor)]}})
 
-(defn- get-dev-options
+(defn- dev-options
   "Gets the development options merged with default."
   []
-  (let [options (get-prod-options)
+  (let [options (get-options)
         dev-options {:redirect-trailing-slash {:method :both}
                      :exception               pretty/exception}
         dev-interceptors [swagger/swagger-feature]]
@@ -58,15 +53,15 @@
       #(vec (concat %2 %1))
       dev-interceptors)))
 
-(defn get-options
+(defn options
   "Get the option according to the given environment `prod` or `dev`."
   [env]
   (if (= env :prod)
-    (get-prod-options)
-    (get-dev-options)))
+    (get-options)
+    (dev-options)))
 
 ;;
-;; Simulations
+;; Simulation Handlers
 ;;
 (defn get-simulations-response-handler
   "Creates a 200 response with all the simulations."
@@ -117,16 +112,8 @@
     (ring.response/response {:success true})))
 
 ;;
-;; Robots
+;; Robots Handlers
 ;;
-(s/def ::orientation string?)
-(s/def ::post-robot
-  (s/keys :req-un [::spec/point]
-          :opt-un [::orientation]))
-
-(s/def ::post-dinosaur
-  (s/keys :req-un [::spec/point]))
-
 (defn- robot-response-handler!
   "Creates a 200 response with `requested-handler` function."
   [{{:keys [storage]}                :components
@@ -155,7 +142,7 @@
          $
          (some->>
            (adapter/string->orientation orientation)
-           (controller/new-robot! storage $ (adapter/map->point point)))))]
+           (controller/new-robot! storage $ (adapter/map->Point point)))))]
     (->
       uri
       (str "/" (:id robot))
@@ -201,14 +188,14 @@
   (robot-response-handler! request controller/robot-attack!))
 
 ;;
-;; Dinosaurs
+;; Dinosaurs Handlers
 ;;
 (defn create-dinosaur-response-handler!
   "Creates a 201 response with the location header for the created Dinosaur."
   [{uri                     :uri
     {:keys [storage]}       :components
     {:keys [simulation-id]} :path-params
-    {:keys [point]}         :body-params}]
+    {:keys [point subtype]}         :body-params}]
   (when-some
     [dinosaur
      (some->
@@ -216,7 +203,11 @@
        (as->
          $
          (some->>
-           (controller/new-dinosaur! storage $ (adapter/map->point point)))))]
+           (adapter/string->dinosaur-subtype subtype)
+           (controller/new-dinosaur!
+             storage
+             $
+             (adapter/map->Point point)))))]
     (->
       uri
       (str "/" (:id dinosaur))
@@ -244,149 +235,159 @@
         (controller/get-dinosaur storage $)
         (ring.response/response)))))
 
-(defn get-simulation-routes
-  "Gets the Simulation routes."
-  []
-  ["/api"
-
-   ;; Simulations
-
-   ["/simulations"
+;;
+;; Routes
+;;
+(def simulation-routes
+  [["/simulations"
     {:swagger {:tags ["Simulations"]}
 
      :get     {:summary   "Gets all the simulation spaces."
-               :responses {200 {:body ::spec/simulations}}
+               :responses {200 {:body :simulation/simulations}}
                :handler   get-simulations-response-handler}
 
      :post    {:summary    "Create an empty simulation space."
                :handler    create-simulation-response-handler!
-               :responses  {201 {:body ::spec/simulation}
-                            400 {:body ::spec/error-response}}
-               :parameters {:body ::spec/post-simulation}}}]
+               :responses  {201 {:body :simulation/simulation}
+                            400 {:body :response/error}}
+               :parameters {:body :request/simulation}}}]
 
    ["/simulations/:simulation-id"
     {:swagger {:tags ["Simulations"]}
      :get     {:summary    "Gets a simulation space."
-               :responses  {200 {:body ::spec/simulation}
-                            404 {:body ::spec/error-response}
-                            400 {:body ::spec/error-response}}
+               :responses  {200 {:body :simulation/simulation}
+                            404 {:body :response/error}
+                            400 {:body :response/error}}
                :handler    get-simulation-response-handler
-               :parameters {:path {:simulation-id ::spec/id}}}
+               :parameters {:path {:simulation-id :simulation/id}}}
 
      :delete  {:summary    "Deletes a simulation space."
-               :parameters {:path {:simulation-id ::spec/id}}
-               :responses  {200 {:body ::spec/delete-response} ; Could return 204, but has content.
-                            404 {:body ::spec/error-response}
-                            400 {:body ::spec/error-response}}
+               :parameters {:path {:simulation-id :simulation/id}}
+               :responses  {200 {:body :response/success}   ; Could return 204, but has content.
+                            404 {:body :response/error}
+                            400 {:body :response/error}}
                :handler    delete-simulation-response-handler!}}]
 
    ["/simulations/:simulation-id/as-game"
     {:swagger {:tags ["Simulations"]}
      :get     {:summary    "Gets a simulation space as a simple string game."
-               :responses  {200 {:body ::spec/simulation}
-                            404 {:body ::spec/error-response}
-                            400 {:body ::spec/error-response}}
+               :responses  {200 {:body string?}
+                            404 {:body :response/error}
+                            400 {:body :response/error}}
                :handler    get-simulation-as-string-matrix-response-handler
-               :parameters {:path {:simulation-id ::spec/id}}}}]
+               :parameters {:path {:simulation-id :simulation/id}}}}]])
 
-   ;; Robots
-
-   ["/simulations/:simulation-id/robots"
+(def robots-routes
+  [["/simulations/:simulation-id/robots"
     {:swagger {:tags ["Robots"]}
      :get     {:summary    "Gets all robots."
-               :responses  {200 {:body ::spec/robots}}
+               :responses  {200 {:body :unit/robots}}
                :handler    get-robots-response-handler
-               :parameters {:path {:simulation-id ::spec/id}}}
+               :parameters {:path {:simulation-id :simulation/id}}}
 
      :post    {:summary    "Create a robot in a certain position and facing direction."
                :handler    create-robot-response-handler!
-               :responses  {201 {:body ::spec/robot}
-                            400 {}}
-               :parameters {:body ::post-robot
-                            :path {:simulation-id ::spec/id}}}}]
+               :responses  {201 {:body :unit/robot}
+                            400 {:body :response/error}
+                            403 {:body :response/error}}
+               :parameters {:body :request/robot
+                            :path {:simulation-id :simulation/id}}}}]
 
    ["/simulations/:simulation-id/robots/:robot-id"
     {:swagger {:tags ["Robots"]}
      :get     {:summary    "Gets a robot."
-               :responses  {200 {:body ::spec/robots}}
+               :responses  {200 {:body :unit/robot}
+                            403 {:body :response/error}
+                            404 {:body :response/error}}
                :handler    get-robot-response-handler
                :parameters {:path
-                            {:simulation-id ::spec/id
-                             :robot-id      ::spec/id}}}}]
+                            {:simulation-id :simulation/id
+                             :robot-id      :unit/id}}}}]
 
    ["/simulations/:simulation-id/robots/:robot-id/turn-left"
     {:swagger {:tags ["Robots"]}
      :get     {:summary    "Turns a robot to the left."
-               :responses  {200 {:body ::spec/robots}}
+               :responses  {200 {:body :unit/robot}
+                            403 {:body :response/error}
+                            404 {:body :response/error}}
                :handler    turn-robot-left-response-handler!
                :parameters {:path
-                            {:simulation-id ::spec/id
-                             :robot-id      ::spec/id}}}}]
+                            {:simulation-id :simulation/id
+                             :robot-id      :unit/id}}}}]
 
    ["/simulations/:simulation-id/robots/:robot-id/turn-right"
     {:swagger {:tags ["Robots"]}
      :get     {:summary    "Turns a robot to the right."
-               :responses  {200 {:body ::spec/robots}}
+               :responses  {200 {:body :unit/robot}
+                            403 {:body :response/error}
+                            404 {:body :response/error}}
                :handler    turn-robot-right-response-handler!
                :parameters {:path
-                            {:simulation-id ::spec/id
-                             :robot-id      ::spec/id}}}}]
+                            {:simulation-id :simulation/id
+                             :robot-id      :unit/id}}}}]
 
    ["/simulations/:simulation-id/robots/:robot-id/move-forward"
     {:swagger {:tags ["Robots"]}
      :get     {:summary    "Moves a robot forward."
-               :responses  {200 {:body ::spec/robots}}
+               :responses  {200 {:body :unit/robot}
+                            403 {:body :response/error}
+                            404 {:body :response/error}}
                :handler    move-robot-forward-response-handler!
                :parameters {:path
-                            {:simulation-id ::spec/id
-                             :robot-id      ::spec/id}}}}]
+                            {:simulation-id :simulation/id
+                             :robot-id      :unit/id}}}}]
 
    ["/simulations/:simulation-id/robots/:robot-id/move-backward"
     {:swagger {:tags ["Robots"]}
      :get     {:summary    "Moves a robot backward."
-               :responses  {200 {:body ::spec/robots}}
+               :responses  {200 {:body :unit/robot}
+                            403 {:body :response/error}
+                            404 {:body :response/error}}
                :handler    move-robot-backward-response-handler!
                :parameters {:path
-                            {:simulation-id ::spec/id
-                             :robot-id      ::spec/id}}}}]
+                            {:simulation-id :simulation/id
+                             :robot-id      :unit/id}}}}]
 
    ["/simulations/:simulation-id/robots/:robot-id/attack"
     {:swagger {:tags ["Robots"]}
      :get     {:summary    "Makes a robot attack around it:
      in front, to the left, to the right and behind."
-               :responses  {200 {:body ::spec/robots}}
+               :responses  {200 {:body :unit/dinosaurs}
+                            400 {:body :response/error}
+                            404 {:body :response/error}}
                :handler    robot-attack-response-handler!
                :parameters {:path
-                            {:simulation-id ::spec/id
-                             :robot-id      ::spec/id}}}}]
+                            {:simulation-id :simulation/id
+                             :robot-id      :unit/id}}}}]])
 
-   ["/simulations/:simulation-id/dinosaurs"
+(def dinosaurs-routes
+  [["/simulations/:simulation-id/dinosaurs"
     {:swagger {:tags ["Dinosaurs"]}
      :get     {:summary    "Gets all dinosaurs."
-               :responses  {200 {:body ::spec/dinosaurs}}
+               :responses  {200 {:body :unit/dinosaurs}}
                :handler    get-dinosaurs-response-handler
-               :parameters {:path {:simulation-id ::spec/id}}}
+               :parameters {:path {:simulation-id :simulation/id}}}
      :post    {:summary    "Create a dinosaur in a certain position."
-               :responses  {200 {:body ::spec/dinosaurs}}
+               :responses  {200 {:body :unit/dinosaur}
+                            403 {:body :response/error}}
                :handler    create-dinosaur-response-handler!
-               :parameters {:body ::post-dinosaur
-                            :path {:simulation-id ::spec/id}}}}]
+               :parameters {:body :request/dinosaur
+                            :path {:simulation-id :simulation/id}}}}]
 
    ["/simulations/:simulation-id/dinosaurs/:dinosaur-id"
     {:swagger {:tags ["Dinosaurs"]}
      :get     {:summary    "Gets a dinosaurs."
-               :responses  {200 {:body ::spec/dinosaurs}}
+               :responses  {200 {:body :unit/dinosaur}
+                            403 {:body :response/error}
+                            404 {:body :response/error}}
                :handler    get-dinosaur-response-handler
                :parameters {:path
-                            {:simulation-id ::spec/id
-                             :dinosaur-id   ::spec/id}}}}]
-   ])
+                            {:simulation-id :simulation/id
+                             :dinosaur-id   :unit/id}}}}]])
 
-(defn get-swagger-routes
-  "Gets the Swagger routes."
-  []
-  [["" {:no-doc true}
-    ["/swagger.json"
+(def swagger-routes
+  ["" {:no-doc true}
+    ["/open-api.json"
      {:get
       {:swagger
        {:info
@@ -394,27 +395,33 @@
          :description "Service that provides support to run simulations on remote-controlled robots that fight dinosaurs."}}
        :handler
        (swagger/create-swagger-handler)}}]
-    ["/api-docs/*"
+    ["/docs/*"
      {:get
       (swagger-ui/create-swagger-ui-handler
-        {:config {:validatorUrl nil
-                  :docExpansion "list"}})}]]])
+        {:url "/open-api.json"
+         :config {:validatorUrl nil
+                  :docExpansion "list"}})}]])
 
-(defn- get-prod-routes
-  "Gets the production routes."
+;;
+;; Concat Routes
+;;
+(defn get-routes
+  "Gets the Simulation routes."
   []
-  [(get-simulation-routes)])
+   (vec
+    (concat
+      ["/api"]
+      simulation-routes
+      robots-routes
+      dinosaurs-routes)))
 
-(defn- get-dev-routes
+(defn- dev-routes
   "Gets the development routes."
   []
-  (let [prod-routes (get-prod-routes)
-        dev-routes (get-swagger-routes)]
-    (vec (concat prod-routes dev-routes))))
+  [(get-routes)
+   swagger-routes])
 
-(defn get-routes
+(defn routes
   "Get the routes according to the current environment."
   [env]
-  (if (= env :prod)
-    (get-prod-routes)
-    (get-dev-routes)))
+  (if (= env :prod) (get-routes) (dev-routes)))

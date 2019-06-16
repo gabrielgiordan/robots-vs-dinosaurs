@@ -93,7 +93,7 @@
                                      (board/robot-attack board robot-id)
                                      (update-board simulation))]
     (if response
-      (update-in result [:updated :scoreboard] #(scoreboard/total* % (count response)))
+      (update-in result [:updated :scoreboard] #(scoreboard/sum-score % response))
       result)))
 
 ;;
@@ -140,11 +140,11 @@
 (defn as-game
   "Converts a simulation to a simple game string."
   [simulation]
-  (->>
+  (clojure.string/join
+    "\n"
     (map
       (partial clojure.string/join "|")
-      (as-matrix simulation))
-    (clojure.string/join "\n")))
+      (as-matrix simulation))))
 
 #_(def data
     (new-simulation

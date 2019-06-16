@@ -10,8 +10,7 @@
     (robots-vs-dinosaurs
       [interceptors :as interceptors]))
   (:import
-    (java.io Writer)
-    (clojure.lang ExceptionInfo)))
+    (java.io Writer)))
 
 (defonce base-service-map
          {:env                           :prod
@@ -74,11 +73,8 @@
   (start
     [this]
     (println "Starting the #<Service> component.")
-    (try
-      (let [service (start-service options)]
-        (assoc this :service service))
-      (catch ExceptionInfo ex
-        (prn "Error when starting the #<Service>" (ex-data ex)))))
+    (let [service (start-service options)]
+      (assoc this :service service)))
 
   (stop
     [this]

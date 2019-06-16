@@ -1,5 +1,8 @@
 (ns robots-vs-dinosaurs.logic.size)
 
+;;
+;; Size
+;;
 (defrecord Size [width height])
 
 (defn new-size

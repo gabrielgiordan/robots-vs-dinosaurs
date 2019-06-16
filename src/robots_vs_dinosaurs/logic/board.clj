@@ -5,9 +5,7 @@
     (robots-vs-dinosaurs
       [util :refer [find-first]])
     (robots-vs-dinosaurs.logic
-      [unit :as unit]
-      [point :as point]
-      [size :as size])))
+      [unit :as unit])))
 
 ;;
 ;; Board
@@ -209,9 +207,10 @@
   else returns a map with the `response` with the
   attacked dinosaurs and the `updated` board."
   [board robot-id]
-  (->>
-    (unit-attack unit/attack-4-directions robot-attack-validation)
-    (update-robot board robot-id)))
+  (update-robot
+    board
+    robot-id
+    (unit-attack unit/attack-4-directions robot-attack-validation)))
 
 (defn move-robot-forward
   "Moves a robot forward,

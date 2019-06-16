@@ -5,7 +5,7 @@
       [board :as board]
       [unit :as unit])
     (robots-vs-dinosaurs.storage
-      [simulations :as db])))
+      [db :as db])))
 
 (defn- result-handler
   [result]
@@ -116,8 +116,8 @@
 ;;
 (defn new-dinosaur!
   "Creates and stores a new dinosaur into the simulation."
-  [storage simulation-id point]
-  (let [dinosaur (unit/new-dinosaur (db/get-id! storage) point)]
+  [storage simulation-id point subtype]
+  (let [dinosaur (unit/new-dinosaur (db/get-id! storage) point subtype)]
     (update-simulation! storage simulation-id #(simulation/add-dinosaur % dinosaur))))
 
 (defn get-dinosaur
