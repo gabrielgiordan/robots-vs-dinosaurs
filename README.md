@@ -77,7 +77,7 @@ The logic is the largest part of the application and is made of the below busine
 	
 	- **Robot** has `id` `point` and `direction`.
 				
-	- **Dinosaur** has `id` and `point`.
+	- **Dinosaur** has `id` `subtype` and `point`.
 	
 - **Size** has `width` and `height`.
 	
