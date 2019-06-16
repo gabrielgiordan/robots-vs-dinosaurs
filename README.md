@@ -190,17 +190,24 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 <img src="doc/img/robot-attack-response.png?raw=true" width=250 />
 
 
+`curl -X GET --header 'Accept: application/transit+json' localhost:4000/api/simulations/0/robots/2/attack`
+
+`200 Content-Type: application/transit+json`
+
+<img src="doc/img/robot-attack-transit-json-response.png?raw=true" width=170 />
+
+
 <a name="examples-4xx"></a>
 #### 4xx
 
-`curl -X GET --header http://localhost:4000/api/simulations/93`
+`curl -X GET http://localhost:4000/api/simulations/93`
 
 `404 Content-Type: application/json`
 
 <img src="doc/img/error-0-response.png?raw=true" height=200 />
 
 
-`curl -X GET --header http://localhost:4000/api/simulations/string`
+`curl -X GET http://localhost:4000/api/simulations/string`
 
 `400 Content-Type: application/json`
 
@@ -216,14 +223,21 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 
 `403 Content-Type: application/json`
 
-`curl -X GET --header http://localhost:4000/api/simulations/16/robots/63/attack`
+`curl -X GET http://localhost:4000/api/simulations/16/robots/63/attack`
 
 <img src="doc/img/error-11-response.png?raw=true" height=200 />
 
 
+`403 Content-Type: application/edn`
+
+`curl -X GET --header 'Accept: application/edn' http://localhost:4000/api/simulations/16/robots/63/attack`
+
+<img src="doc/img/error-11-edn-response.png?raw=true" height=200 />
+
+
 `403 Content-Type: application/json`
 
-`curl -X GET --header http://localhost:4000/api/simulations/16/robots/53/move-backward`
+`curl -X GET http://localhost:4000/api/simulations/16/robots/53/move-backward`
 
 <img src="doc/img/error-13-response.png?raw=true" height=200 />
 
