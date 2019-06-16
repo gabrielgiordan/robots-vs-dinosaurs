@@ -187,11 +187,11 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 <img src="doc/img/robot-attack-response.png?raw=true" width=250 />
 
 
-`curl -X GET --header 'Accept: application/transit+json' localhost:4000/api/simulations/0/robots/2/attack`
+`curl -X GET --header 'Accept: application/transit+json' localhost:4000/api/simulations/0/robots/2/turn-right`
 
 `200 Content-Type: application/transit+json`
 
-<img src="doc/img/robot-attack-transit-json-response.png?raw=true" width=170 />
+<img src="doc/img/robot-attack-transit-json-response.png?raw=true" height=100 />
 
 
 <a name="examples-4xx"></a>
