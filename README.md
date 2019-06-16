@@ -114,6 +114,10 @@ Run with `dev` profile:
 lein run-dev
 ``` 
 
+#### Open API
+
+The **Swagger UI** is available in `dev` mode at `/docs`.
+
 ---
 
 <a name="deployment"></a>
@@ -240,10 +244,6 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 <img src="doc/img/error-13-response.png?raw=true" height=200 />
 
 ---
-
-## Open API
-
-The **Swagger UI** integration is available in `dev` mode at `/docs`.
 
 
 ## License
