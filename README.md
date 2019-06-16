@@ -35,9 +35,6 @@ Each **port** has a corresponding **Component** on the **System Map**:
 
 - **Storage**
 	- Which is a protocol to access a single **atom** to share and persist data (also considered to use `refs` to make use of the `STM`, e.g. for a transaction which generates the `ID` and saves an entity)
-	
-- **Routes**
-	- To get the service routes mapping.
 
 - **Service**
 	-  With **Pedestal** as the service provider.
