@@ -14,6 +14,7 @@ Clojure/ClojureScript apps to support simulations on an army of remote-controlle
 - [Examples](#examples)
 	- [2xx](#examples-2xx)
 	- [4xx](#examples-4xx)
+- [Open API](#open-api)
 
 <a name="overview"></a>
 ## Overview 
@@ -45,7 +46,7 @@ Each **port** has a corresponding **Component** on the **System Map**:
 	- **Interceptors** 
 		- Custom redirect for trailing slashes `/`.
 		- Clojure's **spec alpha** request/response coercion.
-		- **Swagger** support, in `dev` mode.
+		- **Open API** support, in `dev` mode.		
 		- Error logging using **Logback** with custom response.
 	- **Supported Formats**
 		- JSON
@@ -112,6 +113,10 @@ Run with `dev` profile:
 ```clj
 lein run-dev
 ``` 
+
+#### Open API
+
+The **Swagger UI** is available in `dev` mode at `/docs`.
 
 ---
 
@@ -239,6 +244,7 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 <img src="doc/img/error-13-response.png?raw=true" height=200 />
 
 ---
+
 
 ## License
 
