@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fff1221a-9306-4ed8-a7aa-ed7a85d4e639" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/robots_vs_dinosaurs/spec.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/robots_vs_dinosaurs/spec.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.hgignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/GabrielGiordanoMedin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/GabrielGiordanoMedin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Capstanfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.clj" beforeDir="false" afterPath="$PROJECT_DIR$/project.clj" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,28 +24,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/service.clj">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/spec.clj">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="97" column="31" lean-forward="true" selection-start-line="97" selection-start-column="31" selection-end-line="97" selection-end-column="31" />
+            <state relative-caret-position="476">
+              <caret line="36" column="6" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/robots_vs_dinosaurs/core_test.clj">
+        <entry file="file://$PROJECT_DIR$/project.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+            <state relative-caret-position="238">
+              <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.circleci/config.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="5" lean-forward="true" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -96,8 +103,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.travis.yml" />
-        <option value="$PROJECT_DIR$/test/robots_vs_dinosaurs/board_test.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/logic/boardd.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/logic/dinosaur.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/logic/robot.clj" />
@@ -115,7 +120,6 @@
         <option value="$PROJECT_DIR$/test/robots_vs_dinosaurs/logic/point.clj" />
         <option value="$PROJECT_DIR$/test/robots_vs_dinosaurs/logic.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/db/simulations.clj" />
-        <option value="$PROJECT_DIR$/project.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/storage/initial_data.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/storage/init_data.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/logic/message.clj" />
@@ -147,6 +151,9 @@
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/logic/unit.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/service.clj" />
         <option value="$PROJECT_DIR$/src/robots_vs_dinosaurs/spec.clj" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/project.clj" />
+        <option value="$PROJECT_DIR$/.circleci/config.yaml" />
       </list>
     </option>
   </component>
@@ -174,6 +181,11 @@
             <path>
               <item name="robots-vs-dinosaurs" type="b2602c69:ProjectViewProjectNode" />
               <item name="robots-vs-dinosaurs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="robots-vs-dinosaurs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="robots-vs-dinosaurs" type="462c0819:PsiDirectoryNode" />
+              <item name=".circleci" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="robots-vs-dinosaurs" type="b2602c69:ProjectViewProjectNode" />
@@ -233,7 +245,7 @@
       <recent name="C:\Git\robots-vs-dinosaurs\src\robots_vs_dinosaurs" />
     </key>
   </component>
-  <component name="ReplState" timestamp="1560706185506">{:repl-history {:ide [], :local [{:command &quot;(new-robot 12 (point/new-point 2 2) :up)&quot;, :offset 40, :ns &quot;robots-vs-dinosaurs.logic.unit&quot;} {:command &quot;(s/valid? :unit/robot (new-robot 12 (point/new-point 2 2) :up))&quot;, :offset 63, :ns &quot;robots-vs-dinosaurs.logic.unit&quot;} {:command &quot;(s/valid? :board/board (size/new-size 22 22 []))&quot;, :offset 48, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/valid? :board/board (size/new-size 22 22))&quot;, :offset 43, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/explain :board/board (size/new-size 22 22))&quot;, :offset 10, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/explain :board/board {:size {:width 20 :height 20} :units []})&quot;, :offset 62, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/explain :board/board {:size {:width 20 :height 20}})&quot;, :offset 53, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/valid? :board/size (size/new-size 22 22))&quot;, :offset 42, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/exercise :board/size)&quot;, :offset 24, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/exercise :size/size)&quot;, :offset 18, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/exercise :board/board)&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/def )&quot;, :offset 8} {:command &quot;(s/exercise :board/units)&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/exercise :direction/orientation)&quot;, :offset 35, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/sample :direction/orientation)&quot;, :offset 11, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/valid? :direction/orientation :dos)&quot;, :offset 38, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/valid? :direction/orientation :down)&quot;, :offset 38, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/valid? :direction/orientation :up)&quot;, :offset 36, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/sample (s/gen :direction/orientation))&quot;, :offset 42, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :direction/orientation))&quot;, :offset 13, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :direction/direction))&quot;, :offset 41, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :unit/units))&quot;, :offset 34, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :unit/dinosaur))&quot;, :offset 35, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :unit/robot))&quot;, :offset 32, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;()&quot;, :offset 1} {:command &quot;(s/spec :unit/robot)&quot;, :offset 20, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :board/board))&quot;, :offset 34, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :board/unit))&quot;, :offset 34, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :board/units))&quot;, :offset 34, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :board/simulation))&quot;, :offset 38, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :simulation/simulation))&quot;, :offset 32, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate :response/simulation)&quot;, :offset 34, :ns &quot;user&quot;} {:command &quot;(gen/generate :simulation/simulation)&quot;, :offset 37, :ns &quot;user&quot;} {:command &quot;(gen/generate :point/point)&quot;, :offset 27, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :point/point))&quot;, :offset 33, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :response/simulation))&quot;, :offset 41, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :response/simulations))&quot;, :offset 42, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :response/direction))&quot;, :offset 40, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :service/point))&quot;, :offset 36, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :service/point)\n              )&quot;, :offset 14, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :service/direction))&quot;, :offset 39, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :service/orientation))&quot;, :offset 41, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :service/robot))&quot;, :offset 35, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :service/simulation))&quot;, :offset 40, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :request/simulation))&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :response/success))&quot;, :offset 38, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :request/robot))&quot;, :offset 35, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(s/s)&quot;, :offset 5} {:command &quot;(adapter/string-&gt;int \&quot;12\&quot;)&quot;, :offset 24, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(adapter/string-&gt;int \&quot;a\&quot;)&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(adapter/string-&gt;int \&quot;a1\&quot;)&quot;, :offset 24, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(adapter/string-&gt;int \&quot;1a1\&quot;)&quot;, :offset 23, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(adapter/string-&gt;int \&quot;1a2331223\&quot;)&quot;, :offset 31, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(edn/read-string \&quot;12\&quot;)&quot;, :offset 20, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(edn/read-string \&quot;12a\&quot;)&quot;, :offset 21, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(edn/read-string \&quot;12a3\&quot;)&quot;, :offset 22, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(edn/read-string \&quot;12a34\&quot;)&quot;, :offset 23, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(adapter/string-&gt;int \&quot;1a2331\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(adapter/string-&gt;int \&quot;11\&quot;)&quot;, :offset 23, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(adapter/string-&gt;int \&quot;121\&quot;)&quot;, :offset 24, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(adapter/string-&gt;int \&quot;1241\&quot;)&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(s/exercise :request/x)&quot;, :offset 23, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(gen/generate (s/gen :request/x))&quot;, :offset 15, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(s/)&quot;, :offset 3} {:command &quot;(gen/generate (s/gen :request/direction))&quot;, :offset 39, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(gen/generate (s/gen :response/robot-attack))&quot;, :offset 45, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(simulation-routes)&quot;, :offset 18, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(robots-routes)&quot;, :offset 14, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(dinosaurs-routes)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(apply into [] simulation-routes dinosaurs-routes)&quot;, :offset 49, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(apply into [] (simulation-routes) (dinosaurs-routes))&quot;, :offset 53, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;simulation-routes&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(concat simulation-routes dinosaurs-routes)&quot;, :offset 42, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(concat simulation-routes robots-routes dinosaurs-routes)&quot;, :offset 40, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(let [prod-routes (prod-routes)\n      dev-routes (swagger-routes)]\n  (vec (concat prod-routes dev-routes)))&quot;, :offset 107, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(vec (concat (get-routes) (swagger-routes)))&quot;, :offset 44, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(concat (get-routes) (swagger-routes))&quot;, :offset 38, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(user/start)&quot;, :offset 12, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(user/*state nil)&quot;, :offset 17} {:command &quot;(dev-routes)&quot;, :offset 12, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;swagger-routes&quot;, :offset 14, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(get-routes)&quot;, :offset 11, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(routes)&quot;, :offset 7, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(routes :prod)&quot;, :offset 14, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(routes :dev)&quot;, :offset 13, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(user/tests)&quot;, :offset 12, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(dinosaur-subtype)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;dinosaur-subtype&quot;, :offset 0, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(map dinosaur-subtype (partial name))&quot;, :offset 36, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(map dinosaur-subtype (constantly name))&quot;, :offset 33, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(map dinosaur-subtype (identity name))&quot;, :offset 31, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(map dinosaur-subtype name)&quot;, :offset 22, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(map name dinosaur-subtype)&quot;, :offset 10, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(set (map name dinosaur-subtype))&quot;, :offset 33, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(s/exercise :request/subtype)&quot;, :offset 28, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(adapter/string-&gt;dinosaur-subtype \&quot;mort\&quot;)&quot;, :offset 1, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(find-keyword \&quot;mort\&quot;)&quot;, :offset 20, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(find-keyword \&quot;vita\&quot;)&quot;, :offset 19, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(user/stop)&quot;, :offset 10, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(user/reset)&quot;, :offset 12, :ns &quot;robots-vs-dinosaurs.server&quot;}], :remote []}}</component>
+  <component name="ReplState" timestamp="1560709543866">{:repl-history {:ide [], :local [{:command &quot;(new-robot 12 (point/new-point 2 2) :up)&quot;, :offset 40, :ns &quot;robots-vs-dinosaurs.logic.unit&quot;} {:command &quot;(s/valid? :unit/robot (new-robot 12 (point/new-point 2 2) :up))&quot;, :offset 63, :ns &quot;robots-vs-dinosaurs.logic.unit&quot;} {:command &quot;(s/valid? :board/board (size/new-size 22 22 []))&quot;, :offset 48, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/valid? :board/board (size/new-size 22 22))&quot;, :offset 43, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/explain :board/board (size/new-size 22 22))&quot;, :offset 10, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/explain :board/board {:size {:width 20 :height 20} :units []})&quot;, :offset 62, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/explain :board/board {:size {:width 20 :height 20}})&quot;, :offset 53, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/valid? :board/size (size/new-size 22 22))&quot;, :offset 42, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/exercise :board/size)&quot;, :offset 24, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/exercise :size/size)&quot;, :offset 18, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/exercise :board/board)&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/def )&quot;, :offset 8} {:command &quot;(s/exercise :board/units)&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/exercise :direction/orientation)&quot;, :offset 35, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/sample :direction/orientation)&quot;, :offset 11, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/valid? :direction/orientation :dos)&quot;, :offset 38, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/valid? :direction/orientation :down)&quot;, :offset 38, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(s/valid? :direction/orientation :up)&quot;, :offset 36, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/sample (s/gen :direction/orientation))&quot;, :offset 42, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :direction/orientation))&quot;, :offset 13, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :direction/direction))&quot;, :offset 41, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :unit/units))&quot;, :offset 34, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :unit/dinosaur))&quot;, :offset 35, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :unit/robot))&quot;, :offset 32, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;()&quot;, :offset 1} {:command &quot;(s/spec :unit/robot)&quot;, :offset 20, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :board/board))&quot;, :offset 34, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :board/unit))&quot;, :offset 34, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :board/units))&quot;, :offset 34, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :board/simulation))&quot;, :offset 38, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate (s/gen :simulation/simulation))&quot;, :offset 32, :ns &quot;robots-vs-dinosaurs.logic.board&quot;} {:command &quot;(gen/generate :response/simulation)&quot;, :offset 34, :ns &quot;user&quot;} {:command &quot;(gen/generate :simulation/simulation)&quot;, :offset 37, :ns &quot;user&quot;} {:command &quot;(gen/generate :point/point)&quot;, :offset 27, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :point/point))&quot;, :offset 33, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :response/simulation))&quot;, :offset 41, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :response/simulations))&quot;, :offset 42, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :response/direction))&quot;, :offset 40, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :service/point))&quot;, :offset 36, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :service/point)\n              )&quot;, :offset 14, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :service/direction))&quot;, :offset 39, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :service/orientation))&quot;, :offset 41, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :service/robot))&quot;, :offset 35, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :service/simulation))&quot;, :offset 40, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :request/simulation))&quot;, :offset 2, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :response/success))&quot;, :offset 38, :ns &quot;user&quot;} {:command &quot;(gen/generate (s/gen :request/robot))&quot;, :offset 35, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(s/s)&quot;, :offset 5} {:command &quot;(adapter/string-&gt;int \&quot;12\&quot;)&quot;, :offset 24, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(adapter/string-&gt;int \&quot;a\&quot;)&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(adapter/string-&gt;int \&quot;a1\&quot;)&quot;, :offset 24, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(adapter/string-&gt;int \&quot;1a1\&quot;)&quot;, :offset 23, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(adapter/string-&gt;int \&quot;1a2331223\&quot;)&quot;, :offset 31, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(edn/read-string \&quot;12\&quot;)&quot;, :offset 20, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(edn/read-string \&quot;12a\&quot;)&quot;, :offset 21, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(edn/read-string \&quot;12a3\&quot;)&quot;, :offset 22, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(edn/read-string \&quot;12a34\&quot;)&quot;, :offset 23, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(adapter/string-&gt;int \&quot;1a2331\&quot;)&quot;, :offset 27, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(adapter/string-&gt;int \&quot;11\&quot;)&quot;, :offset 23, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(adapter/string-&gt;int \&quot;121\&quot;)&quot;, :offset 24, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(adapter/string-&gt;int \&quot;1241\&quot;)&quot;, :offset 25, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(s/exercise :request/x)&quot;, :offset 23, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(gen/generate (s/gen :request/x))&quot;, :offset 15, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(s/)&quot;, :offset 3} {:command &quot;(gen/generate (s/gen :request/direction))&quot;, :offset 39, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(gen/generate (s/gen :response/robot-attack))&quot;, :offset 45, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(simulation-routes)&quot;, :offset 18, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(robots-routes)&quot;, :offset 14, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(dinosaurs-routes)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(apply into [] simulation-routes dinosaurs-routes)&quot;, :offset 49, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(apply into [] (simulation-routes) (dinosaurs-routes))&quot;, :offset 53, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;simulation-routes&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(concat simulation-routes dinosaurs-routes)&quot;, :offset 42, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(concat simulation-routes robots-routes dinosaurs-routes)&quot;, :offset 40, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(let [prod-routes (prod-routes)\n      dev-routes (swagger-routes)]\n  (vec (concat prod-routes dev-routes)))&quot;, :offset 107, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(vec (concat (get-routes) (swagger-routes)))&quot;, :offset 44, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(concat (get-routes) (swagger-routes))&quot;, :offset 38, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(user/start)&quot;, :offset 12, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(user/*state nil)&quot;, :offset 17} {:command &quot;(dev-routes)&quot;, :offset 12, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;swagger-routes&quot;, :offset 14, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(get-routes)&quot;, :offset 11, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(routes)&quot;, :offset 7, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(routes :prod)&quot;, :offset 14, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(routes :dev)&quot;, :offset 13, :ns &quot;robots-vs-dinosaurs.service&quot;} {:command &quot;(user/tests)&quot;, :offset 12, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(dinosaur-subtype)&quot;, :offset 17, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;dinosaur-subtype&quot;, :offset 0, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(map dinosaur-subtype (partial name))&quot;, :offset 36, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(map dinosaur-subtype (constantly name))&quot;, :offset 33, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(map dinosaur-subtype (identity name))&quot;, :offset 31, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(map dinosaur-subtype name)&quot;, :offset 22, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(map name dinosaur-subtype)&quot;, :offset 10, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(set (map name dinosaur-subtype))&quot;, :offset 33, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(s/exercise :request/subtype)&quot;, :offset 28, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(adapter/string-&gt;dinosaur-subtype \&quot;mort\&quot;)&quot;, :offset 1, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(find-keyword \&quot;mort\&quot;)&quot;, :offset 20, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(find-keyword \&quot;vita\&quot;)&quot;, :offset 19, :ns &quot;robots-vs-dinosaurs.spec&quot;} {:command &quot;(user/stop)&quot;, :offset 10, :ns &quot;robots-vs-dinosaurs.server&quot;} {:command &quot;(user/reset)&quot;, :offset 12, :ns &quot;robots-vs-dinosaurs.server&quot;}], :remote []}}</component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -346,7 +358,7 @@
     <frame x="-7" y="0" width="653" height="727" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49717513" weight="0.3322091" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49717513" weight="0.3319838" />
       <window_info id="Structure" order="1" sideWeight="0.50282484" side_tool="true" weight="0.21538462" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -376,7 +388,7 @@
       <window_info anchor="right" id="Capture Analysis" order="8" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49717513" visible="true" weight="0.33360323" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49717513" visible="true" weight="0.3319838" />
       <window_info id="Structure" order="1" sideWeight="0.50282484" side_tool="true" weight="0.21538462" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -385,9 +397,9 @@
       <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.3283582" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32659933" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.25373134" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6964286" visible="true" weight="0.31343284" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6964286" weight="0.31343284" />
       <window_info anchor="bottom" id="Docker" order="4" weight="0.5936982" />
-      <window_info anchor="bottom" id="Version Control" order="5" weight="0.3283582" />
+      <window_info anchor="bottom" id="Version Control" order="5" weight="0.3277311" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32715008" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49959514" weight="0.6728499" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.30357143" side_tool="true" weight="0.31343284" />
@@ -401,7 +413,7 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="4" type="SLIDING" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="5" weight="0.25" />
-      <window_info anchor="right" id="REPL" order="6" visible="true" weight="0.44534412" />
+      <window_info anchor="right" id="REPL" order="6" weight="0.44534412" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="8" />
     </layout-to-restore>
@@ -570,32 +582,6 @@ type</expression-string>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="55" lean-forward="true" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/hexagonal-architecture.drawio">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/img/get-simulation.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/img/carbon-config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/img/delete-simulation-response.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/img/get-simulation-as-game.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/doc/img/get-simulations.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -874,10 +860,10 @@ type</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/service.clj">
+    <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/spec.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        <state relative-caret-position="-544">
+          <caret line="116" column="30" lean-forward="true" selection-start-line="116" selection-start-column="30" selection-end-line="116" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -888,10 +874,45 @@ type</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/spec.clj">
+    <entry file="file://$PROJECT_DIR$/src/robots_vs_dinosaurs/service.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="97" column="31" lean-forward="true" selection-start-line="97" selection-start-column="31" selection-end-line="97" selection-end-column="31" />
+        <state>
+          <caret line="54" column="25" lean-forward="true" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Capstanfile">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="36" column="6" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.circleci/config.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="5" lean-forward="true" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
         </state>
       </provider>
     </entry>

@@ -16,6 +16,7 @@
                  [environ "1.1.0"]]
   :min-lein-version "2.0.0"
   :plugins [[lein-environ "1.1.0" :hooks false] ; Leiningen hooks are deprecated.
+            [lein-cloverage "1.1.2-SNAPSHOT"]
             [lein-auto "0.1.3"]]
   :test-paths ["test"]
   :target-path "target/%s"

@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/robots-vs-dinosaurs
+    docker:
+      - image: circleci/clojure:lein-2.7.1
+    environment:
+      LEIN_ROOT: nbd
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - robots-vs-dinosaurs-{{ checksum "project.clj" }}
+      - run: lein deps
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: robots-vs-dinosaurs-{{ checksum "project.clj" }}
+      - run: lein do clean, test :all, uberjar, cloverage --codecov
+      - run: curl -s https://codecov.io/bash | bash -s - -t 5d1ce6d6-1309-49f7-9146-0acd6ad8a5ce -f target/coverage/codecov.json
+      - store_artifacts:
+          path: target/coverage

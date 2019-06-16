@@ -14,6 +14,7 @@ target/
 repl-port
 .nrepl-port
 .repl
+.eastwood
 
 # Temp Files
 *.orig
@@ -22,6 +23,7 @@ repl-port
 .*.swo
 *.tmp
 *.bak
+*.iml
 
 # OS X
 .DS_Store
