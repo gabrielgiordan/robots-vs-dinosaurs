@@ -232,7 +232,7 @@ The project has a `Procfile` file for Heroku deployment which can be executed wi
 
 `curl -X GET --header 'Accept: application/edn' http://localhost:4000/api/simulations/16/robots/63/attack`
 
-<img src="doc/img/error-11-edn-response.png?raw=true" height=200 />
+<img src="doc/img/error-11-edn-response.png?raw=true" height=115 />
 
 
 `403 Content-Type: application/json`
