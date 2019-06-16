@@ -50,7 +50,11 @@ Each **port** has a corresponding **Component** on the **System Map**:
 		- Clojure's **spec alpha** request/response coercion.
 		- **Swagger** support, in `dev` mode.
 		- Error logging using **Logback** with custom response.
-	
+	- **Supported Formats**
+		- JSON
+		- Transit (both JSON and MessagePack)
+		- EDN (used in Clojure and Datomic)
+		
 - **Server**
 	- With **Jetty** as the default http server which listens to `PORT` environment variable (useful for Heroku) or `8080` as the default port binding.
 
