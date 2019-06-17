@@ -53,6 +53,36 @@
             (muuntaja/decode json-fm $)
             (every? $ [:id :board :scoreboard])))))
 
+  (testing "Can create a robot."
+    (is (= (->
+             @mocked-service
+             (response-for
+               :post "/api/simulations/0/robots"
+               :headers {"Content-Type" json-fm}
+               :body "{\"point\":{\"x\":3,\"y\":5},\"orientation\":\"up\"}")
+             (:status))
+           201)))
+
+  (testing "Can create a dinosaur."
+    (is (= (->
+             @mocked-service
+             (response-for
+               :post "/api/simulations/0/dinosaurs"
+               :headers {"Content-Type" json-fm}
+               :body "{\"point\":{\"x\":4,\"y\":5},\"subtype\":\"doux\"}")
+             (:status))
+           201)))
+
+  (testing "Can create a simulation."
+    (is (= (->
+             @mocked-service
+             (response-for
+               :post "/api/simulations"
+               :headers {"Content-Type" json-fm}
+               :body "{\"size\":{\"width\":22,\"height\":22},\"title\":\"Heavy metal butterfly\"}")
+             (:status))
+           201)))
+
   (testing "Start with default data."
     (is (->
           @mocked-service

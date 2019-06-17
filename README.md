@@ -20,6 +20,8 @@ Clojure/ClojureScript apps to support simulations on an army of remote-controlle
 
 The **Robots vs Dinosaurs** project is separated into two apps: the **Clojure** server-side app and the extra **ClojureScript** client-side app.
 
+[Click here to view live on Heroku](https://robots-vs-dinosaurs.herokuapp.com/api/simulations)
+
 ---
 
 <a name="architecture"></a>
