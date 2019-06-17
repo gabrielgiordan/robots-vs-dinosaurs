@@ -2,6 +2,8 @@
 
 Clojure/ClojureScript apps to support simulations on an army of remote-controlled robots that fight dinosaurs!
 
+[Click here to view live on Heroku](https://robots-vs-dinosaurs.herokuapp.com/api/simulations)
+
 ## Contents
 - [Overview](#overview)
 	- [Architecture](#architecture)
