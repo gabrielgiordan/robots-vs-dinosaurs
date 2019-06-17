@@ -11,8 +11,8 @@
 (defn- error-response
   "Gets an response response with
   `status` and `body`."
-  [status body]
-  {:status status :body body})
+  [status body format]
+  {:status status :body body :headers {"Content-Type" format}})
 
 (defn- safe-format
   "Checks if a format is supported by encoder/decoder,
@@ -27,22 +27,24 @@
   [status code message format]
   (some->>
     {:error {:status status, :code code, :message message}}
-    (muuntaja/encode (safe-format format))
+    (muuntaja/encode format)
     (slurp)))
 
 (defn- error-response-encoded
   "Gets an error response encoded."
   [status code message format]
-  (error-response status (error-body status code message format)))
+  (let [safe-format (safe-format format)]
+    (error-response
+      status
+      (error-body status code message safe-format)
+      safe-format)))
 
 (defn- ex-handler
   "Handles an exception."
   ([status code message]
    (fn [ex {{accept "accept"} :headers}]
      (log/error status (ex-message ex))
-     {:status  status
-      :headers {"Content-type" accept}
-      :body    (error-body status code message accept)})))
+     (error-response-encoded status code message accept))))
 
 (defn exception-interceptor
   "Intercept exceptions with custom messages."
@@ -77,7 +79,7 @@
     (fn [context]
       (let [resp (:response context)]
         (if-not (and (map? resp) (integer? (:status resp)))
-          (do (log/error 404 (:request context))
+          (do (log/info :not-found (:request context))
               (let [{{{accept "accept"} :headers} :request} context]
                 (assoc context :response (error-response-encoded 404 0 "Could not find the requested resource." accept))))
           context)))))

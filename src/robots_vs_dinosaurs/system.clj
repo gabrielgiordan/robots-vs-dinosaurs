@@ -43,6 +43,26 @@
       {:router [:service :storage]
        :server [:router :router]})))
 
+(defn- mock-new-system-map
+  "Creates a new system map for integration testing."
+  [system-options]
+  (let [service-options (:service system-options)
+        router-options (:router system-options)
+        environment (:env service-options)]
+    (component/system-using
+      (component/system-map
+        :storage (new-memory-storage)
+        :service (new-service service-options)
+        :router (new-router router-options (service/routes environment)))
+      {:router [:service :storage]})))
+
+(defn mock-start-system
+  [environment]
+  (let [system-options (get-system-options environment)
+        system-map (mock-new-system-map system-options)]
+    (println "Mocking #<SystemMap>.")
+    (component/start system-map)))
+
 (defn print-system-info
   "Prints the ascii art with system information."
   [system-map]
