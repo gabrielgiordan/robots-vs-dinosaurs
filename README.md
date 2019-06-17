@@ -1,4 +1,4 @@
-# Robots vs Dinosaurs
+# Robots vs Dinosaurs [![CircleCI](https://circleci.com/gh/gabrielgiordan/robots-vs-dinosaurs.svg?style=svg&circle-token=954c8aa4101100fc9fb48f3729736e23fcc8b2cd)](https://circleci.com/gh/gabrielgiordan/robots-vs-dinosaurs) [![codecov](https://codecov.io/gh/gabrielgiordan/robots-vs-dinosaurs/branch/master/graph/badge.svg?token=qRIPgTLw1S)](https://codecov.io/gh/gabrielgiordan/robots-vs-dinosaurs)
 
 Clojure/ClojureScript apps to support simulations on an army of remote-controlled robots that fight dinosaurs!
 
@@ -14,7 +14,6 @@ Clojure/ClojureScript apps to support simulations on an army of remote-controlle
 - [Examples](#examples)
 	- [2xx](#examples-2xx)
 	- [4xx](#examples-4xx)
-- [Open API](#open-api)
 
 <a name="overview"></a>
 ## Overview 
@@ -39,6 +38,7 @@ Each **port** has a corresponding **Component** on the **System Map**:
 
 - **Service**
 	-  With **Pedestal** as the service provider.
+	- **Swagger** integration available in `dev` profile at `/docs` and Open API spec at `/open-api.json`.
 
 - **Router** 
 	- With **Reitit** as the alternative routing engine, which is faster than the Pedestal's default.
@@ -46,7 +46,6 @@ Each **port** has a corresponding **Component** on the **System Map**:
 	- **Interceptors** 
 		- Custom redirect for trailing slashes `/`.
 		- Clojure's **spec alpha** request/response coercion.
-		- **Open API** support, in `dev` mode.		
 		- Error logging using **Logback** with custom response.
 	- **Supported Formats**
 		- JSON
@@ -113,10 +112,6 @@ Run with `dev` profile:
 ```clj
 lein run-dev
 ``` 
-
-#### Open API
-
-The **Swagger UI** is available in `dev` mode at `/docs`.
 
 ---
 
